@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAVE — Guarda quién eres</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root {
+  --black: #141210;
+  --white: #faf8f4;
+  --warm: #f2efe8;
+  --stone: #c4bfb5;
+  --mid: #8a857c;
+  --dark-warm: #1c1a17;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --r-sm: 12px;
+  --r-md: 20px;
+  --r-lg: 28px;
+  --r-xl: 40px;
+  --r-full: 999px;
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 48px;
+}
+
+.nav-pill {
+  background: rgba(250,248,244,0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(196,191,181,0.4);
+  border-radius: var(--r-full);
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 12px 24px;
+}
+
+.nav-logo {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 20px;
+  letter-spacing: 0.3em;
+  color: var(--black);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--mid);
+  text-decoration: none;
+  transition: color 0.25s;
+}
+
+.nav-links a:hover { color: var(--black); }
+
+.nav-cta {
+  background: var(--black);
+  color: var(--white) !important;
+  padding: 10px 20px;
+  border-radius: var(--r-full);
+  font-size: 12px !important;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: opacity 0.25s;
+}
+
+.nav-cta:hover { opacity: 0.8; }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  padding: 140px 48px 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--warm);
+  border: 1px solid var(--stone);
+  border-radius: var(--r-full);
+  padding: 8px 16px;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 36px;
+}
+
+.hero-eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--stone);
+}
+
+.hero-h1 {
+  font-family: var(--serif);
+  font-size: clamp(56px, 6vw, 88px);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--black);
+  margin-bottom: 28px;
+}
+
+.hero-h1 em {
+  font-style: italic;
+  color: var(--mid);
+}
+
+.hero-p {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--mid);
+  max-width: 420px;
+  margin-bottom: 48px;
+  font-weight: 300;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.btn-dark {
+  background: var(--black);
+  color: var(--white);
+  padding: 16px 32px;
+  border-radius: var(--r-full);
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.25s, transform 0.2s;
+  display: inline-block;
+}
+
+.btn-dark:hover { opacity: 0.85; transform: translateY(-1px); }
+
+.btn-outline {
+  color: var(--mid);
+  font-size: 13px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.25s;
+  letter-spacing: 0.05em;
+}
+
+.btn-outline:hover { color: var(--black); }
+
+.btn-outline span { transition: transform 0.25s; }
+.btn-outline:hover span { transform: translateX(4px); }
+
+/* Hero card */
+.hero-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.card-stack {
+  position: relative;
+  width: 340px;
+}
+
+.card-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--warm);
+  border-radius: var(--r-xl);
+  transform: rotate(3deg) translateY(12px);
+  border: 1px solid var(--stone);
+}
+
+.card-bg2 {
+  position: absolute;
+  inset: 0;
+  background: var(--warm);
+  border-radius: var(--r-xl);
+  transform: rotate(-1.5deg) translateY(6px);
+  border: 1px solid var(--stone);
+  opacity: 0.6;
+}
+
+.card-main {
+  position: relative;
+  background: var(--white);
+  border-radius: var(--r-xl);
+  padding: 36px;
+  border: 1px solid var(--stone);
+  animation: gentle-float 5s ease-in-out infinite;
+}
+
+@keyframes gentle-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.card-badge {
+  background: var(--warm);
+  border: 1px solid var(--stone);
+  border-radius: var(--r-full);
+  padding: 6px 12px;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--mid);
+}
+
+.card-status {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--black);
+}
+
+.card-title-serif {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 300;
+  line-height: 1.25;
+  color: var(--black);
+  margin-bottom: 28px;
+}
+
+.card-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 28px;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  border: 1px solid var(--warm);
+}
+
+.card-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--warm);
+  gap: 16px;
+}
+
+.card-row + .card-row {
+  border-top: 1px solid rgba(196,191,181,0.4);
+}
+
+.card-row-type {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--stone);
+  min-width: 48px;
+}
+
+.card-row-val {
+  font-size: 12px;
+  color: var(--black);
+  font-weight: 300;
+  text-align: right;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-date {
+  font-size: 10px;
+  color: var(--stone);
+  letter-spacing: 0.1em;
+}
+
+.card-share-btn {
+  background: var(--black);
+  color: var(--white);
+  border: none;
+  border-radius: var(--r-full);
+  padding: 8px 16px;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: opacity 0.2s;
+}
+
+.card-share-btn:hover { opacity: 0.8; }
+
+/* ─── LOGOS/SOCIAL PROOF ─── */
+.proof-bar {
+  background: var(--warm);
+  border-top: 1px solid var(--stone);
+  border-bottom: 1px solid var(--stone);
+  padding: 24px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.proof-text {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--mid);
+  text-transform: uppercase;
+}
+
+.proof-stars {
+  display: flex;
+  gap: 3px;
+  color: var(--black);
+  font-size: 14px;
+}
+
+/* ─── HOW IT WORKS ─── */
+.section {
+  padding: 120px 48px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--warm);
+  border: 1px solid var(--stone);
+  border-radius: var(--r-full);
+  padding: 8px 16px;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 48px;
+}
+
+.section-h2 {
+  font-family: var(--serif);
+  font-size: clamp(40px, 4vw, 60px);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--black);
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+
+.section-h2 em {
+  font-style: italic;
+  color: var(--mid);
+}
+
+.section-sub {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--mid);
+  font-weight: 300;
+  max-width: 480px;
+  margin-bottom: 72px;
+}
+
+/* Steps */
+.steps-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.step-card {
+  background: var(--warm);
+  border-radius: var(--r-xl);
+  padding: 40px 36px;
+  border: 1px solid var(--stone);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.step-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(20,18,16,0.08);
+}
+
+.step-num-big {
+  font-family: var(--serif);
+  font-size: 80px;
+  font-weight: 300;
+  color: var(--stone);
+  line-height: 1;
+  margin-bottom: 32px;
+  opacity: 0.5;
+}
+
+.step-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--white);
+  border-radius: var(--r-md);
+  border: 1px solid var(--stone);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  color: var(--mid);
+}
+
+.step-title {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 300;
+  color: var(--black);
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.step-desc {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--mid);
+  font-weight: 300;
+}
+
+/* ─── FEATURES ─── */
+.features-section {
+  padding: 0 48px 120px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.features-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: end;
+  margin-bottom: 56px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.feature-card {
+  background: var(--warm);
+  border-radius: var(--r-xl);
+  padding: 40px;
+  border: 1px solid var(--stone);
+  transition: transform 0.3s;
+}
+
+.feature-card:hover { transform: translateY(-3px); }
+
+.feature-card.dark {
+  background: var(--black);
+  border-color: var(--dark-warm);
+}
+
+.feature-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  font-size: 20px;
+}
+
+.feature-icon-wrap.light {
+  background: var(--white);
+  border: 1px solid var(--stone);
+  color: var(--mid);
+  font-family: var(--serif);
+  font-style: italic;
+}
+
+.feature-icon-wrap.inverted {
+  background: var(--dark-warm);
+  border: 1px solid #2e2c28;
+  color: var(--stone);
+  font-family: var(--serif);
+  font-style: italic;
+}
+
+.feature-title {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 300;
+  margin-bottom: 12px;
+}
+
+.feature-card:not(.dark) .feature-title { color: var(--black); }
+.feature-card.dark .feature-title { color: var(--white); }
+
+.feature-desc {
+  font-size: 14px;
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+.feature-card:not(.dark) .feature-desc { color: var(--mid); }
+.feature-card.dark .feature-desc { color: var(--mid); }
+
+/* ─── PREVIEW / BIG TEMPORADA ─── */
+.preview-section {
+  margin: 0 48px 120px;
+  max-width: calc(1400px - 96px);
+  margin-left: auto;
+  margin-right: auto;
+  background: var(--black);
+  border-radius: var(--r-xl);
+  padding: 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.preview-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--dark-warm);
+  border: 1px solid #2e2c28;
+  border-radius: var(--r-full);
+  padding: 8px 16px;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 32px;
+}
+
+.preview-h2 {
+  font-family: var(--serif);
+  font-size: clamp(36px, 3.5vw, 52px);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--white);
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+}
+
+.preview-h2 em { font-style: italic; color: var(--mid); }
+
+.preview-p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--mid);
+  font-weight: 300;
+  margin-bottom: 40px;
+}
+
+.btn-white {
+  background: var(--white);
+  color: var(--black);
+  padding: 16px 32px;
+  border-radius: var(--r-full);
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.25s, transform 0.2s;
+  display: inline-block;
+}
+
+.btn-white:hover { opacity: 0.85; transform: translateY(-1px); }
+
+.big-temporada {
+  background: var(--dark-warm);
+  border-radius: var(--r-xl);
+  padding: 40px;
+  border: 1px solid #2e2c28;
+}
+
+.big-t-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #252320;
+  border: 1px solid #2e2c28;
+  border-radius: var(--r-full);
+  padding: 6px 14px;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 28px;
+}
+
+.big-t-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--mid);
+}
+
+.big-t-title {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1.2;
+  color: var(--white);
+  margin-bottom: 32px;
+}
+
+.big-t-title em { font-style: italic; color: var(--mid); }
+
+.big-t-items {
+  border-radius: var(--r-md);
+  overflow: hidden;
+  border: 1px solid #2e2c28;
+  margin-bottom: 28px;
+}
+
+.big-t-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: #1a1815;
+}
+
+.big-t-row + .big-t-row {
+  border-top: 1px solid #252320;
+}
+
+.big-t-type {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mid);
+}
+
+.big-t-val {
+  font-size: 13px;
+  color: var(--white);
+  font-weight: 300;
+}
+
+.big-t-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.big-t-date {
+  font-size: 10px;
+  color: var(--mid);
+  letter-spacing: 0.1em;
+}
+
+.big-t-share {
+  background: var(--white);
+  color: var(--black);
+  border: none;
+  border-radius: var(--r-full);
+  padding: 8px 18px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: opacity 0.2s;
+}
+
+.big-t-share:hover { opacity: 0.85; }
+
+/* ─── TESTIMONIALS ─── */
+.testimonials {
+  padding: 0 48px 120px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 56px;
+}
+
+.t-card {
+  background: var(--warm);
+  border-radius: var(--r-xl);
+  padding: 36px;
+  border: 1px solid var(--stone);
+}
+
+.t-stars {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: var(--black);
+}
+
+.t-quote {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--black);
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+.t-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.t-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--stone);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-size: 14px;
+  color: var(--white);
+  font-style: italic;
+}
+
+.t-name {
+  font-size: 13px;
+  color: var(--black);
+  font-weight: 400;
+}
+
+.t-handle {
+  font-size: 11px;
+  color: var(--mid);
+  letter-spacing: 0.05em;
+}
+
+/* ─── EMAIL ─── */
+.email-section {
+  margin: 0 48px 120px;
+  max-width: calc(1400px - 96px);
+  margin-left: auto;
+  margin-right: auto;
+  background: var(--warm);
+  border-radius: var(--r-xl);
+  border: 1px solid var(--stone);
+  padding: 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.email-h2 {
+  font-family: var(--serif);
+  font-size: clamp(36px, 3.5vw, 52px);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--black);
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+
+.email-h2 em { font-style: italic; color: var(--mid); }
+
+.email-p {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--mid);
+  font-weight: 300;
+}
+
+.email-form-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.email-form-inner {
+  display: flex;
+  background: var(--white);
+  border: 1px solid var(--stone);
+  border-radius: var(--r-full);
+  overflow: hidden;
+  padding: 6px;
+  gap: 8px;
+  align-items: center;
+}
+
+.email-inp {
+  flex: 1;
+  padding: 12px 16px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 300;
+  border: none;
+  background: transparent;
+  color: var(--black);
+  outline: none;
+}
+
+.email-inp::placeholder { color: var(--stone); }
+
+.email-btn {
+  background: var(--black);
+  color: var(--white);
+  border: none;
+  border-radius: var(--r-full);
+  padding: 12px 24px;
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.25s;
+}
+
+.email-btn:hover { opacity: 0.85; }
+
+.email-note {
+  font-size: 12px;
+  color: var(--mid);
+  padding-left: 8px;
+}
+
+.email-features {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.email-feat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--mid);
+}
+
+.email-feat-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--stone);
+  flex-shrink: 0;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  border-top: 1px solid var(--stone);
+  padding: 48px;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.footer-logo {
+  font-family: var(--serif);
+  font-size: 20px;
+  letter-spacing: 0.3em;
+  color: var(--black);
+}
+
+.footer-tagline {
+  font-size: 12px;
+  color: var(--stone);
+  letter-spacing: 0.08em;
+}
+
+.footer-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+}
+
+.footer-links a {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--mid);
+  text-decoration: none;
+  transition: color 0.25s;
+}
+
+.footer-links a:hover { color: var(--black); }
+
+/* ─── REVEAL ANIMATION ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  nav { padding: 20px 24px; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; padding: 140px 24px 80px; }
+  .hero-visual { margin-top: 40px; }
+  .section { padding: 80px 24px; }
+  .steps-row { grid-template-columns: 1fr; }
+  .features-section { padding: 0 24px 80px; }
+  .features-header { grid-template-columns: 1fr; }
+  .features-grid { grid-template-columns: 1fr; }
+  .preview-section { grid-template-columns: 1fr; margin: 0 24px 80px; padding: 48px; }
+  .testimonials { padding: 0 24px 80px; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .email-section { grid-template-columns: 1fr; margin: 0 24px 80px; padding: 48px; }
+  footer { padding: 40px 24px; flex-direction: column; text-align: center; }
+  .proof-bar { padding: 20px 24px; flex-wrap: wrap; gap: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-pill">
+    <a href="#" class="nav-logo">SAVE</a>
+    <ul class="nav-links">
+      <li><a href="#como">Cómo funciona</a></li>
+      <li><a href="#temporadas">Temporadas</a></li>
+    </ul>
+    <a href="#acceso" class="nav-cta">Acceso anticipado</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-dot"></div>
+      Tu memoria, redefinida
+    </div>
+    <h1 class="hero-h1">
+      Guarda<br>
+      quién <em>eras.</em>
+    </h1>
+    <p class="hero-p">
+      Vivimos en la era más documentada de la historia — y paradójicamente, la que menos se va a recordar. Dentro de 15 años no tendrás nada que abrir. SAVE cambia eso.
+    </p>
+    <div class="hero-actions">
+      <a href="#acceso" class="btn-dark">Empieza gratis</a>
+      <a href="#como" class="btn-outline">Cómo funciona <span>→</span></a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="card-stack">
+      <div class="card-bg2"></div>
+      <div class="card-bg"></div>
+      <div class="card-main">
+        <div class="card-header">
+          <div class="card-badge">Verano 2024</div>
+          <div class="card-status"></div>
+        </div>
+        <div class="card-title-serif">El año que<br>todo cambió</div>
+        <div class="card-items-list">
+          <div class="card-row">
+            <span class="card-row-type">Música</span>
+            <span class="card-row-val">DtMF — Bad Bunny</span>
+          </div>
+          <div class="card-row">
+            <span class="card-row-type">Serie</span>
+            <span class="card-row-val">The Bear, S02</span>
+          </div>
+          <div class="card-row">
+            <span class="card-row-type">Lugar</span>
+            <span class="card-row-val">Madrid, España</span>
+          </div>
+          <div class="card-row">
+            <span class="card-row-type">Frase</span>
+            <span class="card-row-val">"No hay vuelta atrás"</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="card-date">Jun — Sep 2024 · Cerrada</span>
+          <button class="card-share-btn">Compartir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF BAR -->
+<div class="proof-bar">
+  <div class="proof-stars">★★★★★</div>
+  <div class="proof-text">Más de 200 personas en lista de espera</div>
+  <div class="proof-text" style="color: var(--stone);">·</div>
+  <div class="proof-text">Lanzamiento en 2026</div>
+  <div class="proof-text" style="color: var(--stone);">·</div>
+  <div class="proof-text">Acceso gratuito al inicio</div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="como">
+  <div class="section-tag">
+    <div class="hero-eyebrow-dot"></div>
+    Cómo funciona
+  </div>
+  <h2 class="section-h2">Tan simple como<br><em>vivir.</em></h2>
+  <p class="section-sub">Tres pasos. Sin fricción. Sin excusas para no guardar lo que importa.</p>
+  <div class="steps-row">
+    <div class="step-card reveal">
+      <div class="step-num-big">01</div>
+      <div class="step-icon">◎</div>
+      <div class="step-title">Abre una temporada</div>
+      <div class="step-desc">Dale un nombre a este período de tu vida. Un verano, un año, una etapa. Tú decides cuándo empieza y qué la define.</div>
+    </div>
+    <div class="step-card reveal">
+      <div class="step-num-big">02</div>
+      <div class="step-icon" style="font-style: normal; font-family: var(--sans); font-size: 16px;">✦</div>
+      <div class="step-title">Llénala de <em style="font-style: italic; color: var(--mid);">ti</em></div>
+      <div class="step-desc">Música, series, lugares, frases, personas. La IA te hace las preguntas correctas para que captures lo que importa, no solo lo que recuerdas.</div>
+    </div>
+    <div class="step-card reveal">
+      <div class="step-num-big">03</div>
+      <div class="step-icon">∞</div>
+      <div class="step-title">Ciérrala.<br>Para siempre.</div>
+      <div class="step-desc">Cuando pase esa etapa, la cierras. Se convierte en una cápsula inmutable. Un objeto visual hermoso que guardar — o compartir.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section">
+  <div class="features-header">
+    <div>
+      <div class="section-tag" style="margin-bottom: 24px;">
+        <div class="hero-eyebrow-dot"></div>
+        Por qué SAVE
+      </div>
+      <h2 class="section-h2" style="margin-bottom: 0;">Diseñado para<br><em>durar décadas.</em></h2>
+    </div>
+    <p class="section-sub" style="margin-bottom: 0; align-self: end;">No es una red social. No hay likes, no hay seguidores, no hay algoritmo. Solo tú y el tiempo.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card reveal">
+      <div class="feature-icon-wrap light">∞</div>
+      <div class="feature-title">Permanente</div>
+      <div class="feature-desc">Una temporada cerrada no cambia nunca. No hay ediciones, no hay borrado. Lo que fuiste, queda para siempre exactamente como fue.</div>
+    </div>
+    <div class="feature-card dark reveal">
+      <div class="feature-icon-wrap inverted">◎</div>
+      <div class="feature-title">Compartible</div>
+      <div class="feature-desc">Cada temporada genera un objeto visual único. Una imagen que la gente quiere mostrar — no porque sea perfecta, sino porque es auténtica.</div>
+    </div>
+    <div class="feature-card dark reveal">
+      <div class="feature-icon-wrap inverted" style="font-family: var(--sans); font-style: normal; font-size: 16px;">—</div>
+      <div class="feature-title">Sin ruido</div>
+      <div class="feature-desc">Cero notificaciones. Cero métricas de vanidad. Diseñado para abrirlo cuando quieras recordar, no para engancharte.</div>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon-wrap light" style="font-family: var(--sans); font-style: normal; font-size: 16px;">✦</div>
+      <div class="feature-title">Con IA</div>
+      <div class="feature-desc">La IA no escribe por ti — te hace las preguntas que un buen amigo haría. Para que no se quede en blanco ninguna temporada importante.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PREVIEW -->
+<section class="preview-section reveal" id="temporadas">
+  <div>
+    <div class="preview-tag">
+      <div class="big-t-dot"></div>
+      Una temporada real
+    </div>
+    <h2 class="preview-h2">Así se ve tu<br><em>vida</em> guardada.</h2>
+    <p class="preview-p">Dentro de diez años abrirás esto y recordarás exactamente quién eras. Qué escuchabas. Qué sentías. Qué querías. Sin filtros ni nostalgia fabricada.</p>
+    <a href="#acceso" class="btn-white">Empieza tu primera temporada</a>
+  </div>
+  <div class="big-temporada">
+    <div class="big-t-badge">
+      <div class="big-t-dot"></div>
+      Temporada cerrada
+    </div>
+    <div class="big-t-title">El año que aprendí<br>a vivir sin pedir <em>permiso</em></div>
+    <div class="big-t-items">
+      <div class="big-t-row">
+        <span class="big-t-type">Música</span>
+        <span class="big-t-val">DtMF — Bad Bunny</span>
+      </div>
+      <div class="big-t-row">
+        <span class="big-t-type">Serie</span>
+        <span class="big-t-val">The Bear</span>
+      </div>
+      <div class="big-t-row">
+        <span class="big-t-type">Lugar</span>
+        <span class="big-t-val">Madrid, España</span>
+      </div>
+      <div class="big-t-row">
+        <span class="big-t-type">Sentimiento</span>
+        <span class="big-t-val">Incertidumbre con ganas</span>
+      </div>
+      <div class="big-t-row">
+        <span class="big-t-type">Frase</span>
+        <span class="big-t-val">"No hay vuelta atrás"</span>
+      </div>
+    </div>
+    <div class="big-t-footer">
+      <span class="big-t-date">Jun 2024 — Ene 2025</span>
+      <button class="big-t-share">Compartir →</button>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonios">
+  <div class="section-tag">
+    <div class="hero-eyebrow-dot"></div>
+    Lo que dicen
+  </div>
+  <h2 class="section-h2" style="margin-bottom: 0;">Personas reales.<br><em>Temporadas reales.</em></h2>
+  <div class="testimonials-grid">
+    <div class="t-card reveal">
+      <div class="t-stars">★★★★★</div>
+      <div class="t-quote">"Nunca había pensado que iba a querer guardar este período de mi vida, pero ahora me alegra tenerlo exactamente como fue."</div>
+      <div class="t-author">
+        <div class="t-avatar">A</div>
+        <div>
+          <div class="t-name">Andrea M.</div>
+          <div class="t-handle">Madrid, 24 años</div>
+        </div>
+      </div>
+    </div>
+    <div class="t-card reveal">
+      <div class="t-stars">★★★★★</div>
+      <div class="t-quote">"Es como el Spotify Wrapped pero de tu vida entera. Solo que este no desaparece en enero."</div>
+      <div class="t-author">
+        <div class="t-avatar">C</div>
+        <div>
+          <div class="t-name">Carlos R.</div>
+          <div class="t-handle">Barcelona, 27 años</div>
+        </div>
+      </div>
+    </div>
+    <div class="t-card reveal">
+      <div class="t-stars">★★★★★</div>
+      <div class="t-quote">"Lo compartí con mis amigos y todos querían saber qué era. Así de simple se viraliza algo que tiene alma."</div>
+      <div class="t-author">
+        <div class="t-avatar">L</div>
+        <div>
+          <div class="t-name">Lucía P.</div>
+          <div class="t-handle">Valencia, 22 años</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMAIL -->
+<section class="email-section reveal" id="acceso">
+  <div>
+    <h2 class="email-h2">Sé el primero<br>en <em>recordar.</em></h2>
+    <p class="email-p">SAVE aún no está disponible. Déjanos tu email y serás de los primeros en abrir tu primera temporada cuando lancemos.</p>
+    <div class="email-features" style="margin-top: 28px;">
+      <div class="email-feat"><div class="email-feat-dot"></div>Gratis al inicio</div>
+      <div class="email-feat"><div class="email-feat-dot"></div>Sin tarjeta</div>
+      <div class="email-feat"><div class="email-feat-dot"></div>Sin spam</div>
+    </div>
+  </div>
+  <div class="email-form-wrap">
+    <div style="margin-bottom: 8px;">
+      <div style="font-family: var(--serif); font-size: 20px; font-weight: 300; color: var(--black); margin-bottom: 6px;">Acceso anticipado</div>
+      <div style="font-size: 12px; color: var(--mid); letter-spacing: 0.05em;">Lista cerrada · Plazas limitadas</div>
+    </div>
+    <div class="email-form-inner">
+      <input type="email" class="email-inp" placeholder="tu@email.com" id="emailInput">
+      <button class="email-btn" onclick="handleSubmit()">Unirme →</button>
+    </div>
+    <div class="email-note" id="emailNote">Sin spam. Solo el día del lanzamiento.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">SAVE</div>
+  <div class="footer-tagline">Guarda quién eres · savely.es · © 2026</div>
+  <ul class="footer-links">
+    <li><a href="#">Instagram</a></li>
+    <li><a href="#">TikTok</a></li>
+    <li><a href="#">Contacto</a></li>
+    <li><a href="#">Privacidad</a></li>
+  </ul>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 100);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+function handleSubmit() {
+  const input = document.getElementById('emailInput');
+  const note = document.getElementById('emailNote');
+  const email = input.value.trim();
+  if (!email || !email.includes('@')) {
+    note.textContent = 'Introduce un email válido.';
+    note.style.color = '#b87060';
+    return;
+  }
+  note.textContent = '✓ Perfecto. Te avisamos el día del lanzamiento.';
+  note.style.color = 'var(--mid)';
+  input.value = '';
+  input.placeholder = 'Ya estás en la lista';
+  input.disabled = true;
+  document.querySelector('.email-btn').textContent = 'Listo ✓';
+  document.querySelector('.email-btn').disabled = true;
+  document.querySelector('.email-btn').style.opacity = '0.5';
+}
+
+document.getElementById('emailInput').addEventListener('keypress', e => {
+  if (e.key === 'Enter') handleSubmit();
+});
+</script>
+</body>
+</html>
