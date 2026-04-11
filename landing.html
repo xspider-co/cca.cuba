@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALMA — Encuéntrate con quien resuena</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --indigo: #1B1464;
+    --indigo-light: #2a1f8a;
+    --arena: #F5F0E8;
+    --arena-dark: #EDE7DA;
+    --terracota: #C97D5B;
+    --terracota-light: #E8A882;
+    --text: #141410;
+    --text-mid: #8A8880;
+    --text-light: #BDBAB2;
+    --border: #DDDBD4;
+    --white: #FAFAF7;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--arena);
+    color: var(--text);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 2.5rem;
+    background: var(--arena);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+  nav.scrolled { border-bottom-color: var(--border); }
+
+  .nav-logo {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 22px;
+    color: var(--indigo);
+    letter-spacing: -0.5px;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 13px;
+    color: var(--text-mid);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-cta {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--white) !important;
+    background: var(--indigo);
+    padding: 8px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--indigo-light) !important; color: var(--white) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8rem 2rem 4rem;
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--terracota);
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.7s 0.1s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(52px, 8vw, 96px);
+    line-height: 1.0;
+    color: var(--indigo);
+    letter-spacing: -2px;
+    max-width: 800px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--terracota);
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    color: var(--text-mid);
+    margin-top: 2rem;
+    max-width: 460px;
+    line-height: 1.7;
+    font-weight: 400;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+
+  /* WAITLIST FORM */
+  .waitlist-form {
+    display: flex;
+    gap: 0;
+    margin-top: 2.5rem;
+    max-width: 400px;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.8s 0.55s forwards;
+  }
+
+  .waitlist-form input {
+    flex: 1;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    padding: 14px 18px;
+    border: 1px solid var(--border);
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+    background: var(--white);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .waitlist-form input::placeholder { color: var(--text-light); }
+  .waitlist-form input:focus { border-color: var(--indigo); }
+
+  .waitlist-form button {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 14px 24px;
+    background: var(--indigo);
+    color: var(--white);
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .waitlist-form button:hover { background: var(--indigo-light); }
+  .waitlist-form button.success { background: #2D7A4F; }
+
+  .waitlist-count {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-top: 0.75rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.7s forwards;
+  }
+
+  /* SCROLL INDICATOR */
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 1s 1.2s forwards;
+  }
+  .scroll-hint span { font-size: 11px; color: var(--text-light); letter-spacing: 0.08em; }
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--terracota);
+    animation: scrollDown 1.8s 1.5s ease-in-out infinite;
+  }
+
+  /* MANIFESTO SECTION */
+  .manifesto {
+    padding: 8rem 2rem;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .manifesto-text {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.4;
+    color: var(--text);
+    letter-spacing: -0.5px;
+  }
+
+  .manifesto-text strong {
+    font-weight: 400;
+    color: var(--indigo);
+  }
+
+  .manifesto-sub {
+    margin-top: 2.5rem;
+    font-size: 16px;
+    color: var(--text-mid);
+    line-height: 1.8;
+    border-left: 2px solid var(--terracota);
+    padding-left: 1.5rem;
+  }
+
+  /* HOW IT WORKS */
+  .how {
+    background: var(--white);
+    padding: 8rem 2rem;
+  }
+  .how-inner {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .how-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 5rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .how-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(36px, 5vw, 54px);
+    color: var(--text);
+    letter-spacing: -1px;
+    line-height: 1.1;
+  }
+  .how-desc {
+    font-size: 15px;
+    color: var(--text-mid);
+    max-width: 280px;
+    line-height: 1.7;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .step {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid var(--border);
+    transition: background 0.3s;
+  }
+  .step:last-child { border-right: none; }
+  .step:hover { background: var(--arena); }
+
+  .step-num {
+    font-family: 'Fraunces', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--arena-dark);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    transition: color 0.3s;
+  }
+  .step:hover .step-num { color: var(--terracota); }
+
+  .step-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.3px;
+  }
+  .step-text {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  /* ALMA CARD DEMO */
+  .card-section {
+    padding: 8rem 2rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .card-section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .card-section-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(36px, 5vw, 52px);
+    color: var(--text);
+    letter-spacing: -1px;
+    margin-bottom: 1rem;
+  }
+  .card-section-sub {
+    font-size: 16px;
+    color: var(--text-mid);
+    max-width: 400px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .alma-card {
+    border-radius: 4px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s;
+    cursor: default;
+  }
+  .alma-card:hover { transform: translateY(-4px); }
+
+  .alma-card-1 { background: #1B1464; color: #F5F0E8; }
+  .alma-card-2 { background: #2C4A3E; color: #E8F0EC; }
+  .alma-card-3 { background: #3D2B1F; color: #F0E8E0; }
+
+  .card-name {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 0.25rem;
+  }
+  .card-handle {
+    font-size: 12px;
+    opacity: 0.5;
+    letter-spacing: 0.05em;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 1.5rem 0;
+  }
+  .card-tag {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+  }
+
+  .card-1 .card-tag { background: rgba(245,240,232,0.15); color: #F5F0E8; }
+  .card-2 .card-tag { background: rgba(232,240,236,0.15); color: #E8F0EC; }
+  .card-3 .card-tag { background: rgba(240,232,224,0.15); color: #F0E8E0; }
+
+  .card-phrase {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.5;
+    opacity: 0.75;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .card-logo-sm {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 13px;
+    opacity: 0.35;
+  }
+  .card-affinity {
+    font-size: 11px;
+    opacity: 0.4;
+    letter-spacing: 0.05em;
+  }
+
+  /* NO LIKES SECTION */
+  .nolikes {
+    background: var(--indigo);
+    padding: 8rem 2rem;
+    text-align: center;
+  }
+  .nolikes-inner { max-width: 640px; margin: 0 auto; }
+
+  .nolikes-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(36px, 6vw, 64px);
+    color: var(--arena);
+    letter-spacing: -2px;
+    line-height: 1.05;
+    margin-bottom: 2rem;
+  }
+  .nolikes-title em { color: var(--terracota-light); font-style: italic; }
+
+  .nolikes-text {
+    font-size: 16px;
+    color: rgba(245, 240, 232, 0.55);
+    line-height: 1.8;
+    max-width: 500px;
+    margin: 0 auto 3rem;
+  }
+
+  .pills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 3rem;
+  }
+  .pill {
+    font-size: 13px;
+    padding: 8px 18px;
+    border-radius: 2px;
+    border: 1px solid rgba(245,240,232,0.15);
+    color: rgba(245,240,232,0.6);
+    letter-spacing: 0.03em;
+    position: relative;
+  }
+  .pill.strikethrough { text-decoration: line-through; color: rgba(245,240,232,0.25); border-color: rgba(245,240,232,0.08); }
+  .pill.highlight { border-color: var(--terracota); color: var(--terracota-light); }
+
+  /* FOOTER CTA */
+  .footer-cta {
+    padding: 8rem 2rem;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .footer-cta-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(36px, 5vw, 52px);
+    color: var(--text);
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  .footer-cta-sub {
+    font-size: 16px;
+    color: var(--text-mid);
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 18px;
+    color: var(--indigo);
+    text-decoration: none;
+  }
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .footer-links a {
+    font-size: 12px;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--text); }
+  .footer-copy {
+    font-size: 12px;
+    color: var(--text-light);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollDown {
+    0% { top: -100%; }
+    100% { top: 100%; }
+  }
+
+  /* INTERSECTION OBSERVER CLASSES */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { display: none; }
+    .steps { grid-template-columns: 1fr; }
+    .step { border-right: none; border-bottom: 1px solid var(--border); }
+    .step:last-child { border-bottom: none; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .how-header { flex-direction: column; align-items: flex-start; }
+    .how-desc { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">alma</a>
+  <ul class="nav-links">
+    <li><a href="#como">Cómo funciona</a></li>
+    <li><a href="#cartas">Tu carta</a></li>
+    <li><a href="#waitlist" class="nav-cta">Únete</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Red social sin likes · Sin seguidores · Solo afinidad</p>
+  <h1 class="hero-title">
+    Encuéntrate con<br>quien <em>resuena</em>
+  </h1>
+  <p class="hero-sub">
+    ALMA es la red donde te conectas por quién eres, no por lo que publicas.
+  </p>
+
+  <form class="waitlist-form" id="waitlist-form" onsubmit="handleWaitlist(event)">
+    <input type="email" placeholder="tu@email.com" required id="email-input">
+    <button type="submit" id="wl-btn">Únete a la lista</button>
+  </form>
+  <p class="waitlist-count" id="wl-count">Únete a las primeras personas que descubrirán ALMA</p>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Descubre más</span>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="section-label reveal">El problema</div>
+  <p class="manifesto-text reveal reveal-delay-1">
+    Las redes sociales te definen por tus <strong>números</strong>.<br>
+    Cuántos te siguen. Cuántos likes.<br>
+    Cuánto rindes para el algoritmo.<br><br>
+    Pero tú eres mucho más que eso.
+  </p>
+  <p class="manifesto-sub reveal reveal-delay-2">
+    ALMA no cuenta seguidores. No mide likes. No compite por tu atención. Solo conecta personas que realmente resuenan entre sí, basándose en quiénes son de verdad.
+  </p>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="como">
+  <div class="how-inner">
+    <div class="how-header">
+      <h2 class="how-title reveal">Cómo<br>funciona</h2>
+      <p class="how-desc reveal reveal-delay-1">Tres pasos. Sin algoritmos que te empujen. Sin feeds infinitos que te agoten.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <h3 class="step-title">Defines quién eres</h3>
+        <p class="step-text">Respondes 8 preguntas sobre tu forma de ver el mundo, lo que te mueve, cómo piensas y qué buscas. ALMA convierte eso en tu carta de identidad digital.</p>
+      </div>
+      <div class="step reveal reveal-delay-1">
+        <div class="step-num">02</div>
+        <h3 class="step-title">La IA busca tu afinidad</h3>
+        <p class="step-text">Nuestro motor analiza tu perfil y encuentra personas con alta compatibilidad real. No por gustos superficiales, sino por resonancia profunda.</p>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-num">03</div>
+        <h3 class="step-title">Conectáis si ambos queréis</h3>
+        <p class="step-text">Cuando hay match bilateral, podéis hablar. Si solo uno quiere, nadie lo sabe. Sin rechazo visible. Sin ansiedad social. Solo conexión real.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARD DEMOS -->
+<section class="card-section" id="cartas">
+  <div class="card-section-header">
+    <div class="section-label reveal" style="justify-content:center">Tu carta de identidad</div>
+    <h2 class="card-section-title reveal">Así luce tu ALMA</h2>
+    <p class="card-section-sub reveal reveal-delay-1">Cada carta es única. Generada por IA a partir de tus respuestas. Tuya para compartir.</p>
+  </div>
+  <div class="cards-grid">
+    <div class="alma-card alma-card-1 card-1 reveal">
+      <div>
+        <div class="card-name">Lucía M.</div>
+        <div class="card-handle">alma.so/lucia</div>
+        <div class="card-tags">
+          <span class="card-tag">Diseño</span>
+          <span class="card-tag">Silencio</span>
+          <span class="card-tag">Filosofía</span>
+          <span class="card-tag">Tokio</span>
+        </div>
+        <p class="card-phrase">"Busco conversaciones que dejen algo."</p>
+      </div>
+      <div class="card-footer">
+        <span class="card-logo-sm">alma</span>
+        <span class="card-affinity">Afinidad · 94%</span>
+      </div>
+    </div>
+    <div class="alma-card alma-card-2 card-2 reveal reveal-delay-1">
+      <div>
+        <div class="card-name">Marcos R.</div>
+        <div class="card-handle">alma.so/marcos</div>
+        <div class="card-tags">
+          <span class="card-tag">Música</span>
+          <span class="card-tag">Naturaleza</span>
+          <span class="card-tag">Crear</span>
+          <span class="card-tag">Calma</span>
+        </div>
+        <p class="card-phrase">"Me interesa la gente que piensa en voz alta."</p>
+      </div>
+      <div class="card-footer">
+        <span class="card-logo-sm">alma</span>
+        <span class="card-affinity">Afinidad · 88%</span>
+      </div>
+    </div>
+    <div class="alma-card alma-card-3 card-3 reveal reveal-delay-2">
+      <div>
+        <div class="card-name">Elena V.</div>
+        <div class="card-handle">alma.so/elena</div>
+        <div class="card-tags">
+          <span class="card-tag">Literatura</span>
+          <span class="card-tag">Caos</span>
+          <span class="card-tag">Cocina</span>
+          <span class="card-tag">Honestidad</span>
+        </div>
+        <p class="card-phrase">"Prefiero las preguntas a las respuestas."</p>
+      </div>
+      <div class="card-footer">
+        <span class="card-logo-sm">alma</span>
+        <span class="card-affinity">Afinidad · 91%</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NO LIKES -->
+<section class="nolikes">
+  <div class="nolikes-inner">
+    <h2 class="nolikes-title reveal">
+      Sin likes.<br>Sin seguidores.<br>Solo <em>resonancia.</em>
+    </h2>
+    <p class="nolikes-text reveal reveal-delay-1">
+      Hemos quitado todo lo que genera ansiedad y hemos dejado solo lo que genera conexión real.
+    </p>
+    <div class="pills-row reveal reveal-delay-2">
+      <span class="pill strikethrough">Likes públicos</span>
+      <span class="pill strikethrough">Contador de seguidores</span>
+      <span class="pill strikethrough">Feed infinito</span>
+      <span class="pill strikethrough">Algoritmo de engagement</span>
+      <span class="pill strikethrough">Comparación constante</span>
+      <span class="pill highlight">Afinidad real</span>
+      <span class="pill highlight">Match bilateral</span>
+      <span class="pill highlight">Identidad profunda</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<section class="footer-cta" id="waitlist">
+  <div class="section-label reveal" style="justify-content:center">Lista de espera</div>
+  <h2 class="footer-cta-title reveal">¿Listo para encontrarte<br>con quien resuena?</h2>
+  <p class="footer-cta-sub reveal reveal-delay-1">ALMA está en desarrollo. Sé de las primeras personas en tener acceso y en crear tu carta de identidad.</p>
+  <form class="waitlist-form reveal reveal-delay-2" style="margin: 0 auto;" onsubmit="handleWaitlist2(event)">
+    <input type="email" placeholder="tu@email.com" required id="email-input-2">
+    <button type="submit" id="wl-btn-2">Quiero acceso</button>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">alma</a>
+  <ul class="footer-links">
+    <li><a href="#">Manifesto</a></li>
+    <li><a href="#">Privacidad</a></li>
+    <li><a href="#">Contacto</a></li>
+  </ul>
+  <span class="footer-copy">© 2026 ALMA</span>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  let count = 47;
+
+  function handleWaitlist(e) {
+    e.preventDefault();
+    const btn = document.getElementById('wl-btn');
+    const input = document.getElementById('email-input');
+    btn.textContent = '¡Apuntado!';
+    btn.classList.add('success');
+    input.value = '';
+    count++;
+    document.getElementById('wl-count').textContent = count + ' personas ya en lista · Gracias por unirte';
+    setTimeout(() => { btn.textContent = 'Únete a la lista'; btn.classList.remove('success'); }, 3000);
+  }
+
+  function handleWaitlist2(e) {
+    e.preventDefault();
+    const btn = document.getElementById('wl-btn-2');
+    const input = document.getElementById('email-input-2');
+    btn.textContent = '¡Apuntado!';
+    btn.classList.add('success');
+    input.value = '';
+    count++;
+    setTimeout(() => { btn.textContent = 'Quiero acceso'; btn.classList.remove('success'); }, 3000);
+  }
+</script>
+</body>
+</html>
