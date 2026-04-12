@@ -130,6 +130,21 @@
     text-align: left;
   }
 
+  .waitlist-success-note {
+    margin-top: 1rem;
+    width: 100%;
+    font-size: 12px;
+    line-height: 1.55;
+    color: var(--text-mid);
+    text-align: center;
+    padding: 0.85rem 1rem;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    border-left: 2px solid var(--terracota);
+  }
+  .waitlist-success-note[hidden] { display: none !important; }
+
   .pain { padding: 7rem 2rem; max-width: 700px; margin: 0 auto; }
   .section-label {
     font-size: 11px; font-weight: 500;
@@ -314,10 +329,11 @@
     ALMA es una app donde conoces personas de verdad. Sin mostrar cuántos te siguen. Sin competir por likes. Solo tú, siendo tú.
   </p>
   <div class="waitlist-wrap">
-    <form class="waitlist-form" onsubmit="handleWaitlist(event,'btn1','email1','Quiero acceso')">
+    <form class="waitlist-form" onsubmit="handleWaitlist(event,'btn1','email1','Quiero acceso','waitlist-note-1')">
       <input type="email" placeholder="tu email" required id="email1">
       <button type="submit" id="btn1">Quiero acceso</button>
     </form>
+    <p class="waitlist-success-note" id="waitlist-note-1" hidden role="status" aria-live="polite"></p>
   </div>
 </section>
 
@@ -448,10 +464,11 @@
     ALMA está en desarrollo. Apúntate y sé de las primeras personas en crear tu carta y conocer gente que de verdad conecta contigo.
   </p>
   <div class="waitlist-wrap reveal reveal-delay-2">
-    <form class="waitlist-form" onsubmit="handleWaitlist(event,'btn2','email2','Me apunto')">
+    <form class="waitlist-form" onsubmit="handleWaitlist(event,'btn2','email2','Me apunto','waitlist-note-2')">
       <input type="email" placeholder="tu email" required id="email2">
       <button type="submit" id="btn2">Me apunto</button>
     </form>
+    <p class="waitlist-success-note" id="waitlist-note-2" hidden role="status" aria-live="polite"></p>
   </div>
 </section>
 
@@ -475,18 +492,30 @@
   );
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  async function handleWaitlist(e, btnId, inputId, originalText) {
+  const WAITLIST_OK =
+    'Te enviaremos un correo de confirmación. Si no lo ves en unos minutos, revisa la carpeta de spam.';
+  const WAITLIST_DUP =
+    'Ya estabas en la lista. Si no ves correos de ALMA, revisa también spam.';
+
+  async function handleWaitlist(e, btnId, inputId, originalText, noteId) {
     e.preventDefault();
     const btn = document.getElementById(btnId);
     const input = document.getElementById(inputId);
+    const note = noteId ? document.getElementById(noteId) : null;
     const email = input.value.trim();
     if (!email) return;
+
+    if (note) {
+      note.hidden = true;
+      note.textContent = '';
+    }
 
     btn.disabled = true;
     btn.textContent = 'Enviando...';
     btn.classList.remove('success', 'has-error');
 
     let longFeedback = false;
+    let showSuccessNote = false;
     try {
       const res = await fetch('/api/waitlist', {
         method: 'POST',
@@ -499,6 +528,11 @@
         input.value = '';
         btn.textContent = data.duplicate ? 'Ya estabas apuntado' : 'Listo';
         btn.classList.add('success');
+        if (note) {
+          note.textContent = data.duplicate ? WAITLIST_DUP : WAITLIST_OK;
+          note.hidden = false;
+          showSuccessNote = true;
+        }
       } else {
         btn.textContent = data.error || 'Error';
         btn.classList.add('has-error');
@@ -514,6 +548,10 @@
       btn.textContent = originalText;
       btn.classList.remove('success', 'has-error');
       btn.disabled = false;
+      if (!showSuccessNote && note) {
+        note.hidden = true;
+        note.textContent = '';
+      }
     }, longFeedback ? 7000 : 3500);
   }
 </script>
