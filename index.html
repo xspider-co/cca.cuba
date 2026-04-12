@@ -469,13 +469,41 @@
   );
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  function handleWaitlist(e, btnId, inputId, originalText) {
+  async function handleWaitlist(e, btnId, inputId, originalText) {
     e.preventDefault();
     const btn = document.getElementById(btnId);
-    document.getElementById(inputId).value = '';
-    btn.textContent = 'Apuntado!';
-    btn.classList.add('success');
-    setTimeout(() => { btn.textContent = originalText; btn.classList.remove('success'); }, 3000);
+    const input = document.getElementById(inputId);
+    const email = input.value.trim();
+    if (!email) return;
+
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+    btn.classList.remove('success');
+
+    try {
+      const res = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json().catch(() => ({}));
+
+      if (res.ok && data.ok) {
+        input.value = '';
+        btn.textContent = data.duplicate ? 'Ya estabas apuntado' : 'Listo';
+        btn.classList.add('success');
+      } else {
+        btn.textContent = data.error || 'Error';
+      }
+    } catch {
+      btn.textContent = 'Sin conexión';
+    }
+
+    setTimeout(() => {
+      btn.textContent = originalText;
+      btn.classList.remove('success');
+      btn.disabled = false;
+    }, 3500);
   }
 </script>
 </body>
