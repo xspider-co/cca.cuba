@@ -1,0 +1,329 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@300;400;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  .pg {
+    background: #ffffff;
+    font-family: 'Nunito', sans-serif;
+    padding: 52px 44px;
+    color: #111;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .top-stripe {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    display: flex;
+  }
+  .top-stripe span { flex: 1; }
+  .top-stripe span:nth-child(1) { background: #0038A8; }
+  .top-stripe span:nth-child(2) { background: #CC0000; }
+  .top-stripe span:nth-child(3) { background: #F5C800; }
+
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #CC0000;
+    margin-bottom: 14px;
+    margin-top: 12px;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 82px;
+    line-height: 0.92;
+    color: #111;
+    margin-bottom: 6px;
+    letter-spacing: 2px;
+  }
+
+  .hero-title .accent {
+    color: #CC0000;
+  }
+
+  .hero-title .accent2 {
+    color: #0038A8;
+  }
+
+  .tagline {
+    font-size: 16px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 36px;
+    line-height: 1.5;
+  }
+
+  .pill {
+    display: inline-block;
+    background: #F5C800;
+    color: #111;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 40px;
+  }
+
+  .section-title {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #0038A8;
+    margin-bottom: 12px;
+  }
+
+  .body {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #444;
+    font-weight: 400;
+    margin-bottom: 36px;
+  }
+
+  .body strong {
+    color: #111;
+    font-weight: 700;
+  }
+
+  .quote-block {
+    background: #0038A8;
+    border-radius: 12px;
+    padding: 28px 28px;
+    margin-bottom: 36px;
+  }
+
+  .quote-block p {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.5;
+  }
+
+  .quote-block p span {
+    color: #F5C800;
+  }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 36px;
+  }
+
+  .pillar {
+    border-radius: 10px;
+    padding: 20px 16px;
+    color: #fff;
+  }
+
+  .pillar:nth-child(1) { background: #CC0000; }
+  .pillar:nth-child(2) { background: #0038A8; }
+  .pillar:nth-child(3) { background: #111; }
+
+  .pillar-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px;
+    color: rgba(255,255,255,0.25);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .pillar-title {
+    font-size: 13px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .pillar-desc {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.5;
+  }
+
+  .cats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 36px;
+  }
+
+  .cat {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #222;
+  }
+
+  .cat-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+
+  .stat {
+    background: #F5C800;
+    border-radius: 10px;
+    padding: 20px 14px;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 38px;
+    color: #111;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .closing {
+    background: #111;
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 36px;
+    text-align: center;
+  }
+
+  .closing p {
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.6;
+  }
+
+  .closing p span {
+    color: #F5C800;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+    border-top: 1px solid #eee;
+  }
+
+  .footer-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: #CC0000;
+  }
+
+  .footer-ig {
+    font-size: 13px;
+    font-weight: 700;
+    color: #888;
+  }
+</style>
+
+<div class="pg">
+  <div class="top-stripe"><span></span><span></span><span></span></div>
+
+  <div class="eyebrow">Propuesta oficial · 2026</div>
+
+  <div class="hero-title">
+    <span class="accent">Cuban</span><br>
+    <span class="accent2">Content</span><br>
+    Awards
+  </div>
+
+  <div class="tagline">El primer premio de la historia<br>para los creadores cubanos.</div>
+
+  <div class="pill">Edición inaugural 2026</div>
+
+  <div class="section-title">Esto no existía</div>
+  <div class="body">
+    Hay una generación entera de creadores cubanos que mueve miles, algunos millones de personas, dentro y fuera de Cuba. Los ven, los siguen, los quieren. Pero nadie los ha premiado. Nadie ha hecho un evento para ellos. <strong>Eso cambia en 2026.</strong>
+  </div>
+
+  <div class="quote-block">
+    <p>"El <span>Cuban Content Awards</span> es el primer espacio real donde los creadores cubanos son celebrados como se merecen, en vivo, frente a todos."</p>
+  </div>
+
+  <div class="section-title">Cómo funciona</div>
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-num">01</div>
+      <div class="pillar-title">La gala en Cuba</div>
+      <div class="pillar-desc">Un evento presencial en La Habana con los creadores más grandes de la isla.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">02</div>
+      <div class="pillar-title">En vivo para el mundo</div>
+      <div class="pillar-desc">Stream en vivo para los cubanos en EEUU, España y todo el planeta.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">03</div>
+      <div class="pillar-title">Una marca que queda</div>
+      <div class="pillar-desc">El CCA no es un evento, es el referente de la cultura digital cubana.</div>
+    </div>
+  </div>
+
+  <div class="section-title">Los premios</div>
+  <div class="cats">
+    <div class="cat"><div class="cat-dot" style="background:#CC0000"></div>Creador del Año</div>
+    <div class="cat"><div class="cat-dot" style="background:#0038A8"></div>Mejor Contenido de Humor</div>
+    <div class="cat"><div class="cat-dot" style="background:#F5C800"></div>Mejor Contenido Musical</div>
+    <div class="cat"><div class="cat-dot" style="background:#CC0000"></div>Revelación del Año</div>
+    <div class="cat"><div class="cat-dot" style="background:#0038A8"></div>El Favorito de Cuba en el Mundo</div>
+    <div class="cat"><div class="cat-dot" style="background:#F5C800"></div>Premio del Público</div>
+  </div>
+
+  <div class="section-title">El alcance</div>
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">11M</div>
+      <div class="stat-label">Cubanos en la isla</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">2M+</div>
+      <div class="stat-label">Cubanos en el mundo</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">1ª</div>
+      <div class="stat-label">Vez en la historia</div>
+    </div>
+  </div>
+
+  <div class="closing">
+    <p>El que construye esto ahora <span>define la cultura digital cubana</span> para siempre. Este es ese momento.</p>
+  </div>
+
+  <div class="footer">
+    <div class="footer-brand">Cuban Content Awards</div>
+    <div class="footer-ig">@cca.cuba</div>
+  </div>
+</div>
