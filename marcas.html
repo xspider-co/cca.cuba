@@ -655,7 +655,7 @@
           <div class="pkg-name" style="color:var(--turquoise)">Sponsor Principal</div>
           <div class="pkg-price">
             <span class="price-cur" style="color:var(--turquoise)">USD</span>
-            <span class="price-num" style="color:var(--turquoise)">2.990</span>
+            <span class="price-num" style="color:var(--turquoise)">35.000</span>
           </div>
           <div class="price-note">Pago único · Edición 2026</div>
           <p class="pkg-desc" style="margin-top:.8rem">Máxima visibilidad. Tu marca co-protagoniza el evento junto a Cuba Content Awards.</p>
@@ -887,36 +887,61 @@
 </footer>
 
 <script>
-  function submitContact() {
+  const SUPABASE_URL = 'https://fugyjyxrfpdwtyjfctlg.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_GWuBf8xb-2ik8vjYgEETFw_S1C4rgBv';
+
+  async function submitContact() {
     const nombre = document.getElementById('m-nombre').value.trim();
     const email  = document.getElementById('m-email').value.trim();
     const marca  = document.getElementById('m-marca').value.trim();
+    const cargo  = document.getElementById('m-cargo').value.trim();
+    const pais   = document.getElementById('m-pais').value;
+    const web    = document.getElementById('m-web').value.trim();
+    const mensaje = document.getElementById('m-msg').value.trim();
     const pkg    = document.querySelector('input[name="pkg"]:checked');
 
     if (!nombre || !email || !marca || !pkg) {
-      alert('Por favor completa los campos obligatorios: nombre, email, marca y paquete de interés.');
+      alert('Por favor completa los campos obligatorios.');
       return;
     }
 
-    document.getElementById('contact-form').style.display = 'none';
-    document.getElementById('form-success').style.display = 'block';
-    window.scrollTo({ top: document.getElementById('contacto').offsetTop - 80, behavior: 'smooth' });
+    const data = {
+        nombre_contacto: nombre,
+        cargo: cargo,
+        email: email,
+        nombre_marca: marca,
+        pais: pais,
+        web: web,
+        paquete: pkg.value,
+        mensaje: mensaje
+    };
+
+    try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/marcas`, {
+            method: 'POST',
+            headers: {
+                'apikey': SUPABASE_KEY,
+                'Authorization': `Bearer ${SUPABASE_KEY}`,
+                'Content-Type': 'application/json',
+                'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+            document.getElementById('contact-form').style.display = 'none';
+            document.getElementById('form-success').style.display = 'block';
+            window.scrollTo({ top: document.getElementById('contacto').offsetTop - 80, behavior: 'smooth' });
+        }
+    } catch (e) {
+        alert('Error al enviar.');
+    }
   }
 
-  // Scroll reveal
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  });
 </script>
 </body>
 </html>
