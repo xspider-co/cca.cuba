@@ -68,8 +68,9 @@
     position: relative;
     overflow: hidden;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    padding-top: 12vh;
   }
 
   .hero-bg {
@@ -172,7 +173,7 @@
     opacity: .9;
     line-height: 1.5;
     max-width: 600px;
-    margin: 0 auto 1rem;
+    margin: 0 auto .6rem;
     animation: fadeUp .8s ease .7s both;
   }
 
@@ -182,7 +183,7 @@
     color: var(--yellow);
     letter-spacing: .15em;
     animation: fadeUp .8s ease .9s both;
-    margin-bottom: 2rem;
+    margin-bottom: 1.2rem;
   }
 
   @keyframes fadeUp {
@@ -904,7 +905,9 @@
     <li><a href="#como">Cómo funciona</a></li>
     <li><a href="#premios">Premios</a></li>
     <li><a href="#alcance">Alcance</a></li>
-    <li><a href="#cierre">Participar</a></li>
+    <li><a href="creadores.html" style="color:var(--turquoise)">Creadores</a></li>
+    <li><a href="marcas.html" style="color:var(--yellow)">Marcas</a></li>
+    <li><a href="asistir.html">Asistir</a></li>
   </ul>
 </nav>
 
@@ -930,7 +933,8 @@
     <p class="hero-sub">Debemos reconocernos a nosotros mismos, somos más de lo que pensamos.</p>
     <div class="hero-year">Edición Inaugural · 2026</div>
     <div class="hero-cta-group">
-      <a href="#cierre" class="btn-primary">Participar ahora</a>
+      <a href="creadores.html" class="btn-primary">🎬 Soy creador</a>
+      <a href="marcas.html" class="btn-gold" style="display:inline-block;background:linear-gradient(135deg,var(--yellow),var(--gold));color:var(--dark);font-weight:800;font-size:.95rem;letter-spacing:.05em;text-transform:uppercase;padding:.9rem 2.5rem;border-radius:100px;text-decoration:none;transition:all .2s;box-shadow:0 8px 30px rgba(255,210,63,.35)">🏆 Soy marca</a>
       <a href="#como" class="btn-outline">Cómo funciona</a>
     </div>
   </div>
@@ -1218,9 +1222,9 @@
         <strong style="color:var(--cream)">Sé parte de la historia.</strong>
       </p>
       <div class="cta-group">
-        <a href="#" class="btn-gold">🏆 Postular mi marca</a>
-        <a href="#" class="btn-primary">🎬 Participar como creador</a>
-        <a href="#" class="btn-outline">🎟️ Quiero asistir</a>
+        <a href="marcas.html" class="btn-gold">🏆 Postular mi marca</a>
+        <a href="creadores.html" class="btn-primary">🎬 Participar como creador</a>
+        <a href="asistir.html" class="btn-outline">🎟️ Quiero asistir</a>
       </div>
       <p style="font-size:.8rem;color:rgba(255,248,238,.3);letter-spacing:.05em">
         Contacto: info@cubacontentawards.com &nbsp;·&nbsp; La Habana, Cuba · 2026
