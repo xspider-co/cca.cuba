@@ -305,7 +305,11 @@
   }
   @media(max-width: 700px) { .location-grid { grid-template-columns: 1fr; } }
 
-  .location-info { }
+  .location-info {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: var(--turquoise);
+}
   .location-tag {
     display: inline-flex; align-items: center; gap: .5rem;
     background: rgba(255,210,63,.1);
@@ -467,6 +471,7 @@
     outline: none;
     transition: border-color .2s, box-shadow .2s, background .2s;
     -webkit-appearance: none;
+appearance: none;
   }
   input:focus, select:focus, textarea:focus {
     border-color: var(--turquoise);
