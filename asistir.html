@@ -740,6 +740,18 @@ appearance: none;
   </div>
 </div>
 
+<div style="margin-top: 30px; padding: 25px; border: 2px dashed var(--turquoise); border-radius: 15px; text-align: center; background: rgba(0, 201, 200, 0.05); clear: both;">
+  <h3 style="font-family: 'Bebas Neue', sans-serif; color: var(--yellow); font-size: 1.8rem; margin-bottom: 10px; letter-spacing: 1px;">
+    ¿ERES UN FAN?
+  </h3>
+  <p style="font-size: 1rem; color: var(--cream); line-height: 1.5; font-weight: 500;">
+    Las plazas para la <span style="color: var(--turquoise);">comunidad general</span> se abrirán en una segunda fase exclusiva.
+  </p>
+  <p style="font-size: 0.9rem; color: var(--coral); margin-top: 10px; font-weight: 700; text-transform: uppercase;">
+    ¡Próximamente más noticias en nuestras redes!
+  </p>
+</div>
+
 <div class="divider"></div>
 
 <!-- QUIÉN PUEDE ASISTIR -->
@@ -790,7 +802,7 @@ appearance: none;
         <span class="excl-icon">🏛️</span>
         <h3 class="excl-title">La selección es parte del evento</h3>
         <p class="excl-body">
-          No hay venta de entradas. No hay primero en llegar, primero en entrar.<br><br>
+          No hay venta de entradas. No hay primero en llegar, ni primero en entrar.<br><br>
           El equipo revisa cada solicitud y selecciona <strong>quiénes están en la sala</strong> para que la noche sea lo que tiene que ser: <strong>un momento histórico con las personas correctas.</strong><br><br>
           Si no consigues plaza presencial, la transmisión en directo te conecta al mismo momento desde cualquier parte del mundo.
         </p>
@@ -910,13 +922,6 @@ appearance: none;
               </label>
             </div>
             <div class="type-opt">
-              <input type="radio" name="tipo" id="t2" value="Fan / Comunidad">
-              <label class="type-label" for="t2">
-                <span class="type-emoji">❤️</span>
-                <span class="type-text">Fan / Comunidad</span>
-              </label>
-            </div>
-            <div class="type-opt">
               <input type="radio" name="tipo" id="t3" value="Prensa / Medio">
               <label class="type-label" for="t3">
                 <span class="type-emoji">📰</span>
@@ -974,23 +979,33 @@ appearance: none;
     <div class="directo-inner reveal">
       <h2 class="directo-title">¿No puedes<br>ir en persona?</h2>
       <p class="directo-sub">
-        La gala se transmite en directo por Instagram y TikTok.<br>
+        La gala se transmite en directo por Instagram, TikTok y Kick.<br>
         El mundo entero verá este momento — desde cualquier pantalla.
       </p>
 
-      <div class="directo-cards">
-        <a href="https://www.instagram.com/cca.cuba" target="_blank" rel="noopener" class="directo-card dc-ig">
-          <span class="dc-icon">📸</span>
-          <div class="dc-platform">Instagram</div>
-          <div class="dc-handle">@cca.cuba</div>
-          <span class="dc-action">Seguir →</span>
+      <p style="text-align: center; color: var(--cream); opacity: 0.7; margin-bottom: 30px; padding-bottom: 20px;">
+        Si no puedes asistir en persona, sigue la gala en vivo a través de:
+      </p>
+      
+      <div class="social-links-container" style="display: flex; gap: 30px; justify-content: center; align-items: center; margin-top: 20px; margin-bottom: 50px; flex-wrap: wrap;">
+        
+        <a href="https://instagram.com/cca_cuba" target="_blank" style="text-decoration: none; color: var(--cream); display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.05); padding: 12px 20px; border-radius: 50px; transition: 0.3s;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" width="22" height="22" alt="Instagram">
+          <span style="font-weight: 600; font-size: 0.9rem;">Instagram</span>
         </a>
-        <a href="https://tiktok.com/@cubacontentawards" target="_blank" class="directo-card dc-tt">
-          <span class="dc-icon">🎵</span>
-          <div class="dc-platform">TikTok</div>
-          <div class="dc-handle">@cubacontentawards</div>
-          <span class="dc-action">Seguir →</span>
+      
+        <a href="https://tiktok.com/@cca_cuba" target="_blank" style="text-decoration: none; color: var(--cream); display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.05); padding: 12px 20px; border-radius: 50px; transition: 0.3s;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Ionicons_logo-tiktok.svg" width="22" height="22" alt="TikTok" style="filter: invert(1);">
+          <span style="font-weight: 600; font-size: 0.9rem;">TikTok</span>
         </a>
+      
+        <a href="https://kick.com/cca-cuba" target="_blank" style="text-decoration: none; color: #53FC18; display: flex; align-items: center; gap: 12px; background: rgba(83, 252, 24, 0.1); padding: 12px 20px; border-radius: 50px; border: 1px solid rgba(83, 252, 24, 0.3); transition: 0.3s;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 3H21V21H3V3ZM16.5 7.5H13.5V10.5H12V7.5H9V16.5H12V13.5H13.5V16.5H16.5V12H15V10.5H16.5V7.5Z"/>
+          </svg>
+          <span style="font-weight: 800; font-size: 0.9rem; letter-spacing: 1px;">KICK</span>
+        </a>
+      
       </div>
 
       <p class="directo-note">
