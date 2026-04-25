@@ -95,7 +95,7 @@
   inset: 0;
   /* Así de corto queda ahora */
   background-image: url('agua.jpeg'); 
-  background-size: 150% auto;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   
@@ -148,7 +148,7 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(52px, 10vw, 130px);
     letter-spacing: 0.06em;
-    line-height: 0.92;
+    line-height: 1.1;
     color: var(--white);
     text-shadow: 0 2px 40px rgba(0,0,0,0.22);
   }
@@ -331,14 +331,20 @@
     text-transform: uppercase;
   }
 
-  /* ── MOBILE ── */
-  @media (max-width: 600px) {
+/* ── MOBILE ── */
+@media (max-width: 600px) {
     nav { padding: 0 20px; }
 
-    /* Separamos más las palabras del título */
+    /* 1. AJUSTE HERO: Damos altura automática y mucho aire (padding) */
+    #hero {
+      height: auto;
+      min-height: 100vh; /* Asegura que al menos ocupe toda la pantalla */
+      padding: 160px 20px 100px; /* Mucho espacio arriba para que el agua se vea vertical */
+    }
+
     .hero-title {
-      font-size: clamp(48px, 15vw, 64px);
-      line-height: 1.1;
+      font-size: clamp(46px, 14vw, 58px); /* Bajamos un poco el máximo para que no sature */
+      line-height: 1.1; /* Separación entre Cuba / Content / Awards */
       margin-top: 20px;
     }
 
@@ -347,24 +353,24 @@
       margin-bottom: 10px;
     }
 
-    /* Espaciado del contador para que no choque con el texto */
+    /* 2. AJUSTE COUNTDOWN: Más espacio para la arena */
     #countdown { 
-      padding: 100px 24px; 
+      padding: 120px 24px; 
     }
 
     .timer { 
-      gap: 12px; /* Reducimos el hueco para que quepan los 4 bloques */
+      gap: 10px; /* Espacio justo para que no se amontonen los números */
     }
     
     .timer-number {
-      font-size: clamp(40px, 12vw, 52px); /* Números un poco más pequeños para evitar solapamiento */
+      font-size: clamp(38px, 11vw, 48px); /* Reducción mínima para evitar que choquen los bordes */
     }
 
     .timer-sep { display: none; }
 
     footer { padding: 20px 24px; }
   }
-  
+
 </style>
 </head>
 <body>
