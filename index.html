@@ -95,7 +95,7 @@
   inset: 0;
   /* Así de corto queda ahora */
   background-image: url('agua.jpeg'); 
-  background-size: cover;
+  background-size: 150% auto;
   background-position: center;
   background-repeat: no-repeat;
   
@@ -335,16 +335,36 @@
   @media (max-width: 600px) {
     nav { padding: 0 20px; }
 
-    .hero-eyebrow { letter-spacing: 0.22em; }
+    /* Separamos más las palabras del título */
+    .hero-title {
+      font-size: clamp(48px, 15vw, 64px);
+      line-height: 1.1;
+      margin-top: 20px;
+    }
 
-    #countdown { padding: 90px 24px 70px; }
+    .hero-eyebrow { 
+      letter-spacing: 0.22em;
+      margin-bottom: 10px;
+    }
 
-    .timer { gap: 14px; }
+    /* Espaciado del contador para que no choque con el texto */
+    #countdown { 
+      padding: 100px 24px; 
+    }
+
+    .timer { 
+      gap: 12px; /* Reducimos el hueco para que quepan los 4 bloques */
+    }
+    
+    .timer-number {
+      font-size: clamp(40px, 12vw, 52px); /* Números un poco más pequeños para evitar solapamiento */
+    }
 
     .timer-sep { display: none; }
 
     footer { padding: 20px 24px; }
   }
+  
 </style>
 </head>
 <body>
