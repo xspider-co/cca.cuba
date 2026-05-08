@@ -396,8 +396,7 @@
 
     .faq-item {
         display: flex;
-        flex-direction: column; /* Cambiado de row a column para que la respuesta baje */
-        gap: 0; /* Controlaremos el espacio con padding interno */
+        flex-direction: column; /* Mantiene la estructura vertical para la respuesta */
         padding: 24px;
         background: #fff;
         border: 1px solid var(--border);
@@ -406,6 +405,7 @@
         transition: all 0.3s ease;
         overflow: hidden;
     }
+
     .faq-item.open { padding-bottom: 48px; } /* Añadido para el efecto de expansión */
     .faq-item:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
 
@@ -415,7 +415,7 @@
         font-weight: 400;
         color: #000;
         line-height: 1.3em;
-        flex: 1; /* Para que empuje al icono a la derecha */
+        margin: 0; /* Evita desajustes */
     }
 
     .faq-icon {
@@ -434,43 +434,44 @@
         transition: transform 0.2s;
     }
 
-    /* Contenedor para mantener la pregunta y el icono alineados arriba */
+/* ESTE ES EL TRUCO: Un contenedor para la pregunta y el icono */
     .faq-question-container {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        gap: 16px;
+        justify-content: space-between; /* Empuja el icono a la derecha */
         width: 100%;
+        gap: 16px;
     }
 
-    /* Estilo de la respuesta (oculta por defecto) */
-    .faq-answer {
+/* Respuesta: Oculta por defecto */
+.faq-answer {
         max-height: 0;
         opacity: 0;
         overflow: hidden;
         transition: all 0.3s ease-in-out;
         font-family: "Inter", sans-serif;
         font-size: 16px;
-        color: var(--gray);
+        color: #666;
         line-height: 1.5em;
     }
+
     /* Cuando el item está abierto (usaremos la clase .active en JS) */
     .faq-item.active {
         border-color: var(--teal);
         box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     }
 
+/* Estado Activo */
     .faq-item.active .faq-answer {
-        max-height: 300px; /* Suficiente para el texto */
+        max-height: 200px;
         opacity: 1;
-        margin-top: 16px; /* Espacio entre pregunta y respuesta */
+        margin-top: 16px; /* Solo da espacio cuando se abre */
     }
 
-    /* Rotación del icono cuando está activo */
-    .faq-item.active .faq-icon {
-        transform: rotate(180deg); /* O 45deg si prefieres efecto de X */
+.faq-item.active .faq-icon {
+        transform: rotate(45deg); /* Efecto de X o rotación */
+        background: var(--teal-dark); /* Cambio sutil para feedback visual */
     }
-
     /* ========================
        RESPONSIVE
     ======================== */
