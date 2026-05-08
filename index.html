@@ -396,16 +396,17 @@
 
     .faq-item {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
+        flex-direction: column; /* Cambiado de row a column para que la respuesta baje */
+        gap: 0; /* Controlaremos el espacio con padding interno */
         padding: 24px;
         background: #fff;
         border: 1px solid var(--border);
         border-radius: 24px;
         cursor: pointer;
-        transition: box-shadow 0.2s;
+        transition: all 0.3s ease;
+        overflow: hidden;
     }
+    .faq-item.open { padding-bottom: 48px; } /* Añadido para el efecto de expansión */
     .faq-item:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
 
     .faq-question {
@@ -414,6 +415,7 @@
         font-weight: 400;
         color: #000;
         line-height: 1.3em;
+        flex: 1; /* Para que empuje al icono a la derecha */
     }
 
     .faq-icon {
