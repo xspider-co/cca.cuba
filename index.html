@@ -672,9 +672,9 @@
 
 <script>
 function toggleFaq(el) {
+    el.classList.toggle('active');
     const icon = el.querySelector('.faq-icon');
-    icon.textContent = icon.textContent.trim() === '+' ? '−' : '+';
-    icon.style.transform = icon.textContent.trim() === '−' ? 'rotate(45deg)' : 'rotate(0deg)';
+    icon.textContent = el.classList.contains('active') ? '−' : '+';
 }
 </script>
 
