@@ -434,6 +434,43 @@
         transition: transform 0.2s;
     }
 
+    /* Contenedor para mantener la pregunta y el icono alineados arriba */
+    .faq-question-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        width: 100%;
+    }
+
+    /* Estilo de la respuesta (oculta por defecto) */
+    .faq-answer {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: all 0.3s ease-in-out;
+        font-family: "Inter", sans-serif;
+        font-size: 16px;
+        color: var(--gray);
+        line-height: 1.5em;
+    }
+    /* Cuando el item está abierto (usaremos la clase .active en JS) */
+    .faq-item.active {
+        border-color: var(--teal);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    .faq-item.active .faq-answer {
+        max-height: 300px; /* Suficiente para el texto */
+        opacity: 1;
+        margin-top: 16px; /* Espacio entre pregunta y respuesta */
+    }
+
+    /* Rotación del icono cuando está activo */
+    .faq-item.active .faq-icon {
+        transform: rotate(180deg); /* O 45deg si prefieres efecto de X */
+    }
+
     /* ========================
        RESPONSIVE
     ======================== */
