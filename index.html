@@ -1,598 +1,599 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="es" dir="ltr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gala de Influencers — Caribe</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Cuba Content Awards</title>
+    <meta name="description" content="Cuba Content Awards son los primeros premios dedicados a los influencers cubanos.">
 
-  <style>
-    /* ─── RESET & BASE ─── */
+    <link href="/assets/images/favicon.png" rel="icon" media="(prefers-color-scheme: light)">
+    <link href="/assets/images/favicon.png" rel="icon" media="(prefers-color-scheme: dark)">
+    <link rel="apple-touch-icon" href="/assets/images/apple-touch.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Cuba Content Awards">
+    <meta property="og:description" content="Cuba Content Awards son los primeros premios dedicados a los influencers cubanos.">
+    <meta property="og:image" content="/assets/images/og.png">
+    <meta property="og:url" content="https://ccawards.vercel.app/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cuba Content Awards">
+    <meta name="twitter:description" content="Cuba Content Awards son los primeros premios dedicados a los influencers cubanos.">
+    <meta name="twitter:image" content="/assets/images/og.png">
+    <meta name="robots" content="max-image-preview:large">
+
+    <style>
+    @font-face {
+        font-family: "Cal Sans";
+        src: url("https://fonts.gstatic.com/s/calsans/v2/fdN99sWUv3gWqXxqqSBevloE4LZx.woff2");
+        font-display: swap;
+        font-style: normal;
+        font-weight: 400
+    }
+    @font-face {
+        font-family: "Cal Sans";
+        src: url("https://framerusercontent.com/assets/P2duH7wVRqqnKRek7vOcXAA9g.woff2");
+        font-display: swap;
+        font-style: normal;
+        font-weight: 600
+    }
+    @font-face {
+        font-family: "Inter";
+        src: url("https://framerusercontent.com/assets/GrgcKwrN6d3Uz8EwcLHZxwEfC4.woff2");
+        font-display: swap;
+        font-style: normal;
+        font-weight: 400
+    }
+    @font-face {
+        font-family: "Inter";
+        src: url("https://framerusercontent.com/assets/syRNPWzAMIrcJ3wIlPIP43KjQs.woff2");
+        font-display: swap;
+        font-style: normal;
+        font-weight: 700
+    }
+    @font-face {
+        font-family: "Cal Sans Placeholder";
+        src: local("Arial");
+        ascent-override: 98.60%;
+        descent-override: 29.58%;
+        size-adjust: 101.42%
+    }
+    @font-face {
+        font-family: "Inter Placeholder";
+        src: local("Arial");
+        ascent-override: 89.79%;
+        descent-override: 22.36%;
+        size-adjust: 107.89%
+    }
+
+    /* Reset */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --sand:   #f5ede0;
-      --ivory:  #faf7f2;
-      --dark:   #0d0d0d;
-      --deep:   #1a1209;
-      --gold:   #c9a84c;
-      --gold2:  #e8c96a;
-      --coral:  #e07050;
-      --aqua:   #5bbfb5;
-      --white:  #ffffff;
-
-      --font-display: 'Cormorant Garamond', Georgia, serif;
-      --font-body:    'DM Sans', sans-serif;
-    }
-
-    html { scroll-behavior: smooth; }
+    h1,h2,h3,h4,h5,h6,p,figure { margin: 0; }
     body {
-      background: var(--deep);
-      color: var(--sand);
-      font-family: var(--font-body);
-      overflow-x: hidden;
+        background: #fff;
+        font-family: "Inter", "Inter Placeholder", sans-serif;
+        -webkit-font-smoothing: antialiased;
     }
 
-    /* ─── NAVBAR ─── */
-    nav {
-      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
-      padding: 1.4rem 4rem;
-      display: flex; justify-content: space-between; align-items: center;
-      background: linear-gradient(to bottom, rgba(10,8,5,0.85) 0%, transparent 100%);
-      backdrop-filter: blur(2px);
+    /* Tokens */
+    :root {
+        --white: #fff;
+        --black: #000;
+        --teal: #033d4a;
+        --teal-dark: #012830;
+        --gray: #404040;
+        --border: rgba(0,0,0,0.2);
     }
-    .nav-logo {
-      font-family: var(--font-display);
-      font-size: 1.5rem; font-weight: 600; letter-spacing: 0.12em;
-      color: var(--gold); text-decoration: none;
-      text-transform: uppercase;
-    }
-    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
-    .nav-links a {
-      font-size: 0.82rem; font-weight: 400; letter-spacing: 0.1em;
-      color: rgba(245,237,224,0.75); text-decoration: none; text-transform: uppercase;
-      transition: color 0.3s;
-    }
-    .nav-links a:hover { color: var(--gold); }
-    .nav-cta {
-      background: transparent; border: 1px solid var(--gold);
-      color: var(--gold); padding: 0.55rem 1.4rem;
-      font-family: var(--font-body); font-size: 0.78rem;
-      letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;
-      text-decoration: none;
-      transition: background 0.3s, color 0.3s;
-    }
-    .nav-cta:hover { background: var(--gold); color: var(--dark); }
 
-    /* ─────────────────────────────────────────
-       SECTION 1 — HERO
-    ───────────────────────────────────────── */
+    /* ========================
+       HERO
+    ======================== */
     .hero {
-      position: relative; width: 100%; height: 100vh; min-height: 700px;
-      display: flex; flex-direction: column; justify-content: flex-end;
-      overflow: hidden;
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        min-height: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: #000;
+        padding: 0 40px 40px;
     }
 
-    /* mosaic background images */
     .hero-bg {
-      position: absolute; inset: 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      gap: 3px;
+        position: absolute;
+        inset: 0;
+        z-index: 1;
     }
-    .hero-bg-tile {
-      background-size: cover;
-      background-position: center;
-      transform: scale(1.06);
-      transition: transform 8s ease;
-      animation: slowzoom 14s ease-in-out infinite alternate;
-    }
-    .hero-bg-tile:nth-child(1) {
-      background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800');
-      grid-column: 1 / 3; grid-row: 1 / 2;
-      animation-delay: 0s;
-    }
-    .hero-bg-tile:nth-child(2) {
-      background-image: url('https://images.unsplash.com/photo-1548574505-5e239809ee19?w=800');
-      grid-column: 3 / 4; grid-row: 1 / 2;
-      animation-delay: 2s;
-    }
-    .hero-bg-tile:nth-child(3) {
-      background-image: url('https://images.unsplash.com/photo-1473116763249-2faaef81ccda?w=800');
-      grid-column: 4 / 5; grid-row: 1 / 3;
-      animation-delay: 1s;
-    }
-    .hero-bg-tile:nth-child(4) {
-      background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800');
-      grid-column: 1 / 2; grid-row: 2 / 3;
-      animation-delay: 3s;
-    }
-    .hero-bg-tile:nth-child(5) {
-      background-image: url('https://images.unsplash.com/photo-1540202404-a2f29016b523?w=800');
-      grid-column: 2 / 4; grid-row: 2 / 3;
-      animation-delay: 0.5s;
+    .hero-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.75;
+        display: block;
     }
 
-    @keyframes slowzoom {
-      from { transform: scale(1.0); }
-      to   { transform: scale(1.08); }
-    }
-
-    /* dark overlay */
-    .hero-overlay {
-      position: absolute; inset: 0; z-index: 1;
-      background:
-        linear-gradient(to top,  rgba(10,8,5,0.92) 0%, rgba(10,8,5,0.3) 50%, rgba(10,8,5,0.55) 100%),
-        linear-gradient(to right, rgba(10,8,5,0.3) 0%, transparent 60%);
-    }
-
-    /* decorative gold line */
-    .hero-line {
-      position: absolute; top: 0; left: 50%; z-index: 2;
-      width: 1px; height: 0;
-      background: linear-gradient(to bottom, transparent, var(--gold), transparent);
-      animation: linedrop 1.8s ease 0.4s forwards;
-    }
-    @keyframes linedrop {
-      to { height: 120px; }
-    }
-
-    /* content */
     .hero-content {
-      position: relative; z-index: 3;
-      padding: 0 4rem 5rem;
-      max-width: 900px;
+        position: relative;
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 48px;
+        width: 100%;
+        max-width: 1200px;
+        padding-top: 56px;
     }
 
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 0.7rem;
-      font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--gold); font-weight: 500; margin-bottom: 1.4rem;
-      opacity: 0; animation: fadeslideup 0.8s ease 0.6s forwards;
-    }
-    .hero-eyebrow::before {
-      content: ''; display: block; width: 32px; height: 1px; background: var(--gold);
+    .hero-title-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        width: 100%;
     }
 
     .hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(3.2rem, 7vw, 6.2rem);
-      font-weight: 300; line-height: 1.07;
-      color: var(--ivory);
-      margin-bottom: 1.6rem;
-      opacity: 0; animation: fadeslideup 1s ease 0.9s forwards;
-    }
-    .hero-title em {
-      font-style: italic; color: var(--gold2);
-    }
-
-    .hero-sub {
-      font-size: 0.95rem; font-weight: 300; line-height: 1.75;
-      color: rgba(245,237,224,0.65); max-width: 520px;
-      margin-bottom: 2.4rem;
-      opacity: 0; animation: fadeslideup 0.9s ease 1.2s forwards;
+        font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
+        font-size: 92px;
+        font-weight: 600;
+        color: #fff;
+        text-align: center;
+        line-height: 1.2em;
+        letter-spacing: -0.02em;
+        text-shadow: 0 3px 12px rgba(0,0,0,0.37);
+        max-width: 890px;
     }
 
-    .hero-actions {
-      display: flex; align-items: center; gap: 1.6rem;
-      opacity: 0; animation: fadeslideup 0.9s ease 1.5s forwards;
-    }
-    .btn-primary {
-      background: var(--gold); color: var(--dark);
-      padding: 0.85rem 2.2rem; font-size: 0.82rem; letter-spacing: 0.12em;
-      text-transform: uppercase; font-weight: 500; border: none; cursor: pointer;
-      text-decoration: none; display: inline-block;
-      transition: background 0.3s, transform 0.2s;
-    }
-    .btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
-
-    .btn-ghost {
-      color: var(--sand); font-size: 0.82rem; letter-spacing: 0.1em;
-      text-transform: uppercase; text-decoration: none;
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      border-bottom: 1px solid rgba(245,237,224,0.3);
-      padding-bottom: 2px;
-      transition: color 0.3s, border-color 0.3s;
-    }
-    .btn-ghost:hover { color: var(--gold); border-color: var(--gold); }
-
-    /* stats row */
-    .hero-stats {
-      position: absolute; bottom: 5rem; right: 4rem; z-index: 3;
-      display: flex; flex-direction: column; gap: 1.8rem;
-      opacity: 0; animation: fadein 0.8s ease 2s forwards;
-    }
-    .stat {
-      text-align: right;
-    }
-    .stat-number {
-      font-family: var(--font-display);
-      font-size: 2rem; font-weight: 300; color: var(--gold2); line-height: 1;
-    }
-    .stat-label {
-      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
-      color: rgba(245,237,224,0.5); margin-top: 0.2rem;
+    .hero-subtitle {
+        font-family: "Inter", "Inter Placeholder", sans-serif;
+        font-size: 20px;
+        font-weight: 500;
+        color: #fff;
+        text-align: center;
+        line-height: 1.4em;
+        letter-spacing: -0.02em;
+        max-width: 480px;
+        text-transform: capitalize;
     }
 
-    /* scroll indicator */
-    .scroll-hint {
-      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
-      z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-      opacity: 0; animation: fadein 0.8s ease 2.2s forwards;
+    .hero-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 40px 10px 24px;
+        background: #fff;
+        border-radius: 48px;
+        text-decoration: none;
+        font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
+        font-size: 16px;
+        color: #000;
+        font-weight: 400;
+        position: relative;
+        transition: opacity 0.2s;
     }
-    .scroll-hint span {
-      font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: rgba(245,237,224,0.4);
-    }
-    .scroll-line {
-      width: 1px; height: 40px;
-      background: linear-gradient(to bottom, var(--gold), transparent);
-      animation: scrollpulse 2s ease-in-out infinite;
-    }
-    @keyframes scrollpulse {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 1; }
-    }
-
-    @keyframes fadeslideup {
-      from { opacity: 0; transform: translateY(22px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadein {
-      from { opacity: 0; }
-      to   { opacity: 1; }
+    .hero-btn:hover { opacity: 0.9; }
+    .hero-btn::after {
+        content: "↗";
+        position: absolute;
+        right: 13px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 14px;
     }
 
-    /* ─────────────────────────────────────────
-       SECTION 2 — CATEGORÍAS
-    ───────────────────────────────────────── */
-    .categories {
-      background: var(--deep);
-      padding: 8rem 4rem 7rem;
-      overflow: hidden;
+    /* Floating images */
+    .float-img {
+        position: absolute;
+        border-radius: 16px;
+        overflow: hidden;
+        z-index: 2;
+        box-shadow: 10px 11px 13px rgba(0,0,0,0.25);
+    }
+    .float-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .float-1 { width: 226px; height: 143px; bottom: 23%; left: 12%; transform: rotate(-7deg); }
+    .float-2 { width: 244px; height: 150px; top: 17%; left: 14%; transform: rotate(7deg); }
+    .float-3 { width: 236px; height: 161px; top: 19%; right: 10%; transform: rotate(-6deg); }
+    .float-4 { width: 213px; height: 135px; bottom: 23%; right: 17%; transform: rotate(13deg); }
+
+    /* ========================
+       CATEGORÍAS
+    ======================== */
+    .section-categorias {
+        padding: 107px 40px;
+        display: flex;
+        justify-content: center;
+        background: #fff;
     }
 
-    .section-label {
-      display: inline-flex; align-items: center; gap: 0.7rem;
-      font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--gold); font-weight: 500; margin-bottom: 1.2rem;
-    }
-    .section-label::before {
-      content: ''; display: block; width: 28px; height: 1px; background: var(--gold);
+    .section-inner {
+        width: 100%;
+        max-width: 1200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 64px;
     }
 
     .section-title {
-      font-family: var(--font-display);
-      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
-      font-weight: 300; line-height: 1.12;
-      color: var(--ivory); margin-bottom: 4rem; max-width: 600px;
-    }
-    .section-title em { font-style: italic; color: var(--gold2); }
-
-    /* ── cards grid ── */
-    .cat-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 1.2rem;
-      cursor: pointer;
+        font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
+        font-size: 36px;
+        font-weight: 400;
+        color: var(--teal-dark);
+        text-align: center;
+        letter-spacing: 0;
+        line-height: 1.2em;
+        text-transform: capitalize;
     }
 
-    .cat-card {
-      position: relative;
-      height: 520px;
-      overflow: hidden;
-      background: #111;
-      transition: flex 0.6s cubic-bezier(0.4,0,0.2,1);
+    .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        width: 100%;
     }
 
-    /* expandable on hover */
-    .cat-grid:has(.cat-card:hover) .cat-card { flex: 1; }
-    .cat-grid:has(.cat-card:hover) .cat-card:hover { flex: 2.6; }
-
-    /* Use flex for expandable effect */
-    .cat-grid {
-      display: flex;
-      gap: 1.2rem;
-    }
-    .cat-card { flex: 1; }
-    .cat-card:hover { flex: 2.6 !important; }
-
-    .cat-img {
-      position: absolute; inset: 0;
-      background-size: cover; background-position: center;
-      transition: transform 0.8s cubic-bezier(0.4,0,0.2,1);
-    }
-    .cat-card:hover .cat-img { transform: scale(1.08); }
-
-    .cat-img-1 { background-image: url('https://images.unsplash.com/photo-1523359346063-d879354c0ea5?w=600'); }
-    .cat-img-2 { background-image: url('https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=600'); }
-    .cat-img-3 { background-image: url('https://images.unsplash.com/photo-1524253482453-3fed8d2fe12b?w=600'); }
-    .cat-img-4 { background-image: url('https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600'); }
-    .cat-img-5 { background-image: url('https://images.unsplash.com/photo-1600188769099-d25b4ec79659?w=600'); }
-
-    .cat-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(10,8,5,0.92) 0%, rgba(10,8,5,0.1) 55%);
-      transition: background 0.5s;
-    }
-    .cat-card:hover .cat-overlay {
-      background: linear-gradient(to top, rgba(10,8,5,0.95) 0%, rgba(10,8,5,0.25) 70%);
+    .card {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        text-decoration: none;
+        cursor: pointer;
     }
 
-    /* gold border reveal on hover */
-    .cat-card::after {
-      content: '';
-      position: absolute; inset: 0;
-      border: 1px solid transparent;
-      transition: border-color 0.4s;
-      pointer-events: none; z-index: 4;
+    .card-img {
+        width: 100%;
+        aspect-ratio: 0.8;
+        overflow: hidden;
+        border-radius: 24px;
+        background: #000;
     }
-    .cat-card:hover::after { border-color: rgba(201,168,76,0.4); }
+    .card-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.3s ease;
+    }
+    .card:hover .card-img img { transform: scale(1.03); }
 
-    .cat-info {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 2rem 1.6rem;
-      z-index: 3;
-    }
-
-    .cat-number {
-      font-family: var(--font-display);
-      font-size: 0.78rem; letter-spacing: 0.2em;
-      color: var(--gold); margin-bottom: 0.6rem;
-      opacity: 0.7;
-    }
-
-    .cat-name {
-      font-family: var(--font-display);
-      font-size: clamp(1.1rem, 1.8vw, 1.5rem);
-      font-weight: 400; color: var(--ivory); line-height: 1.2;
-      margin-bottom: 0.5rem;
-      /* vertical text when collapsed */
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      transform: rotate(180deg);
-      transition: writing-mode 0.01s, transform 0.01s;
-    }
-    .cat-card:hover .cat-name {
-      writing-mode: horizontal-tb;
-      transform: rotate(0deg);
+    .card-title {
+        font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: #000;
+        line-height: 1.3em;
+        letter-spacing: -0.01em;
     }
 
-    .cat-desc {
-      font-size: 0.82rem; line-height: 1.65;
-      color: rgba(245,237,224,0.6);
-      max-height: 0; overflow: hidden;
-      transition: max-height 0.5s ease, opacity 0.4s ease;
-      opacity: 0;
-    }
-    .cat-card:hover .cat-desc { max-height: 120px; opacity: 1; }
-
-    .cat-tag {
-      display: inline-block; margin-top: 1rem;
-      font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--gold); border: 1px solid rgba(201,168,76,0.4);
-      padding: 0.3rem 0.75rem;
-      max-height: 0; overflow: hidden; opacity: 0;
-      transition: max-height 0.5s ease 0.15s, opacity 0.4s ease 0.15s;
-    }
-    .cat-card:hover .cat-tag { max-height: 40px; opacity: 1; }
-
-    /* marquee strip */
-    .marquee-wrap {
-      margin-top: 4rem; overflow: hidden;
-      border-top: 1px solid rgba(201,168,76,0.15);
-      border-bottom: 1px solid rgba(201,168,76,0.15);
-      padding: 1rem 0;
-    }
-    .marquee-track {
-      display: flex; gap: 3rem;
-      animation: marquee 22s linear infinite;
-      width: max-content;
-    }
-    .marquee-item {
-      font-family: var(--font-display);
-      font-size: 1rem; letter-spacing: 0.14em;
-      color: rgba(201,168,76,0.45); white-space: nowrap;
-      display: flex; align-items: center; gap: 1.2rem;
-      font-style: italic;
-    }
-    .marquee-item::after {
-      content: '✦'; font-style: normal; font-size: 0.6rem; color: var(--gold);
+    .card-desc {
+        font-family: "Inter", sans-serif;
+        font-size: 16px;
+        color: #404040;
+        line-height: 1.4em;
+        letter-spacing: -0.02em;
+        margin-top: 4px;
     }
 
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
+    .view-all {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+    }
+    .view-all-line { flex: 1; height: 1px; background: #ccc; }
+
+    .btn-dark {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 40px 10px 24px;
+        background: var(--teal);
+        border-radius: 48px;
+        text-decoration: none;
+        font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
+        font-size: 16px;
+        color: #fff;
+        white-space: nowrap;
+        position: relative;
+        transition: opacity 0.2s;
+    }
+    .btn-dark:hover { opacity: 0.9; }
+    .btn-dark::after {
+        content: "↗";
+        position: absolute;
+        right: 13px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 14px;
     }
 
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 900px) {
-      nav { padding: 1.2rem 1.8rem; }
-      .nav-links { display: none; }
-      .hero-content { padding: 0 1.8rem 4rem; }
-      .hero-stats { right: 1.8rem; bottom: 4rem; }
-      .hero-bg { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr 1fr; }
-      .hero-bg-tile:nth-child(3) { grid-column: 2/3; grid-row: 1/2; }
-      .hero-bg-tile:nth-child(4) { grid-column: 1/2; grid-row: 3/4; }
-      .hero-bg-tile:nth-child(5) { grid-column: 2/3; grid-row: 2/4; }
-      .categories { padding: 5rem 1.8rem 4rem; }
-      .cat-grid { flex-direction: column; height: auto; }
-      .cat-card { height: 200px; flex: none !important; }
-      .cat-name { writing-mode: horizontal-tb !important; transform: rotate(0deg) !important; }
-      .cat-desc { max-height: 80px !important; opacity: 0.8 !important; }
-      .cat-tag { max-height: 40px !important; opacity: 1 !important; }
+    /* ========================
+       PATROCINIOS
+    ======================== */
+    .section-sponsor {
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 40px;
+        min-height: 600px;
+        padding: 60px 20px;
     }
-  </style>
+
+    .sponsor-title {
+        font-family: "Inter", "Inter Placeholder", sans-serif;
+        font-size: 32px;
+        font-weight: 700;
+        color: #000;
+        text-align: center;
+        letter-spacing: -0.03em;
+        line-height: 1em;
+    }
+
+    .btn-black {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 32px;
+        background: #000;
+        border-radius: 10px;
+        text-decoration: none;
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        color: #fff;
+        transition: opacity 0.2s;
+    }
+    .btn-black:hover { opacity: 0.85; }
+
+    /* ========================
+       FAQ
+    ======================== */
+    .section-faq {
+        padding: 100px 40px;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+    }
+
+    .faq-inner {
+        width: 100%;
+        max-width: 1200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 64px;
+    }
+
+    .faq-header { text-align: center; }
+
+    .faq-tag {
+        font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
+        font-size: 16px;
+        color: #545454;
+        margin-bottom: 12px;
+    }
+
+    .faq-title {
+        font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
+        font-size: 36px;
+        font-weight: 400;
+        color: var(--teal-dark);
+        text-align: center;
+        line-height: 1.2em;
+        text-transform: capitalize;
+    }
+
+    .faq-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        width: 100%;
+    }
+
+    .faq-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 24px;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        cursor: pointer;
+        transition: box-shadow 0.2s;
+    }
+    .faq-item:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+
+    .faq-question {
+        font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: #000;
+        line-height: 1.3em;
+    }
+
+    .faq-icon {
+        flex-shrink: 0;
+        width: 38px;
+        height: 38px;
+        background: var(--teal);
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 22px;
+        font-weight: 300;
+        line-height: 1;
+        transition: transform 0.2s;
+    }
+
+    /* ========================
+       RESPONSIVE
+    ======================== */
+    @media (max-width: 809px) {
+        .hero {
+            padding: 93px 24px 56px;
+            height: auto;
+            min-height: 100svh;
+        }
+        .hero-title { font-size: 48px; }
+        .hero-subtitle { font-size: 16px; max-width: 100%; }
+        .float-1 { width: 149px; height: 94px; bottom: 28%; left: 3%; }
+        .float-2 { width: 136px; height: 84px; top: 15%; left: 7%; }
+        .float-3 { width: 117px; height: 80px; top: 17%; right: 9%; }
+        .float-4 { width: 145px; height: 92px; bottom: 24%; right: 3%; }
+        .section-categorias { padding: 95px 20px; }
+        .cards-grid { grid-template-columns: 1fr; gap: 48px; }
+        .faq-grid { grid-template-columns: 1fr; }
+        .section-faq { padding: 100px 20px; }
+        .sponsor-title { font-size: 24px; text-align: left; }
+        .section-title { font-size: 24px; }
+        .faq-title { font-size: 24px; }
+    }
+
+    @media (min-width: 810px) and (max-width: 1199px) {
+        .hero { padding: 100px 40px 140px; }
+        .hero-title { font-size: 56px; }
+        .float-1 { width: 180px; height: 114px; }
+        .float-2 { width: 176px; height: 108px; }
+        .float-3 { width: 184px; height: 126px; }
+        .float-4 { width: 182px; height: 115px; }
+        .cards-grid { grid-template-columns: 1fr 1fr; gap: 40px 24px; }
+        .section-title { font-size: 32px; }
+        .faq-title { font-size: 32px; }
+    }
+    </style>
 </head>
 <body>
 
-  <!-- ── NAVBAR ── -->
-  <nav>
-    <a href="#" class="nav-logo">Gala Caribe</a>
-    <ul class="nav-links">
-      <li><a href="#">La Gala</a></li>
-      <li><a href="#">Categorías</a></li>
-      <li><a href="#">Jurado</a></li>
-      <li><a href="#">Ediciones</a></li>
-    </ul>
-    <a href="#" class="nav-cta">Registro</a>
-  </nav>
+<div id="main">
 
-  <!-- ══════════════════════════════════════
-       SECCIÓN 1 — HERO
-  ══════════════════════════════════════ -->
-  <section class="hero">
-
-    <!-- mosaic de fondos -->
-    <div class="hero-bg">
-      <div class="hero-bg-tile"></div>
-      <div class="hero-bg-tile"></div>
-      <div class="hero-bg-tile"></div>
-      <div class="hero-bg-tile"></div>
-      <div class="hero-bg-tile"></div>
-    </div>
-
-    <div class="hero-overlay"></div>
-    <div class="hero-line"></div>
-
-    <!-- texto principal -->
-    <div class="hero-content">
-      <p class="hero-eyebrow">Gala de Influencers · Caribe 2025</p>
-      <h1 class="hero-title">
-        Donde el talento<br>
-        <em>encuentra el paraíso</em>
-      </h1>
-      <p class="hero-sub">
-        La noche más exclusiva del mundo digital se celebra bajo las estrellas del Caribe.
-        Reconocemos a los creadores que están cambiando el mundo.
-      </p>
-      <div class="hero-actions">
-        <a href="#" class="btn-primary">Consigue tu entrada</a>
-        <a href="#categorias" class="btn-ghost">Ver categorías &rarr;</a>
-      </div>
-    </div>
-
-    <!-- stats flotantes -->
-    <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-number">200+</div>
-        <div class="stat-label">Influencers</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">15</div>
-        <div class="stat-label">Categorías</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">1M+</div>
-        <div class="stat-label">Seguidores en vivo</div>
-      </div>
-    </div>
-
-    <!-- scroll hint -->
-    <div class="scroll-hint">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
-    </div>
-
-  </section>
-
-  <!-- ══════════════════════════════════════
-       SECCIÓN 2 — CATEGORÍAS
-  ══════════════════════════════════════ -->
-  <section class="categories" id="categorias">
-
-    <p class="section-label">Explora por Categoría</p>
-    <h2 class="section-title">
-      Descubre los mundos<br>
-      que <em>definen esta gala</em>
-    </h2>
-
-    <div class="cat-grid">
-
-      <div class="cat-card">
-        <div class="cat-img cat-img-1"></div>
-        <div class="cat-overlay"></div>
-        <div class="cat-info">
-          <div class="cat-number">01</div>
-          <h3 class="cat-name">Moda &amp; Estilo</h3>
-          <p class="cat-desc">Los referentes que dictan las tendencias desde las pasarelas hasta el feed.</p>
-          <span class="cat-tag">Ver nominados</span>
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-bg">
+            <img src="/assets/images/hero-bg.jpeg" alt="Cuba" loading="eager">
         </div>
-      </div>
 
-      <div class="cat-card">
-        <div class="cat-img cat-img-2"></div>
-        <div class="cat-overlay"></div>
-        <div class="cat-info">
-          <div class="cat-number">02</div>
-          <h3 class="cat-name">Fitness &amp; Salud</h3>
-          <p class="cat-desc">Creadores que inspiran millones a moverse, comer bien y vivir mejor.</p>
-          <span class="cat-tag">Ver nominados</span>
+        <figure class="float-img float-2">
+            <img src="/assets/images/hero2.jpeg" alt="" loading="lazy">
+        </figure>
+        <figure class="float-img float-3">
+            <img src="/assets/images/hero3.jpeg" alt="" loading="lazy">
+        </figure>
+        <figure class="float-img float-1">
+            <img src="/assets/images/hero1.jpeg" alt="" loading="lazy">
+        </figure>
+        <figure class="float-img float-4">
+            <img src="/assets/images/hero4.jpeg" alt="" loading="lazy">
+        </figure>
+
+        <div class="hero-content">
+            <div class="hero-title-block">
+                <h1 class="hero-title">Cuba Content Awards</h1>
+                <p class="hero-subtitle">Primeros premios dedicados a creadores cubanos</p>
+            </div>
+            <a href="/categorias" class="hero-btn">Ver categorías</a>
         </div>
-      </div>
+    </header>
 
-      <div class="cat-card">
-        <div class="cat-img cat-img-3"></div>
-        <div class="cat-overlay"></div>
-        <div class="cat-info">
-          <div class="cat-number">03</div>
-          <h3 class="cat-name">Belleza &amp; Make Up</h3>
-          <p class="cat-desc">Arte en cada trazo. Los artistas digitales que reinventan la belleza.</p>
-          <span class="cat-tag">Ver nominados</span>
+    <!-- CATEGORÍAS -->
+    <section class="section-categorias">
+        <div class="section-inner">
+            <h2 class="section-title">Categorías</h2>
+            <div class="cards-grid">
+                <a class="card" href="/categorias">
+                    <div class="card-img"><img src="/assets/images/cat1.png" alt="Categoría 1" loading="lazy"></div>
+                    <p class="card-title">Categoría sin desbloquear</p>
+                    <p class="card-desc">Esta categoría se desbloquea el día 5 de mayo.</p>
+                </a>
+                <a class="card" href="/categorias">
+                    <div class="card-img"><img src="/assets/images/cat2.png" alt="Categoría 2" loading="lazy"></div>
+                    <p class="card-title">Categoría sin desbloquear</p>
+                    <p class="card-desc">Esta categoría se desbloquea el día 6 de mayo.</p>
+                </a>
+                <a class="card" href="/categorias">
+                    <div class="card-img"><img src="/assets/images/cat3.png" alt="Categoría 3" loading="lazy"></div>
+                    <p class="card-title">Categoría sin desbloquear</p>
+                    <p class="card-desc">Esta categoría se desbloquea el día 7 de mayo.</p>
+                </a>
+                <a class="card" href="/categorias">
+                    <div class="card-img"><img src="/assets/images/cat4.png" alt="Categoría 4" loading="lazy"></div>
+                    <p class="card-title">Categoría sin desbloquear</p>
+                    <p class="card-desc">Esta categoría se desbloquea el día 8 de mayo.</p>
+                </a>
+            </div>
+            <div class="view-all">
+                <div class="view-all-line"></div>
+                <a href="/categorias" class="btn-dark">Todas las Categorías</a>
+                <div class="view-all-line"></div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <div class="cat-card">
-        <div class="cat-img cat-img-4"></div>
-        <div class="cat-overlay"></div>
-        <div class="cat-info">
-          <div class="cat-number">04</div>
-          <h3 class="cat-name">Viajes &amp; Lifestyle</h3>
-          <p class="cat-desc">Aventureros que convierten cada destino en una historia que vale la pena seguir.</p>
-          <span class="cat-tag">Ver nominados</span>
+    <!-- PATROCINIOS -->
+    <section class="section-sponsor">
+        <h2 class="sponsor-title">Haz que tu marca sea protagonista</h2>
+        <a href="/patrocinios" class="btn-black">Más Información</a>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section-faq">
+        <div class="faq-inner">
+            <div class="faq-header">
+                <p class="faq-tag">Preguntas frecuentes</p>
+                <h2 class="faq-title">Lo que necesitas saber de la gala</h2>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <p class="faq-question">¿Cuándo y dónde se llevará a cabo la gala?</p>
+                    <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <p class="faq-question">¿Cómo puedo asistir de forma presencial?</p>
+                    <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <p class="faq-question">No vivo en Cuba, ¿cómo puedo ver el evento?</p>
+                    <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <p class="faq-question">¿El público puede votar por sus favoritos?</p>
+                    <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <p class="faq-question">¿Quiénes son los influencers nominados?</p>
+                    <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <p class="faq-question">¿Qué requisitos deben cumplir los influencers para ser considerados?</p>
+                    <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <p class="faq-question">Soy una marca, ¿cómo puedo patrocinar el evento?</p>
+                    <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <p class="faq-question">¿Cuál es el código de vestimenta? ¿Puedo diseñar mi propio outfit?</p>
+                    <div class="faq-icon">+</div>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <div class="cat-card">
-        <div class="cat-img cat-img-5"></div>
-        <div class="cat-overlay"></div>
-        <div class="cat-info">
-          <div class="cat-number">05</div>
-          <h3 class="cat-name">Entretenimiento</h3>
-          <p class="cat-desc">Los creadores de contenido que hacen del entretenimiento digital un arte.</p>
-          <span class="cat-tag">Ver nominados</span>
-        </div>
-      </div>
+</div>
 
-    </div>
-
-    <!-- marquee strip -->
-    <div class="marquee-wrap">
-      <div class="marquee-track">
-        <span class="marquee-item">Moda &amp; Estilo</span>
-        <span class="marquee-item">Fitness &amp; Salud</span>
-        <span class="marquee-item">Belleza &amp; Make Up</span>
-        <span class="marquee-item">Viajes &amp; Lifestyle</span>
-        <span class="marquee-item">Entretenimiento</span>
-        <span class="marquee-item">Gastronomía</span>
-        <span class="marquee-item">Tecnología</span>
-        <span class="marquee-item">Sostenibilidad</span>
-        <!-- repeat for seamless loop -->
-        <span class="marquee-item">Moda &amp; Estilo</span>
-        <span class="marquee-item">Fitness &amp; Salud</span>
-        <span class="marquee-item">Belleza &amp; Make Up</span>
-        <span class="marquee-item">Viajes &amp; Lifestyle</span>
-        <span class="marquee-item">Entretenimiento</span>
-        <span class="marquee-item">Gastronomía</span>
-        <span class="marquee-item">Tecnología</span>
-        <span class="marquee-item">Sostenibilidad</span>
-      </div>
-    </div>
-
-  </section>
+<script>
+function toggleFaq(el) {
+    const icon = el.querySelector('.faq-icon');
+    icon.textContent = icon.textContent.trim() === '+' ? '−' : '+';
+    icon.style.transform = icon.textContent.trim() === '−' ? 'rotate(45deg)' : 'rotate(0deg)';
+}
+</script>
 
 </body>
 </html>

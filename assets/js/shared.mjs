@@ -1,0 +1,2 @@
+import{t as e}from"./rolldown-runtime.C4p97ucE.mjs";function t(e,t){return{description:`Cuba Content Awards son los primeros premios dedicados a los influencers cubanos.`,favicon:`https://framerusercontent.com/assets/YztfODk5VHe8ZauWauvFwWS18.png`,robots:`max-image-preview:large`,socialImage:`https://framerusercontent.com/assets/sV4k5rrdMeOyJ4ZXiUE7eDoM.png`,title:`Cuba Content Awards`}}var n=e((()=>{}));export{t as n,n as t};
+//# sourceMappingURL=shared-lib.Cf8OyykU.mjs.map
