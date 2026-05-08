@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="es" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Patrocinios — Cuba Content Awards</title>
+    <meta name="description" content="Haz que tu marca sea protagonista en los Cuba Content Awards, los primeros premios dedicados a los influencers cubanos.">
+
+    <link href="/assets/images/favicon.png" rel="icon" media="(prefers-color-scheme: light)">
+    <link href="/assets/images/favicon.png" rel="icon" media="(prefers-color-scheme: dark)">
+    <link rel="apple-touch-icon" href="/assets/images/apple-touch.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Patrocinios — Cuba Content Awards">
+    <meta property="og:description" content="Haz que tu marca sea protagonista en los Cuba Content Awards.">
+    <meta property="og:image" content="/assets/images/og.png">
+    <meta property="og:url" content="https://ccawards.vercel.app/patrocinios">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Patrocinios — Cuba Content Awards">
+    <meta name="twitter:image" content="/assets/images/og.png">
+
+    <style>
+    @font-face {
+        font-family: "Cal Sans";
+        src: url("https://fonts.gstatic.com/s/calsans/v2/fdN99sWUv3gWqXxqqSBevloE4LZx.woff2");
+        font-display: swap; font-style: normal; font-weight: 400;
+    }
+    @font-face {
+        font-family: "Cal Sans";
+        src: url("https://framerusercontent.com/assets/P2duH7wVRqqnKRek7vOcXAA9g.woff2");
+        font-display: swap; font-style: normal; font-weight: 600;
+    }
+    @font-face {
+        font-family: "Inter";
+        src: url("https://framerusercontent.com/assets/GrgcKwrN6d3Uz8EwcLHZxwEfC4.woff2");
+        font-display: swap; font-style: normal; font-weight: 400;
+    }
+    @font-face {
+        font-family: "Inter";
+        src: url("https://framerusercontent.com/assets/UjlFhCnUjxhNfep4oYBPqnEssyo.woff2");
+        font-display: swap; font-style: normal; font-weight: 500;
+    }
+    @font-face {
+        font-family: "Inter";
+        src: url("https://framerusercontent.com/assets/syRNPWzAMIrcJ3wIlPIP43KjQs.woff2");
+        font-display: swap; font-style: normal; font-weight: 700;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    h1,h2,h3,h4,h5,h6,p,figure { margin: 0; }
+
+    body {
+        background: #fff;
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        color: #000;
+    }
+
+    :root {
+        --teal: #033d4a;
+        --teal-dark: #012830;
+        --input-bg: #f2f2f2;
+    }
+
+    /* NAV */
+    .nav {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 100;
+        padding: 20px 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(255,255,255,0.92);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .nav-logo {
+        font-family: "Cal Sans", sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--teal-dark);
+        text-decoration: none;
+        letter-spacing: -0.02em;
+    }
+    .nav-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: "Cal Sans", sans-serif;
+        font-size: 15px;
+        color: var(--teal);
+        text-decoration: none;
+        transition: opacity 0.2s;
+    }
+    .nav-back:hover { opacity: 0.7; }
+    .nav-back svg { width: 18px; height: 18px; }
+
+    /* HERO */
+    .hero {
+        position: relative;
+        width: 100%;
+        height: 480px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0;
+    }
+    .hero-bg {
+        position: absolute;
+        inset: 0;
+    }
+    .hero-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 40%;
+        display: block;
+    }
+    .hero-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.32);
+    }
+    .hero-title {
+        position: relative;
+        z-index: 2;
+        font-family: "Cal Sans", sans-serif;
+        font-size: 80px;
+        font-weight: 600;
+        color: #fff;
+        text-align: center;
+        line-height: 1.1em;
+        letter-spacing: -0.02em;
+        text-shadow: 0 4px 24px rgba(0,0,0,0.3);
+        padding: 0 24px;
+    }
+
+    /* MAIN */
+    .main-wrap {
+        background: #fff;
+        border-radius: 24px 24px 0 0;
+        margin-top: -24px;
+        position: relative;
+        z-index: 2;
+        padding: 72px 60px 100px;
+    }
+
+    .content-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: start;
+    }
+
+    /* LEFT */
+    .left-col {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        opacity: 0;
+        animation: fadeUp 0.6s ease 0.1s forwards;
+    }
+
+    .left-heading {
+        font-family: "Inter", sans-serif;
+        font-size: 34px;
+        font-weight: 700;
+        color: #000;
+        line-height: 1.15em;
+        letter-spacing: -0.03em;
+    }
+
+    .left-desc {
+        font-size: 16px;
+        color: #555;
+        line-height: 1.65em;
+        letter-spacing: -0.01em;
+        max-width: 440px;
+        margin-top: 14px;
+    }
+
+    .sponsor-img {
+        width: 100%;
+        aspect-ratio: 4/3;
+        border-radius: 20px;
+        overflow: hidden;
+        background: #eee;
+    }
+    .sponsor-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .contact-block { display: flex; flex-direction: column; gap: 10px; }
+    .contact-label {
+        font-size: 15px;
+        font-weight: 700;
+        color: #000;
+        letter-spacing: -0.02em;
+    }
+    .contact-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 22px;
+        border: 1px solid rgba(0,0,0,0.1);
+        border-radius: 16px;
+        background: #fafafa;
+    }
+    .contact-card svg { width: 26px; height: 26px; color: var(--teal); }
+    .contact-card a {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--teal);
+        text-decoration: none;
+    }
+    .contact-card a:hover { text-decoration: underline; }
+
+    /* RIGHT — FORM */
+    .form-col {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        opacity: 0;
+        animation: fadeUp 0.6s ease 0.2s forwards;
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .field { display: flex; flex-direction: column; gap: 8px; }
+
+    .field label {
+        font-size: 13px;
+        font-weight: 600;
+        color: #000;
+        letter-spacing: -0.01em;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+        width: 100%;
+        background: var(--input-bg);
+        border: none;
+        border-radius: 12px;
+        padding: 14px 16px;
+        font-family: "Inter", sans-serif;
+        font-size: 15px;
+        color: #000;
+        outline: none;
+        transition: background 0.2s, box-shadow 0.2s;
+        appearance: none;
+        -webkit-appearance: none;
+    }
+    .field input::placeholder,
+    .field textarea::placeholder { color: #b0b0b0; }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+        background: #eaeaea;
+        box-shadow: 0 0 0 2px rgba(3,61,74,0.15);
+    }
+    .field select {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 14px center;
+        padding-right: 40px;
+        cursor: pointer;
+        color: #b0b0b0;
+    }
+    .field select.has-value { color: #000; }
+    .field textarea {
+        resize: none;
+        min-height: 130px;
+        line-height: 1.55em;
+    }
+
+    .btn-submit {
+        width: 100%;
+        padding: 16px;
+        background: #e4e4e4;
+        border: none;
+        border-radius: 50px;
+        font-family: "Inter", sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        color: #aaa;
+        cursor: not-allowed;
+        transition: background 0.25s, color 0.25s;
+        letter-spacing: -0.01em;
+        margin-top: 4px;
+    }
+    .btn-submit.active {
+        background: var(--teal);
+        color: #fff;
+        cursor: pointer;
+    }
+    .btn-submit.active:hover { background: var(--teal-dark); }
+
+    .success-msg {
+        display: none;
+        padding: 18px 20px;
+        background: #f0faf5;
+        border: 1px solid #b2ddc4;
+        border-radius: 14px;
+        text-align: center;
+        font-size: 14px;
+        color: #1a6b3a;
+        font-weight: 500;
+        line-height: 1.6em;
+    }
+    .success-msg.show { display: block; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1023px) {
+        .main-wrap { padding: 60px 40px 80px; }
+        .content-grid { gap: 48px; }
+        .left-heading { font-size: 28px; }
+    }
+    @media (max-width: 767px) {
+        .nav { padding: 16px 20px; }
+        .hero { height: 300px; }
+        .hero-title { font-size: 40px; }
+        .main-wrap { padding: 44px 20px 80px; border-radius: 16px 16px 0 0; }
+        .content-grid { grid-template-columns: 1fr; gap: 48px; }
+        .left-heading { font-size: 26px; }
+        .form-row { grid-template-columns: 1fr; }
+    }
+
+    @keyframes fadeUp {
+        to { opacity: 1; transform: translateY(0); }
+    }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+    <a href="/" class="nav-logo">Cuba Content Awards</a>
+    <a href="/" class="nav-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M12 5l-7 7 7 7"/>
+        </svg>
+        Volver al inicio
+    </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-bg">
+        <img src="https://framerusercontent.com/images/2W9zQkhITjj1b8OOvZwnR1nRrhM.png" alt="Crezcamos juntos" loading="eager">
+    </div>
+    <h1 class="hero-title">Crezcamos juntos</h1>
+</section>
+
+<!-- MAIN CONTENT -->
+<div class="main-wrap">
+    <div class="content-grid">
+
+        <!-- LEFT -->
+        <div class="left-col">
+            <div>
+                <h2 class="left-heading">Impulsa Tu Marca Con Nosotros</h2>
+                <p class="left-desc">Déjanos tus datos para conocer nuestras opciones de patrocinio y descubre cómo podemos llevar tu negocio a la comunidad digital más grande de Cuba.</p>
+            </div>
+
+            <div class="sponsor-img">
+                <img src="https://framerusercontent.com/images/ZJsXpyuEJFLNpltJ7NdKjreIKk.jpeg" alt="Patrocinios Cuba Content Awards" loading="lazy">
+            </div>
+
+            <div class="contact-block">
+                <p class="contact-label">Contáctanos</p>
+                <div class="contact-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <path d="M2 7l10 7 10-7"/>
+                    </svg>
+                    <a href="mailto:cubacontentawards@gmail.com">cubacontentawards@gmail.com</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT FORM -->
+        <div class="form-col">
+
+            <div class="field">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Nombre Completo" autocomplete="name">
+            </div>
+
+            <div class="form-row">
+                <div class="field">
+                    <label for="telefono">Número de Contacto</label>
+                    <input type="tel" id="telefono" name="telefono" placeholder="+1234567890" autocomplete="tel">
+                </div>
+                <div class="field">
+                    <label for="email">Dirección de Correo</label>
+                    <input type="email" id="email" name="email" placeholder="No es obligatorio" autocomplete="email">
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="ubicacion">Donde está ubicada la marca</label>
+                <select id="ubicacion" name="ubicacion" onchange="this.classList.add('has-value')">
+                    <option value="" disabled selected>Select destination</option>
+                    <option value="Cuba">Cuba</option>
+                    <option value="Estados Unidos">Estados Unidos</option>
+                    <option value="México">México</option>
+                    <option value="España">España</option>
+                    <option value="Colombia">Colombia</option>
+                    <option value="Venezuela">Venezuela</option>
+                    <option value="Argentina">Argentina</option>
+                    <option value="Puerto Rico">Puerto Rico</option>
+                    <option value="Otro">Otro</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="mensaje">Háblanos sobre tu marca</label>
+                <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos algunos detalles adicionales si deseas, este campo no es obligatorio."></textarea>
+            </div>
+
+            <button type="button" class="btn-submit" id="submitBtn" onclick="handleSubmit()">Enviar</button>
+
+            <div class="success-msg" id="successMsg">
+                ✅ ¡Gracias! Hemos recibido tu información.<br>
+                Nos pondremos en contacto contigo pronto.
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+const nombreInput   = document.getElementById('nombre');
+const telefonoInput = document.getElementById('telefono');
+const submitBtn     = document.getElementById('submitBtn');
+
+function checkForm() {
+    const ok = nombreInput.value.trim() !== '' && telefonoInput.value.trim() !== '';
+    submitBtn.classList.toggle('active', ok);
+}
+nombreInput.addEventListener('input', checkForm);
+telefonoInput.addEventListener('input', checkForm);
+
+function handleSubmit() {
+    if (!submitBtn.classList.contains('active')) return;
+
+    const nombre    = document.getElementById('nombre').value.trim();
+    const telefono  = document.getElementById('telefono').value.trim();
+    const email     = document.getElementById('email').value.trim();
+    const ubicacion = document.getElementById('ubicacion').value;
+    const mensaje   = document.getElementById('mensaje').value.trim();
+
+    const subject = encodeURIComponent('Solicitud de Patrocinio — Cuba Content Awards');
+    const body = encodeURIComponent(
+        `Nombre: ${nombre}\n` +
+        `Teléfono: ${telefono}\n` +
+        `Email: ${email || 'No proporcionado'}\n` +
+        `Ubicación de la marca: ${ubicacion || 'No especificada'}\n\n` +
+        `Mensaje:\n${mensaje || 'Sin mensaje adicional.'}`
+    );
+
+    window.location.href = `mailto:cubacontentawards@gmail.com?subject=${subject}&body=${body}`;
+
+    document.getElementById('successMsg').classList.add('show');
+    submitBtn.textContent = 'Enviado ✓';
+    submitBtn.classList.remove('active');
+    submitBtn.style.background = '#e4e4e4';
+    submitBtn.style.color = '#aaa';
+    submitBtn.style.cursor = 'not-allowed';
+}
+</script>
+
+</body>
+</html>
