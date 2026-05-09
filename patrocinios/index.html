@@ -466,73 +466,82 @@ function handleSubmit() {
     const ubicacion = document.getElementById('ubicacion').value;
     const mensaje   = document.getElementById('mensaje').value.trim();
 
-    // 1. Inicialización de Supabase con tus credenciales reales
+// 1. Configuración de credenciales
 const SUPABASE_URL = 'https://ravkrqelszcjbrckgqum.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_vgJitsj5SlLr91hrfdT7-w_JUb4g5R1';
 const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// Referencias a elementos del DOM para validación
-const nombreInput = document.getElementById('nombre');
+// 2. Referencias a los elementos del DOM
+const nombreInput   = document.getElementById('nombre');
 const telefonoInput = document.getElementById('telefono');
-const submitBtn = document.getElementById('submitBtn');
+const emailInput    = document.getElementById('email');
+const ubicacionInput = document.getElementById('ubicacion');
+const mensajeInput  = document.getElementById('mensaje');
+const submitBtn     = document.getElementById('submitBtn');
+const successMsg    = document.getElementById('successMsg');
 
-// Función para activar/desactivar el botón según los campos obligatorios
+// 3. Validación de campos para activar el botón
 function checkForm() {
     const ok = nombreInput.value.trim() !== '' && telefonoInput.value.trim() !== '';
-    submitBtn.classList.toggle('active', ok);
+    if (ok) {
+        submitBtn.classList.add('active');
+        submitBtn.disabled = false;
+    } else {
+        submitBtn.classList.remove('active');
+        submitBtn.disabled = true;
+    }
 }
 
 nombreInput.addEventListener('input', checkForm);
 telefonoInput.addEventListener('input', checkForm);
 
-// 2. Función principal de envío
-async function enviarASupabase() {
-    // Si el botón no está activo (campos vacíos), no hacemos nada
-    if (!submitBtn.classList.contains('active')) return;
+// 4. Función de envío unificada (la que llama el botón)
+async function handleSubmit() {
+    // Si los campos obligatorios están vacíos, no hacer nada
+    if (nombreInput.value.trim() === '' || telefonoInput.value.trim() === '') return;
 
-    // Captura de datos
+    // Feedback visual de carga
+    submitBtn.textContent = 'Enviando...';
+    submitBtn.disabled = true;
+    submitBtn.classList.remove('active');
+
     const datos = {
         nombre: nombreInput.value.trim(),
         telefono: telefonoInput.value.trim(),
-        email: document.getElementById('email').value.trim(),
-        ubicacion: document.getElementById('ubicacion').value,
-        mensaje: document.getElementById('mensaje').value.trim()
+        email: emailInput.value.trim(),
+        ubicacion: ubicacionInput.value,
+        mensaje: mensajeInput.value.trim()
     };
 
-    // Feedback visual inmediato
-    submitBtn.textContent = 'Enviando...';
-    submitBtn.disabled = true;
-    submitBtn.style.opacity = '0.7';
-
     try {
-        // 3. Inserción en la base de datos
+        // Enviar a Supabase
         const { error } = await _supabase
             .from('patrocinios')
             .insert([datos]);
 
         if (error) throw error;
 
-        // 4. ÉXITO: UI profesional
-        document.getElementById('successMsg').classList.add('show');
+        // ÉXITO
+        successMsg.classList.add('show');
         submitBtn.textContent = '¡Enviado con éxito! ✓';
         submitBtn.style.background = '#e4e4e4';
         submitBtn.style.color = '#888';
-        submitBtn.classList.remove('active');
 
-        // Limpiar el formulario para evitar duplicados
+        // Limpiar el formulario
         nombreInput.value = '';
         telefonoInput.value = '';
-        document.getElementById('email').value = '';
-        document.getElementById('mensaje').value = '';
+        emailInput.value = '';
+        mensajeInput.value = '';
+        ubicacionInput.selectedIndex = 0;
 
     } catch (err) {
         console.error('Error de Supabase:', err.message);
-        alert('Hubo un problema al enviar los datos. Por favor, inténtalo de nuevo.');
+        alert('Hubo un problema al enviar los datos: ' + err.message);
         
-        // Reestablecer botón en caso de error
+        // Reestablecer botón para reintento
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Reintentar envío';
-        submitBtn.style.opacity = '1';
+        submitBtn.classList.add('active');
+            submitBtn.textContent = 'Reintentar envío';
     }
 }
 
