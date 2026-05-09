@@ -18,6 +18,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Patrocinios — Cuba Content Awards">
     <meta name="twitter:image" content="/assets/images/og.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <style>
     @font-face {
@@ -464,6 +465,59 @@ function handleSubmit() {
     const email     = document.getElementById('email').value.trim();
     const ubicacion = document.getElementById('ubicacion').value;
     const mensaje   = document.getElementById('mensaje').value.trim();
+
+    // 1. Inicializar Supabase
+const SUPABASE_URL = 'https://TU_PROYECTO.supabase.co'; // <--- CAMBIA ESTO
+const SUPABASE_KEY = 'TU_ANON_KEY_AQUÍ';               // <--- CAMBIA ESTO
+const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+async function enviarASupabase() {
+    const btn = document.getElementById('submitBtn');
+    
+    // 2. Capturar los datos del formulario
+    const nombre = document.getElementById('nombre').value.trim();
+    const telefono = document.getElementById('telefono').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const ubicacion = document.getElementById('ubicacion').value;
+    const mensaje = document.getElementById('mensaje').value.trim();
+
+    // 3. Validación de seguridad
+    if (!nombre || !telefono) {
+        alert("Por favor, rellena los campos obligatorios (Nombre y Teléfono).");
+        return;
+    }
+
+    // 4. Feedback visual: bloqueamos el botón para evitar envíos dobles
+    btn.textContent = 'Enviando...';
+    btn.disabled = true;
+
+    try {
+        // 5. INSERTAR EN LA TABLA QUE CREAMOS POR SQL
+        const { error } = await _supabase
+            .from('patrocinios')
+            .insert([{ 
+                nombre: nombre, 
+                telefono: telefono, 
+                email: email, 
+                ubicacion: ubicacion, 
+                mensaje: mensaje 
+            }]);
+
+        if (error) throw error;
+
+        // 6. ÉXITO: Mostramos el mensaje y cambiamos el botón
+        document.getElementById('successMsg').classList.add('show');
+        btn.textContent = '¡Enviado con éxito!';
+        btn.style.background = '#e4e4e4'; // Color neutro tras enviar
+        btn.style.color = '#888';
+        
+    } catch (err) {
+        console.error("Error detallado:", err);
+        alert("Error al conectar con Supabase. Revisa la consola.");
+        btn.disabled = false;
+        btn.textContent = 'Reintentar';
+    }
+}
 
     const subject = encodeURIComponent('Solicitud de Patrocinio — Cuba Content Awards');
     const body = encodeURIComponent(
