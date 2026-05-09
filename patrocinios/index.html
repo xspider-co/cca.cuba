@@ -446,41 +446,21 @@
 </div>
 
 <script>
-const nombreInput   = document.getElementById('nombre');
-const telefonoInput = document.getElementById('telefono');
-const submitBtn     = document.getElementById('submitBtn');
-
-function checkForm() {
-    const ok = nombreInput.value.trim() !== '' && telefonoInput.value.trim() !== '';
-    submitBtn.classList.toggle('active', ok);
-}
-nombreInput.addEventListener('input', checkForm);
-telefonoInput.addEventListener('input', checkForm);
-
-function handleSubmit() {
-    if (!submitBtn.classList.contains('active')) return;
-
-    const nombre    = document.getElementById('nombre').value.trim();
-    const telefono  = document.getElementById('telefono').value.trim();
-    const email     = document.getElementById('email').value.trim();
-    const ubicacion = document.getElementById('ubicacion').value;
-    const mensaje   = document.getElementById('mensaje').value.trim();
-
-// 1. Configuración de credenciales
+// 1. Configuración de Supabase (Se hace una sola vez)
 const SUPABASE_URL = 'https://ravkrqelszcjbrckgqum.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_vgJitsj5SlLr91hrfdT7-w_JUb4g5R1';
 const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// 2. Referencias a los elementos del DOM
-const nombreInput   = document.getElementById('nombre');
-const telefonoInput = document.getElementById('telefono');
-const emailInput    = document.getElementById('email');
+// 2. Referencias únicas a los elementos
+const nombreInput    = document.getElementById('nombre');
+const telefonoInput  = document.getElementById('telefono');
+const emailInput     = document.getElementById('email');
 const ubicacionInput = document.getElementById('ubicacion');
-const mensajeInput  = document.getElementById('mensaje');
-const submitBtn     = document.getElementById('submitBtn');
-const successMsg    = document.getElementById('successMsg');
+const mensajeInput   = document.getElementById('mensaje');
+const submitBtn      = document.getElementById('submitBtn');
+const successMsg     = document.getElementById('successMsg');
 
-// 3. Validación de campos para activar el botón
+// 3. Lógica del botón (Validar si hay datos para activar el envío)
 function checkForm() {
     const ok = nombreInput.value.trim() !== '' && telefonoInput.value.trim() !== '';
     if (ok) {
@@ -495,16 +475,17 @@ function checkForm() {
 nombreInput.addEventListener('input', checkForm);
 telefonoInput.addEventListener('input', checkForm);
 
-// 4. Función de envío unificada (la que llama el botón)
+// 4. Función de envío (Solo una, sin mailto y sin repeticiones)
 async function handleSubmit() {
-    // Si los campos obligatorios están vacíos, no hacer nada
-    if (nombreInput.value.trim() === '' || telefonoInput.value.trim() === '') return;
+    // Si el botón no está activo, no hacemos nada
+    if (submitBtn.disabled) return;
 
-    // Feedback visual de carga
+    // Feedback visual
     submitBtn.textContent = 'Enviando...';
     submitBtn.disabled = true;
     submitBtn.classList.remove('active');
 
+    // Recogida de datos
     const datos = {
         nombre: nombreInput.value.trim(),
         telefono: telefonoInput.value.trim(),
@@ -514,54 +495,36 @@ async function handleSubmit() {
     };
 
     try {
-        // Enviar a Supabase
+        // Envío a la base de datos
         const { error } = await _supabase
             .from('patrocinios')
             .insert([datos]);
 
         if (error) throw error;
 
-        // ÉXITO
+        // ÉXITO: Mostramos mensaje verde y bloqueamos el botón
         successMsg.classList.add('show');
         submitBtn.textContent = '¡Enviado con éxito! ✓';
         submitBtn.style.background = '#e4e4e4';
         submitBtn.style.color = '#888';
 
-        // Limpiar el formulario
+        // Limpieza de campos
         nombreInput.value = '';
         telefonoInput.value = '';
         emailInput.value = '';
         mensajeInput.value = '';
         ubicacionInput.selectedIndex = 0;
+        ubicacionInput.classList.remove('has-value');
 
     } catch (err) {
         console.error('Error de Supabase:', err.message);
-        alert('Hubo un problema al enviar los datos: ' + err.message);
+        alert('Hubo un error: ' + err.message);
         
-        // Reestablecer botón para reintento
+        // Si falla, permitimos reintentar
         submitBtn.disabled = false;
         submitBtn.classList.add('active');
-            submitBtn.textContent = 'Reintentar envío';
+        submitBtn.textContent = 'Reintentar envío';
     }
-}
-
-    const subject = encodeURIComponent('Solicitud de Patrocinio — Cuba Content Awards');
-    const body = encodeURIComponent(
-        `Nombre: ${nombre}\n` +
-        `Teléfono: ${telefono}\n` +
-        `Email: ${email || 'No proporcionado'}\n` +
-        `Ubicación de la marca: ${ubicacion || 'No especificada'}\n\n` +
-        `Mensaje:\n${mensaje || 'Sin mensaje adicional.'}`
-    );
-
-    window.location.href = `mailto:cubacontentawards@gmail.com?subject=${subject}&body=${body}`;
-
-    document.getElementById('successMsg').classList.add('show');
-    submitBtn.textContent = 'Enviado ✓';
-    submitBtn.classList.remove('active');
-    submitBtn.style.background = '#e4e4e4';
-    submitBtn.style.color = '#aaa';
-    submitBtn.style.cursor = 'not-allowed';
 }
 </script>
 
