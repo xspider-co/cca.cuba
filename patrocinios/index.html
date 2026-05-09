@@ -466,56 +466,73 @@ function handleSubmit() {
     const ubicacion = document.getElementById('ubicacion').value;
     const mensaje   = document.getElementById('mensaje').value.trim();
 
-    // 1. Inicializar Supabase
-const SUPABASE_URL = 'https://TU_PROYECTO.supabase.co'; // <--- CAMBIA ESTO
-const SUPABASE_KEY = 'TU_ANON_KEY_AQUÍ';               // <--- CAMBIA ESTO
+    // 1. Inicialización de Supabase con tus credenciales reales
+const SUPABASE_URL = 'https://ravkrqelszcjbrckgqum.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_vgJitsj5SlLr91hrfdT7-w_JUb4g5R1';
 const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+// Referencias a elementos del DOM para validación
+const nombreInput = document.getElementById('nombre');
+const telefonoInput = document.getElementById('telefono');
+const submitBtn = document.getElementById('submitBtn');
+
+// Función para activar/desactivar el botón según los campos obligatorios
+function checkForm() {
+    const ok = nombreInput.value.trim() !== '' && telefonoInput.value.trim() !== '';
+    submitBtn.classList.toggle('active', ok);
+}
+
+nombreInput.addEventListener('input', checkForm);
+telefonoInput.addEventListener('input', checkForm);
+
+// 2. Función principal de envío
 async function enviarASupabase() {
-    const btn = document.getElementById('submitBtn');
-    
-    // 2. Capturar los datos del formulario
-    const nombre = document.getElementById('nombre').value.trim();
-    const telefono = document.getElementById('telefono').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const ubicacion = document.getElementById('ubicacion').value;
-    const mensaje = document.getElementById('mensaje').value.trim();
+    // Si el botón no está activo (campos vacíos), no hacemos nada
+    if (!submitBtn.classList.contains('active')) return;
 
-    // 3. Validación de seguridad
-    if (!nombre || !telefono) {
-        alert("Por favor, rellena los campos obligatorios (Nombre y Teléfono).");
-        return;
-    }
+    // Captura de datos
+    const datos = {
+        nombre: nombreInput.value.trim(),
+        telefono: telefonoInput.value.trim(),
+        email: document.getElementById('email').value.trim(),
+        ubicacion: document.getElementById('ubicacion').value,
+        mensaje: document.getElementById('mensaje').value.trim()
+    };
 
-    // 4. Feedback visual: bloqueamos el botón para evitar envíos dobles
-    btn.textContent = 'Enviando...';
-    btn.disabled = true;
+    // Feedback visual inmediato
+    submitBtn.textContent = 'Enviando...';
+    submitBtn.disabled = true;
+    submitBtn.style.opacity = '0.7';
 
     try {
-        // 5. INSERTAR EN LA TABLA QUE CREAMOS POR SQL
+        // 3. Inserción en la base de datos
         const { error } = await _supabase
             .from('patrocinios')
-            .insert([{ 
-                nombre: nombre, 
-                telefono: telefono, 
-                email: email, 
-                ubicacion: ubicacion, 
-                mensaje: mensaje 
-            }]);
+            .insert([datos]);
 
         if (error) throw error;
 
-        // 6. ÉXITO: Mostramos el mensaje y cambiamos el botón
+        // 4. ÉXITO: UI profesional
         document.getElementById('successMsg').classList.add('show');
-        btn.textContent = '¡Enviado con éxito!';
-        btn.style.background = '#e4e4e4'; // Color neutro tras enviar
-        btn.style.color = '#888';
-        
+        submitBtn.textContent = '¡Enviado con éxito! ✓';
+        submitBtn.style.background = '#e4e4e4';
+        submitBtn.style.color = '#888';
+        submitBtn.classList.remove('active');
+
+        // Limpiar el formulario para evitar duplicados
+        nombreInput.value = '';
+        telefonoInput.value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('mensaje').value = '';
+
     } catch (err) {
-        console.error("Error detallado:", err);
-        alert("Error al conectar con Supabase. Revisa la consola.");
-        btn.disabled = false;
-        btn.textContent = 'Reintentar';
+        console.error('Error de Supabase:', err.message);
+        alert('Hubo un problema al enviar los datos. Por favor, inténtalo de nuevo.');
+        
+        // Reestablecer botón en caso de error
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Reintentar envío';
+        submitBtn.style.opacity = '1';
     }
 }
 
