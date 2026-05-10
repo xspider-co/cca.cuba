@@ -262,7 +262,11 @@
         height: 18px;
         color: #fff;
     }
-    .info-card-text {}
+    .info-card-text {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+    }
     .info-card-title {
         font-size: 14px;
         font-weight: 700;
@@ -359,7 +363,6 @@
         color: #000;
         outline: none;
         transition: border-color 0.2s, background 0.2s;
-        -webkit-appearance: none;
     }
     .field input::placeholder,
     .field textarea::placeholder { color: #b0b0b0; }

@@ -288,39 +288,67 @@
     /* ========================
        SECTION FAQ
     ======================== */
-    .section-faq { padding: 120px 40px; background: #fff; }
-    .faq-inner { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px; }
-    .faq-header { display: flex; flex-direction: column; gap: 12px; }
+    .section-faq { padding: 120px 40px; background: #fff; display: flex; justify-content: center; }
+    
+    .faq-inner { width: 100%; max-width: 1200px; display: flex; flex-direction: column; align-items: center; gap: 64px; }
+    
+    .faq-header { text-align: center; }
+
     .faq-tag {
-        font-family: "Inter", sans-serif; font-size: 13px; font-weight: 600;
-        color: #aaa; letter-spacing: 0.1em; text-transform: uppercase;
+        font-family: "Cal Sans", sans-serif; font-size: 16px;
+        color: #545454; margin-bottom: 12px;
     }
+
     .faq-title {
         font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
-        font-size: 40px; font-weight: 600; color: #000;
-        letter-spacing: -0.02em; max-width: 540px; line-height: 1.2em;
+        font-size: 36px; font-weight: 400; color: var(--teal-dark);
+        text-align: center; line-height: 1.2em; text-transform: capitalize;
     }
+
+    /* Cambio crítico: Grid con espacio entre tarjetas y sin bordes globales */
     .faq-grid {
         display: grid; grid-template-columns: 1fr 1fr;
-        gap: 0; border-top: 1px solid var(--border);
+        gap: 16px; width: 100%;
     }
-    .faq-item { padding: 24px 0; border-bottom: 1px solid var(--border); cursor: pointer; }
-    .faq-item:nth-child(odd) { padding-right: 48px; }
-    .faq-item:nth-child(even) { padding-left: 48px; border-left: 1px solid var(--border); }
-    .faq-question-container { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-    .faq-question {
-        font-family: "Inter", sans-serif; font-size: 16px; font-weight: 600;
-        color: #000; line-height: 1.4em; letter-spacing: -0.01em;
-    }
-    .faq-icon { font-size: 22px; font-weight: 300; color: #000; flex-shrink: 0; line-height: 1; transition: transform 0.3s; }
-    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
-    .faq-answer p {
-        font-family: "Inter", sans-serif; font-size: 15px;
-        color: var(--gray); line-height: 1.65em; padding-top: 16px;
-    }
-    .faq-item.active .faq-answer { max-height: 300px; }
-    .faq-item.active .faq-icon { transform: rotate(45deg); }
 
+    /* Cambio crítico: Estilo de Tarjeta con bordes redondeados y sombra */
+    .faq-item {
+        display: flex; flex-direction: column;
+        padding: 24px; background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 24px; cursor: pointer;
+        transition: all 0.3s ease; overflow: hidden;
+    }
+
+    .faq-item:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+
+    .faq-question-container { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; }
+
+    .faq-question {
+        font-family: "Cal Sans", sans-serif; font-size: 20px;
+        font-weight: 400; color: #000; line-height: 1.3em;
+    }
+
+    /* Cambio crítico: Recuperamos el cuadro de color del icono */
+    .faq-icon {
+        flex-shrink: 0; width: 38px; height: 38px;
+        background: var(--teal); border-radius: 14px;
+        display: flex; align-items: center; justify-content: center;
+        color: #fff; font-size: 22px; font-weight: 300;
+        line-height: 1; transition: transform 0.2s;
+    }
+
+    .faq-answer { max-height: 0; opacity: 0; overflow: hidden; transition: all 0.3s ease-in-out; }
+
+    .faq-answer p {
+        font-family: "Inter", sans-serif; font-size: 16px;
+        color: #666; line-height: 1.5em; padding-top: 16px;
+    }
+
+    /* Estado Activo */
+    .faq-item.active { border-color: var(--teal); }
+    .faq-item.active .faq-answer { max-height: 300px; opacity: 1; }
+    .faq-item.active .faq-icon { transform: rotate(45deg); background: var(--teal-dark); }
     /* ========================
        RESPONSIVE
     ======================== */
