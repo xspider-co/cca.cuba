@@ -569,7 +569,21 @@
         .sponsor-title { font-size: 28px; }
         .sponsor-cards { grid-template-columns: 1fr; }
         .colabora-title { font-size: 28px; }
-        .colabora-cards { grid-template-columns: 1fr; }
+        .colabora-cards {
+            display: flex !important;
+            flex-direction: row !important;
+            overflow-x: auto !important;
+            scroll-snap-type: x mandatory;
+            gap: 16px;
+            padding: 10px 4px 20px 4px;
+            width: 100%;
+            -webkit-overflow-scrolling: touch;
+        }
+        .colabora-card {
+            flex-shrink: 0 !important;
+            width: 85% !important; /* Hace que se vea la tarjeta completa y un cachito de la siguiente para avisar que se puede deslizar */
+            scroll-snap-align: start;
+        }
         .section-title { font-size: 24px; }
         .faq-title { font-size: 24px; }
     }
