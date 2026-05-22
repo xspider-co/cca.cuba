@@ -547,9 +547,24 @@
         .float-4 { width: 145px; height: 92px; bottom: 24%; right: 3%; }
         .section-categorias { padding: 95px 20px; }
         .cards-grid { grid-template-columns: 1fr; gap: 48px; }
-        .faq-grid { grid-template-columns: 1fr; }
-        .faq-item:nth-child(odd) { padding-right: 0; }
-        .faq-item:nth-child(even) { padding-left: 0; border-left: none; }
+        .faq-grid { 
+            grid-template-columns: 1fr; 
+            gap: 16px; 
+        }
+        .faq-item { 
+            padding: 20px 24px; /* Un poco más compacto para pantallas móviles */
+            min-height: auto; /* Permite que la tarjeta crezca de forma natural si la pregunta es larga */
+        }
+        .faq-question-container {
+            display: flex;
+            align-items: center; /* Mantiene el botón + centrado verticalmente respecto al bloque de texto */
+            justify-content: space-between;
+            gap: 16px;
+            width: 100%;
+        }
+        .faq-question {
+            font-size: 17px; /* Ajuste sutil de tamaño para que el texto fluya mejor en móviles */
+        }
         .section-faq { padding: 100px 20px; }
         .sponsor-title { font-size: 28px; }
         .sponsor-cards { grid-template-columns: 1fr; }
