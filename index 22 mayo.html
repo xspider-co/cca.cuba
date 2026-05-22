@@ -25,47 +25,34 @@
     @font-face {
         font-family: "Cal Sans";
         src: url("https://fonts.gstatic.com/s/calsans/v2/fdN99sWUv3gWqXxqqSBevloE4LZx.woff2");
-        font-display: swap;
-        font-style: normal;
-        font-weight: 400
+        font-display: swap; font-style: normal; font-weight: 400
     }
     @font-face {
         font-family: "Cal Sans";
         src: url("https://framerusercontent.com/assets/P2duH7wVRqqnKRek7vOcXAA9g.woff2");
-        font-display: swap;
-        font-style: normal;
-        font-weight: 600
+        font-display: swap; font-style: normal; font-weight: 600
     }
     @font-face {
         font-family: "Inter";
         src: url("https://framerusercontent.com/assets/GrgcKwrN6d3Uz8EwcLHZxwEfC4.woff2");
-        font-display: swap;
-        font-style: normal;
-        font-weight: 400
+        font-display: swap; font-style: normal; font-weight: 400
     }
     @font-face {
         font-family: "Inter";
         src: url("https://framerusercontent.com/assets/syRNPWzAMIrcJ3wIlPIP43KjQs.woff2");
-        font-display: swap;
-        font-style: normal;
-        font-weight: 700
+        font-display: swap; font-style: normal; font-weight: 700
     }
     @font-face {
         font-family: "Cal Sans Placeholder";
         src: local("Arial");
-        ascent-override: 98.60%;
-        descent-override: 29.58%;
-        size-adjust: 101.42%
+        ascent-override: 98.60%; descent-override: 29.58%; size-adjust: 101.42%
     }
     @font-face {
         font-family: "Inter Placeholder";
         src: local("Arial");
-        ascent-override: 89.79%;
-        descent-override: 22.36%;
-        size-adjust: 107.89%
+        ascent-override: 89.79%; descent-override: 22.36%; size-adjust: 107.89%
     }
 
-    /* Reset */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     h1,h2,h3,h4,h5,h6,p,figure { margin: 0; }
     body {
@@ -74,7 +61,6 @@
         -webkit-font-smoothing: antialiased;
     }
 
-    /* Tokens */
     :root {
         --white: #fff;
         --black: #000;
@@ -99,19 +85,8 @@
         background: #000;
         padding: 0 40px 40px;
     }
-
-    .hero-bg {
-        position: absolute;
-        inset: 0;
-        z-index: 1;
-    }
-    .hero-bg img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        opacity: 0.75;
-        display: block;
-    }
+    .hero-bg { position: absolute; inset: 0; z-index: 1; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.75; display: block; }
 
     .hero-content {
         position: relative;
@@ -157,6 +132,15 @@
         text-transform: capitalize;
     }
 
+    /* Botones del hero */
+    .hero-btns {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
     .hero-btn {
         display: inline-flex;
         align-items: center;
@@ -182,6 +166,31 @@
         font-size: 14px;
     }
 
+    .hero-btn-dark {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 40px 10px 24px;
+        background: var(--teal);
+        border-radius: 48px;
+        text-decoration: none;
+        font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
+        font-size: 16px;
+        color: #fff;
+        font-weight: 400;
+        position: relative;
+        transition: opacity 0.2s;
+    }
+    .hero-btn-dark:hover { opacity: 0.9; }
+    .hero-btn-dark::after {
+        content: "↗";
+        position: absolute;
+        right: 13px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 14px;
+    }
+
     /* Floating images */
     .float-img {
         position: absolute;
@@ -198,290 +207,340 @@
     .float-4 { width: 213px; height: 135px; bottom: 23%; right: 17%; transform: rotate(13deg); }
 
     /* ========================
-       CATEGORÍAS
+       SECTION CATEGORÍAS
     ======================== */
-    .section-categorias {
-        padding: 107px 40px;
-        display: flex;
-        justify-content: center;
-        background: #fff;
-    }
+    .section-categorias { padding: 120px 40px; background: #fff; }
 
     .section-inner {
-        width: 100%;
         max-width: 1200px;
+        margin: 0 auto;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: 64px;
+        gap: 48px;
     }
 
     .section-title {
         font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
-        font-size: 36px;
-        font-weight: 400;
-        color: var(--teal-dark);
-        text-align: center;
-        letter-spacing: 0;
-        line-height: 1.2em;
-        text-transform: capitalize;
+        font-size: 40px;
+        font-weight: 600;
+        color: #000;
+        letter-spacing: -0.02em;
     }
 
     .cards-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 24px;
-        width: 100%;
+        gap: 48px 24px;
     }
 
-    .card {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-    .card-img {
-        width: 100%;
-        aspect-ratio: 0.8;
-        overflow: hidden;
-        border-radius: 24px;
-        background: #000;
-    }
-    .card-img img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        transition: transform 0.3s ease;
-    }
-    .card:hover .card-img img { transform: scale(1.03); }
-
+    .card { display: flex; flex-direction: column; gap: 16px; text-decoration: none; cursor: pointer; }
+    .card-img { width: 100%; aspect-ratio: 0.8; border-radius: 20px; overflow: hidden; background: #111; }
+    .card-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+    .card:hover .card-img img { transform: scale(1.04); }
     .card-title {
         font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
-        font-size: 20px;
-        font-weight: 400;
-        color: #000;
-        line-height: 1.3em;
-        letter-spacing: -0.01em;
+        font-size: 20px; font-weight: 600; color: #000; letter-spacing: -0.01em;
     }
 
-    .card-desc {
-        font-family: "Inter", sans-serif;
-        font-size: 16px;
-        color: #404040;
-        line-height: 1.4em;
-        letter-spacing: -0.02em;
-        margin-top: 4px;
-    }
-
-    .view-all {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        width: 100%;
-    }
-    .view-all-line { flex: 1; height: 1px; background: #ccc; }
+    .view-all { display: flex; align-items: center; gap: 24px; }
+    .view-all-line { flex: 1; height: 1px; background: var(--border); }
 
     .btn-dark {
         display: inline-flex;
         align-items: center;
-        gap: 10px;
-        padding: 10px 40px 10px 24px;
-        background: var(--teal);
+        padding: 12px 28px;
+        background: #000;
         border-radius: 48px;
-        text-decoration: none;
         font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
-        font-size: 16px;
+        font-size: 15px;
         color: #fff;
+        text-decoration: none;
         white-space: nowrap;
-        position: relative;
         transition: opacity 0.2s;
     }
-    .btn-dark:hover { opacity: 0.9; }
-    .btn-dark::after {
-        content: "↗";
-        position: absolute;
-        right: 13px;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 14px;
-    }
+    .btn-dark:hover { opacity: 0.85; }
 
     /* ========================
-       PATROCINIOS
+       SECTION PATROCINIOS
     ======================== */
     .section-sponsor {
-        background: #fff;
+        background: var(--teal);
+        padding: 100px 40px;
         display: flex;
-        align-items: center;
-        justify-content: center;
         flex-direction: column;
-        gap: 40px;
-        min-height: 600px;
-        padding: 60px 20px;
-    }
-
-    .sponsor-title {
-        font-family: "Inter", "Inter Placeholder", sans-serif;
-        font-size: 32px;
-        font-weight: 700;
-        color: #000;
-        text-align: center;
-        letter-spacing: -0.03em;
-        line-height: 1em;
-    }
-
-    .btn-black {
-        display: inline-flex;
         align-items: center;
-        justify-content: center;
-        padding: 12px 32px;
-        background: #000;
-        border-radius: 10px;
-        text-decoration: none;
-        font-family: "Inter", sans-serif;
-        font-size: 14px;
-        font-weight: 600;
-        color: #fff;
-        transition: opacity 0.2s;
     }
-    .btn-black:hover { opacity: 0.85; }
+    .sponsor-inner {
+        max-width: 1200px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 56px;
+    }
+    .sponsor-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+        text-align: center;
+    }
+    .sponsor-tag {
+        font-family: "Inter", sans-serif;
+        font-size: 12px; font-weight: 600;
+        letter-spacing: 0.12em; text-transform: uppercase;
+        color: rgba(255,255,255,0.45);
+    }
+    .sponsor-title {
+        font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
+        font-size: 52px; font-weight: 600; color: #fff;
+        letter-spacing: -0.02em; max-width: 680px; line-height: 1.15em;
+    }
+    .sponsor-subtitle {
+        font-family: "Inter", sans-serif;
+        font-size: 17px; color: rgba(255,255,255,0.6);
+        line-height: 1.6em; max-width: 520px;
+    }
+    .sponsor-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        width: 100%;
+    }
+    .sponsor-card {
+        background: rgba(255,255,255,0.07);
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 20px;
+        padding: 32px 28px;
+        display: flex; flex-direction: column; gap: 14px;
+        text-align: left;
+    }
+    .sponsor-card-icon {
+        width: 44px; height: 44px;
+        background: rgba(255,255,255,0.12);
+        border-radius: 12px;
+        display: flex; align-items: center; justify-content: center;
+    }
+    .sponsor-card-icon svg { width: 20px; height: 20px; color: #fff; }
+    .sponsor-card-title {
+        font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
+        font-size: 18px; font-weight: 600; color: #fff; letter-spacing: -0.01em;
+    }
+    .sponsor-card-desc {
+        font-family: "Inter", sans-serif;
+        font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6em;
+    }
+    .btn-black {
+        display: inline-flex; align-items: center; padding: 14px 36px;
+        background: #fff; border-radius: 48px;
+        font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
+        font-size: 16px; color: #000; text-decoration: none;
+        transition: opacity 0.2s; font-weight: 400;
+    }
+    .btn-black:hover { opacity: 0.9; }
 
     /* ========================
-       FAQ
+       SECTION COLABORA
     ======================== */
-    .section-faq {
-        padding: 100px 40px;
+    .section-colabora {
         background: #fff;
-        display: flex;
-        justify-content: center;
-    }
-
-    .faq-inner {
-        width: 100%;
-        max-width: 1200px;
+        padding: 100px 40px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 64px;
     }
-
-    .faq-header { text-align: center; }
-
-    .faq-tag {
+    .colabora-inner {
+        max-width: 1200px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 56px;
+    }
+    .colabora-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+        text-align: center;
+    }
+    .colabora-tag {
+        font-family: "Inter", sans-serif;
+        font-size: 12px; font-weight: 600;
+        letter-spacing: 0.12em; text-transform: uppercase;
+        color: #aaa;
+    }
+    .colabora-title {
         font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
-        font-size: 16px;
-        color: #545454;
-        margin-bottom: 12px;
+        font-size: 52px; font-weight: 600; color: #000;
+        letter-spacing: -0.02em; max-width: 680px; line-height: 1.15em;
     }
+    .colabora-subtitle {
+        font-family: "Inter", sans-serif;
+        font-size: 17px; color: #666;
+        line-height: 1.6em; max-width: 520px;
+    }
+    .colabora-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        width: 100%;
+    }
+    .colabora-card {
+        background: #fafafa;
+        border: 1px solid rgba(0,0,0,0.08);
+        border-radius: 20px;
+        padding: 32px 28px;
+        display: flex; flex-direction: column; gap: 14px;
+        text-align: left;
+    }
+    .colabora-card-icon {
+        width: 44px; height: 44px;
+        background: var(--teal);
+        border-radius: 12px;
+        display: flex; align-items: center; justify-content: center;
+    }
+    .colabora-card-icon svg { width: 20px; height: 20px; color: #fff; }
+    .colabora-card-title {
+        font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
+        font-size: 18px; font-weight: 600; color: #000; letter-spacing: -0.01em;
+    }
+    .colabora-card-desc {
+        font-family: "Inter", sans-serif;
+        font-size: 14px; color: #666; line-height: 1.6em;
+    }
+    .btn-teal {
+        display: inline-flex; align-items: center; padding: 14px 36px;
+        background: var(--teal); border-radius: 48px;
+        font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
+        font-size: 16px; color: #fff; text-decoration: none;
+        transition: opacity 0.2s; font-weight: 400;
+    }
+    .btn-teal:hover { opacity: 0.88; }
 
+    /* ========================
+       SECTION FAQ
+    ======================== */
+    .section-faq { padding: 120px 40px; background: #fff; }
+    .faq-inner { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px; }
+    .faq-header { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 12px; 
+        text-align: center; /* Centra el título como en la foto buena */
+        width: 100%;
+    }
+    
+    .faq-tag {
+        font-family: "Cal Sans", sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        color: #000;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+        display: inline-block;
+    }
+    
     .faq-title {
         font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
-        font-size: 36px;
-        font-weight: 400;
-        color: var(--teal-dark);
-        text-align: center;
-        line-height: 1.2em;
-        text-transform: capitalize;
+        font-size: 40px; font-weight: 600; color: #000;
+        letter-spacing: -0.02em; max-width: 100%; line-height: 1.2em;
+        margin: 0 auto;
     }
-
+    
     .faq-grid {
-        display: grid;
+        display: grid; 
         grid-template-columns: 1fr 1fr;
-        gap: 16px;
+        gap: 20px;
         width: 100%;
     }
 
     .faq-item {
         display: flex;
-        flex-direction: column; /* Mantiene la estructura vertical para la respuesta */
-        padding: 24px;
+        flex-direction: column;
+        padding: 24px 32px;
         background: #fff;
         border: 1px solid var(--border);
-        border-radius: 24px;
+        border-radius: 20px;
         cursor: pointer;
         transition: all 0.3s ease;
-        overflow: hidden;
+        justify-content: center;
     }
 
-    .faq-item:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .faq-item:hover {
+        box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+    }
+
+    .faq-question-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        width: 100%;
+    }
 
     .faq-question {
-        font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
-        font-size: 20px;
-        font-weight: 400;
+        font-family: "Cal Sans", sans-serif;
+        font-size: 18px;
+        font-weight: 600;
         color: #000;
-        line-height: 1.3em;
-        margin: 0; /* Evita desajustes */
+        line-height: 1.4em;
+        letter-spacing: -0.01em;
     }
 
     .faq-icon {
         flex-shrink: 0;
-        width: 38px;
-        height: 38px;
+        width: 36px;
+        height: 36px;
         background: var(--teal);
-        border-radius: 14px;
+        border-radius: 12px; /* <-- Esto hace que sea cuadrado con esquinas suaves */
         display: flex;
         align-items: center;
         justify-content: center;
         color: #fff;
-        font-size: 22px;
-        font-weight: 300;
+        font-size: 20px;
+        font-weight: 400;
         line-height: 1;
-        transition: transform 0.2s;
+        transition: transform 0.2s, background-color 0.2s;
     }
-
-/* ESTE ES EL TRUCO: Un contenedor para la pregunta y el icono */
-    .faq-question-container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between; /* Empuja el icono a la derecha */
-        width: 100%;
-        gap: 16px;
-    }
-
-/* Respuesta: Oculta por defecto */
-.faq-answer {
+    .faq-answer {
         max-height: 0;
         opacity: 0;
         overflow: hidden;
         transition: all 0.3s ease-in-out;
-        font-family: "Inter", sans-serif;
-        font-size: 16px;
-        color: #666;
-        line-height: 1.5em;
+        width: 100%;
     }
 
-    /* Cuando el item está abierto (usaremos la clase .active en JS) */
+    .faq-answer p {
+        font-family: "Inter", sans-serif;
+        font-size: 15px;
+        color: #555;
+        line-height: 1.5em;
+        padding-top: 16px;
+    }
+
     .faq-item.active {
         border-color: var(--teal);
-        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     }
-
-/* Estado Activo */
     .faq-item.active .faq-answer {
-        max-height: 200px;
+        max-height: 300px;
         opacity: 1;
-        margin-top: 16px; /* Solo da espacio cuando se abre */
+    }
+    .faq-item.active .faq-icon {
+        transform: rotate(45deg);
+        background: var(--teal-dark);
     }
 
-.faq-item.active .faq-icon {
-        transform: rotate(45deg); /* Efecto de X o rotación */
-        background: var(--teal-dark); /* Cambio sutil para feedback visual */
-    }
     /* ========================
        RESPONSIVE
     ======================== */
     @media (max-width: 809px) {
-        .hero {
-            padding: 93px 24px 56px;
-            height: auto;
-            min-height: 100svh;
-        }
+        .hero { padding: 100px 20px 60px; min-height: 100svh; }
         .hero-title { font-size: 48px; }
-        .hero-subtitle { font-size: 16px; max-width: 100%; }
+        .hero-subtitle { font-size: 16px; }
+        .hero-btns { flex-direction: column; width: 100%; }
+        .hero-btn, .hero-btn-dark { width: 100%; justify-content: center; padding: 13px 44px 13px 20px; }
         .float-1 { width: 149px; height: 94px; bottom: 28%; left: 3%; }
         .float-2 { width: 136px; height: 84px; top: 15%; left: 7%; }
         .float-3 { width: 117px; height: 80px; top: 17%; right: 9%; }
@@ -489,8 +548,13 @@
         .section-categorias { padding: 95px 20px; }
         .cards-grid { grid-template-columns: 1fr; gap: 48px; }
         .faq-grid { grid-template-columns: 1fr; }
+        .faq-item:nth-child(odd) { padding-right: 0; }
+        .faq-item:nth-child(even) { padding-left: 0; border-left: none; }
         .section-faq { padding: 100px 20px; }
-        .sponsor-title { font-size: 24px; text-align: left; }
+        .sponsor-title { font-size: 28px; }
+        .sponsor-cards { grid-template-columns: 1fr; }
+        .colabora-title { font-size: 28px; }
+        .colabora-cards { grid-template-columns: 1fr; }
         .section-title { font-size: 24px; }
         .faq-title { font-size: 24px; }
     }
@@ -505,6 +569,10 @@
         .cards-grid { grid-template-columns: 1fr 1fr; gap: 40px 24px; }
         .section-title { font-size: 32px; }
         .faq-title { font-size: 32px; }
+        .sponsor-title { font-size: 38px; }
+        .sponsor-cards { grid-template-columns: 1fr; }
+        .colabora-title { font-size: 38px; }
+        .colabora-cards { grid-template-columns: 1fr; }
     }
     </style>
 </head>
@@ -536,7 +604,9 @@
                 <h1 class="hero-title">Cuba Content Awards</h1>
                 <p class="hero-subtitle">Primeros premios dedicados a creadores cubanos</p>
             </div>
-            <a href="/categorias" class="hero-btn">Ver categorías</a>
+            <div class="hero-btns">
+                <a href="/categorias" class="hero-btn">Ver categorías</a>
+            </div>
         </div>
     </header>
 
@@ -572,8 +642,72 @@
 
     <!-- PATROCINIOS -->
     <section class="section-sponsor">
-        <h2 class="sponsor-title">Haz que tu marca sea protagonista</h2>
-        <a href="/patrocinios" class="btn-black">Más Información</a>
+        <div class="sponsor-inner">
+            <div class="sponsor-header">
+                <span class="sponsor-tag">Patrocinios</span>
+                <h2 class="sponsor-title">Haz que tu marca sea protagonista</h2>
+                <p class="sponsor-subtitle">Conecta con la comunidad digital cubana más grande. Cuba Content Awards es la plataforma ideal para que tu marca llegue a miles de creadores y seguidores.</p>
+            </div>
+            <div class="sponsor-cards">
+                <div class="sponsor-card">
+                    <div class="sponsor-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <p class="sponsor-card-title">Alcance masivo</p>
+                    <p class="sponsor-card-desc">Tu marca frente a miles de creadores cubanos y su audiencia combinada en TikTok, Instagram y YouTube.</p>
+                </div>
+                <div class="sponsor-card">
+                    <div class="sponsor-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <p class="sponsor-card-title">Visibilidad premium</p>
+                    <p class="sponsor-card-desc">Presencia en la gala, en la web, en redes sociales del evento y en todos los materiales oficiales.</p>
+                </div>
+                <div class="sponsor-card">
+                    <div class="sponsor-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <p class="sponsor-card-title">Planes a medida</p>
+                    <p class="sponsor-card-desc">Desde pequeñas marcas hasta grandes empresas. Tenemos paquetes flexibles adaptados a cada presupuesto.</p>
+                </div>
+            </div>
+            <a href="/patrocinios" class="btn-black">Quiero patrocinar</a>
+        </div>
+    </section>
+
+    <!-- COLABORA -->
+    <section class="section-colabora">
+        <div class="colabora-inner">
+            <div class="colabora-header">
+                <span class="colabora-tag">Colabora con nosotros</span>
+                <h2 class="colabora-title">¿Tienes talento que aportar?</h2>
+                <p class="colabora-subtitle">No hace falta ser nominado para ser parte de la gala. Buscamos personas con talento que quieran sumar desde sus habilidades.</p>
+            </div>
+            <div class="colabora-cards">
+                <div class="colabora-card">
+                    <div class="colabora-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M20.188 10.934a9 9 0 1 1-1.243-2.929"/></svg>
+                    </div>
+                    <p class="colabora-card-title">Fotografía y video</p>
+                    <p class="colabora-card-desc">Cobertura del evento, contenido detrás de cámaras y material audiovisual oficial.</p>
+                </div>
+                <div class="colabora-card">
+                    <div class="colabora-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                    </div>
+                    <p class="colabora-card-title">Diseño gráfico</p>
+                    <p class="colabora-card-desc">Piezas visuales, materiales de prensa, redes sociales y branding del evento.</p>
+                </div>
+                <div class="colabora-card">
+                    <div class="colabora-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                    </div>
+                    <p class="colabora-card-title">Presentación y animación</p>
+                    <p class="colabora-card-desc">Conducción del evento, animación de escenario y conexión con el público.</p>
+                </div>
+            </div>
+            <a href="/colabora" class="btn-teal">Quiero colaborar</a>
+        </div>
     </section>
 
     <section class="section-faq">
@@ -583,7 +717,7 @@
                 <h2 class="faq-title">Lo que necesitas saber de la gala</h2>
             </div>
             <div class="faq-grid">
-                
+
                 <div class="faq-item" onclick="toggleFaq(this)">
                     <div class="faq-question-container">
                         <p class="faq-question">¿Cuándo y dónde se llevará a cabo la gala?</p>
@@ -593,17 +727,17 @@
                         <p>El evento se celebrará en diciembre de 2026 en La Habana, Cuba. Actualmente estamos ultimando detalles organizativos; la fecha exacta y la sede oficial se anunciarán en nuestras redes sociales y a través de esta web en los próximos meses.</p>
                     </div>
                 </div>
-    
+
                 <div class="faq-item" onclick="toggleFaq(this)">
                     <div class="faq-question-container">
                         <p class="faq-question">¿Cómo puedo asistir de forma presencial?</p>
                         <div class="faq-icon">+</div>
                     </div>
                     <div class="faq-answer">
-                        <p>Los cupos serán limitados para garantizar la mejor experiencia. Algunos de los seguidores podrán asistir como público y para poder adquirir entradas tendrás qeu prestar atencion a nuestras redes sociales cuando se acerque la fecha del evento.</p>
+                        <p>Para asistir en persona, deberás adquirir una entrada a través de nuestro sistema de reservas online (próximamente disponible). Los cupos serán limitados para garantizar la mejor experiencia.</p>
                     </div>
                 </div>
-    
+
                 <div class="faq-item" onclick="toggleFaq(this)">
                     <div class="faq-question-container">
                         <p class="faq-question">No vivo en Cuba, ¿cómo puedo ver el evento?</p>
@@ -613,7 +747,7 @@
                         <p>¡No te preocupes! La gala se transmitirá en vivo vía streaming para toda nuestra comunidad en el exterior. Podrás acceder a la transmisión desde nuestra página web oficial el día del evento. Las plataformas se anunciarán de manera oficial en nuestras redes sociales.</p>
                     </div>
                 </div>
-    
+
                 <div class="faq-item" onclick="toggleFaq(this)">
                     <div class="faq-question-container">
                         <p class="faq-question">¿El público puede votar por sus favoritos?</p>
@@ -623,7 +757,7 @@
                         <p>¡Absolutamente! La audiencia es parte fundamental de esta gala. Habilitaremos una sección de votaciones en este sitio web para que puedas apoyar a los creadores de contenido que más te inspiran.</p>
                     </div>
                 </div>
-    
+
                 <div class="faq-item" onclick="toggleFaq(this)">
                     <div class="faq-question-container">
                         <p class="faq-question">¿Quiénes son los influencers nominados?</p>
@@ -633,7 +767,7 @@
                         <p>La lista de nominados se revelará tras un proceso de selección basado en impacto, contenido y calidad digital durante el año. Mantente atento a nuestras actualizaciones para conocer las categorías y quiénes compiten por el galardón.</p>
                     </div>
                 </div>
-    
+
                 <div class="faq-item" onclick="toggleFaq(this)">
                     <div class="faq-question-container">
                         <p class="faq-question">¿Qué requisitos deben cumplir los influencers para ser considerados?</p>
@@ -643,7 +777,7 @@
                         <p>Buscamos creadores que generen contenido original, que tengan una comunidad activa y que mantengan un impacto positivo en sus respectivas plataformas, sin importar si residen dentro o fuera de la isla, siempre que su contenido esté vinculado a la cultura y audiencia cubana.</p>
                     </div>
                 </div>
-    
+
                 <div class="faq-item" onclick="toggleFaq(this)">
                     <div class="faq-question-container">
                         <p class="faq-question">Soy una marca, ¿cómo puedo patrocinar el evento?</p>
@@ -653,17 +787,17 @@
                         <p>Estamos abiertos a colaboraciones con marcas que quieran conectar con la audiencia joven y digital. Puedes escribirnos directamente a nuestro apartado de Contacto o enviarnos un correo a <a href="mailto:cubacontentawards@gmail.com">cubacontentawards@gmail.com</a> para recibir el dossier de patrocinio.</p>
                     </div>
                 </div>
-    
+
                 <div class="faq-item" onclick="toggleFaq(this)">
                     <div class="faq-question-container">
                         <p class="faq-question">¿Cuál es el código de vestimenta? ¿Puedo diseñar mi propio outfit?</p>
                         <div class="faq-icon">+</div>
                     </div>
                     <div class="faq-answer">
-                        <p>¡Queremos ver tu estilo único! El código oficial es Gala Caribeña Creativa. Esto significa que buscamos la elegancia de una gala profesional fusionada con la frescura y el colorido de nuestra región.
+                        <p>¡Queremos ver tu estilo único! El código oficial es Gala Caribeña Creativa. Esto significa que buscamos la elegancia de una gala profesional fusionada con la frescura y el colorido de nuestra región.</p>
                     </div>
                 </div>
-    
+
             </div>
         </div>
     </section>
