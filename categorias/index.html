@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Categorías — Cuba Content Awards</title>
-    <meta name="description" content="Las 10 categorías de los Cuba Content Awards, los primeros premios dedicados a los influencers cubanos.">
+    <meta name="description" content="Las 9 categorías de los Cuba Content Awards. Elige tu favorito y vota.">
 
     <link href="/assets/images/favicon.png" rel="icon" media="(prefers-color-scheme: light)">
     <link href="/assets/images/favicon.png" rel="icon" media="(prefers-color-scheme: dark)">
@@ -12,75 +12,60 @@
 
     <meta property="og:type" content="website">
     <meta property="og:title" content="Categorías — Cuba Content Awards">
-    <meta property="og:description" content="Las 10 categorías de los Cuba Content Awards.">
+    <meta property="og:description" content="Las 9 categorías de los Cuba Content Awards. Elige tu favorito y vota.">
     <meta property="og:image" content="/assets/images/og.png">
     <meta property="og:url" content="https://ccawards.vercel.app/categorias">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Categorías — Cuba Content Awards">
-    <meta name="twitter:description" content="Las 10 categorías de los Cuba Content Awards.">
     <meta name="twitter:image" content="/assets/images/og.png">
 
     <style>
     @font-face {
         font-family: "Cal Sans";
         src: url("https://fonts.gstatic.com/s/calsans/v2/fdN99sWUv3gWqXxqqSBevloE4LZx.woff2");
-        font-display: swap;
-        font-style: normal;
-        font-weight: 400
+        font-display: swap; font-style: normal; font-weight: 400
     }
     @font-face {
         font-family: "Cal Sans";
         src: url("https://framerusercontent.com/assets/P2duH7wVRqqnKRek7vOcXAA9g.woff2");
-        font-display: swap;
-        font-style: normal;
-        font-weight: 600
+        font-display: swap; font-style: normal; font-weight: 600
     }
     @font-face {
         font-family: "Inter";
         src: url("https://framerusercontent.com/assets/GrgcKwrN6d3Uz8EwcLHZxwEfC4.woff2");
-        font-display: swap;
-        font-style: normal;
-        font-weight: 400
+        font-display: swap; font-style: normal; font-weight: 400
+    }
+    @font-face {
+        font-family: "Inter";
+        src: url("https://framerusercontent.com/assets/UjlFhCnUjxhNfep4oYBPqnEssyo.woff2");
+        font-display: swap; font-style: normal; font-weight: 500
     }
     @font-face {
         font-family: "Inter";
         src: url("https://framerusercontent.com/assets/syRNPWzAMIrcJ3wIlPIP43KjQs.woff2");
-        font-display: swap;
-        font-style: normal;
-        font-weight: 700
-    }
-    @font-face {
-        font-family: "Cal Sans Placeholder";
-        src: local("Arial");
-        ascent-override: 98.60%;
-        descent-override: 29.58%;
-        size-adjust: 101.42%
-    }
-    @font-face {
-        font-family: "Inter Placeholder";
-        src: local("Arial");
-        ascent-override: 89.79%;
-        descent-override: 22.36%;
-        size-adjust: 107.89%
+        font-display: swap; font-style: normal; font-weight: 700
     }
 
-    /* Reset */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     h1,h2,h3,h4,h5,h6,p,figure { margin: 0; }
     body {
-        background: #fff;
-        font-family: "Inter", "Inter Placeholder", sans-serif;
+        background: var(--bg);
+        font-family: "Inter", sans-serif;
         -webkit-font-smoothing: antialiased;
+        color: var(--ink);
+        overflow-x: hidden;
     }
 
-    /* Tokens */
     :root {
-        --white: #fff;
-        --black: #000;
-        --teal: #033d4a;
-        --teal-dark: #012830;
-        --gray: #404040;
-        --border: rgba(0,0,0,0.2);
+        --navy: #0E2478;
+        --navy-deep: #0A1B5C;
+        --bg: #FAFAF7;
+        --ink: #14161F;
+        --ink-soft: #5B5E6B;
+        --line: rgba(14,36,120,0.12);
+        --green: #3FA796;
+        --yellow: #F4C95D;
+        --card: #FFFFFF;
     }
 
     /* ========================
@@ -88,304 +73,383 @@
     ======================== */
     .nav {
         position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
+        top: 0; left: 0; right: 0;
         z-index: 100;
         padding: 20px 40px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background: rgba(255,255,255,0.92);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border-bottom: 1px solid rgba(0,0,0,0.06);
+        background: rgba(250,250,247,0.9);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--line);
     }
     .nav-logo {
-        font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
-        font-size: 18px;
-        font-weight: 600;
-        color: var(--teal-dark);
-        text-decoration: none;
-        letter-spacing: -0.02em;
+        display: flex; align-items: center; gap: 9px;
+        font-family: "Cal Sans", sans-serif;
+        font-size: 17px; font-weight: 600;
+        color: var(--navy); text-decoration: none; letter-spacing: -0.01em;
     }
+    .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
     .nav-back {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
-        font-size: 15px;
-        font-weight: 400;
-        color: var(--teal);
-        text-decoration: none;
-        transition: opacity 0.2s;
+        display: inline-flex; align-items: center; gap: 8px;
+        font-family: "Cal Sans", sans-serif;
+        font-size: 15px; color: var(--navy);
+        text-decoration: none; transition: opacity 0.2s;
     }
     .nav-back:hover { opacity: 0.7; }
     .nav-back svg { width: 18px; height: 18px; }
 
     /* ========================
-       HERO CATEGORIAS
+       HERO / PROMPT
     ======================== */
     .cat-hero {
-        position: relative;
-        width: 100%;
-        padding: 160px 40px 80px;
+        padding: 150px 24px 36px;
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        overflow: hidden;
-        background: #000;
-        min-height: 400px;
-        justify-content: center;
+        background: var(--bg);
     }
-
-    .cat-hero-bg {
-        position: absolute;
-        inset: 0;
-        z-index: 1;
-    }
-    .cat-hero-bg img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        opacity: 0.5;
-        display: block;
-    }
-
-    .cat-hero-content {
-        position: relative;
-        z-index: 2;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 16px;
-        max-width: 700px;
-    }
-
-    .cat-hero-label {
+    .cat-hero-eyebrow {
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 7px 14px 7px 10px;
+        background: rgba(14,36,120,0.06);
+        border: 1px solid var(--line);
+        border-radius: 100px;
         font-family: "Inter", sans-serif;
-        font-size: 13px;
-        font-weight: 600;
-        color: rgba(255,255,255,0.6);
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
+        font-size: 12.5px; font-weight: 600; color: var(--navy);
+        margin-bottom: 20px;
     }
-
+    .cat-hero-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--yellow); }
     .cat-hero-title {
-        font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
-        font-size: 72px;
-        font-weight: 600;
-        color: #fff;
-        line-height: 1.1em;
-        letter-spacing: -0.02em;
+        font-family: "Cal Sans", sans-serif;
+        font-size: 38px; font-weight: 600; color: var(--ink);
+        line-height: 1.2em; letter-spacing: -0.02em;
+        max-width: 600px;
     }
-
     .cat-hero-subtitle {
-        font-family: "Inter", "Inter Placeholder", sans-serif;
-        font-size: 18px;
-        font-weight: 400;
-        color: rgba(255,255,255,0.75);
-        line-height: 1.5em;
-        max-width: 480px;
-        margin-top: 8px;
+        font-family: "Inter", sans-serif;
+        font-size: 15.5px; color: var(--ink-soft);
+        line-height: 1.55em; max-width: 460px; margin-top: 12px;
     }
 
     /* ========================
-       GRID CATEGORIAS
+       CATEGORY PILLS (selector)
     ======================== */
-    .cat-section {
-        padding: 80px 40px 120px;
-        background: #fff;
-    }
-
-    .cat-grid {
-        max-width: 1200px;
+    .cat-pills-wrap {
+        padding: 0 20px 28px;
+        max-width: 1100px;
         margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 32px 24px;
     }
-
-    /* Card */
-    .cat-card {
+    .cat-pills {
         display: flex;
-        flex-direction: column;
-        gap: 12px;
-        text-decoration: none;
-        cursor: default;
-    }
-    .cat-card.unlocked { cursor: pointer; }
-
-    .cat-card-img {
-        width: 100%;
-        aspect-ratio: 0.8;
-        overflow: hidden;
-        border-radius: 20px;
-        background: #111;
-        position: relative;
-    }
-    .cat-card-img img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        transition: transform 0.4s ease;
-    }
-    .cat-card.unlocked:hover .cat-card-img img {
-        transform: scale(1.04);
-    }
-
-    /* Lock overlay */
-    .cat-card-lock {
-        position: absolute;
-        inset: 0;
-        background: rgba(0,0,0,0.45);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 20px;
-        backdrop-filter: blur(1px);
-    }
-    .lock-icon {
-        width: 44px;
-        height: 44px;
-        background: rgba(255,255,255,0.15);
-        border: 1.5px solid rgba(255,255,255,0.35);
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
         justify-content: center;
     }
-    .lock-icon svg {
-        width: 20px;
-        height: 20px;
-        color: #fff;
-    }
-
-    .cat-card-title {
-        font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
-        font-size: 18px;
-        font-weight: 400;
-        color: #000;
-        line-height: 1.3em;
-        letter-spacing: -0.01em;
-    }
-
-    .cat-card-desc {
-        font-family: "Inter", sans-serif;
-        font-size: 14px;
-        color: #666;
-        line-height: 1.5em;
-        letter-spacing: -0.01em;
-    }
-
-    .cat-card-badge {
+    .cat-pill {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
+        gap: 7px;
+        padding: 11px 18px;
+        background: var(--card);
+        border: 1.5px solid var(--line);
+        border-radius: 100px;
         font-family: "Inter", sans-serif;
-        font-size: 12px;
-        font-weight: 500;
-        color: #888;
-        background: #f4f4f4;
-        border-radius: 20px;
-        padding: 4px 10px;
-        width: fit-content;
-        margin-top: 2px;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--ink-soft);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        position: relative;
+        -webkit-tap-highlight-color: transparent;
     }
-    .cat-card-badge svg {
-        width: 12px;
-        height: 12px;
+    .cat-pill:hover { border-color: rgba(14,36,120,0.3); }
+    .cat-pill.active {
+        background: var(--navy);
+        border-color: var(--navy);
+        color: #fff;
+    }
+    .cat-pill.voted {
+        background: rgba(63,167,150,0.08);
+        border-color: rgba(63,167,150,0.3);
+        color: var(--green);
+    }
+    .cat-pill.voted.active {
+        background: var(--green);
+        border-color: var(--green);
+        color: #fff;
+    }
+    .cat-pill-check {
+        width: 14px; height: 14px;
         flex-shrink: 0;
     }
 
     /* ========================
-       VOLVER SECTION
+       LOCK BANNER
     ======================== */
-    .cat-footer {
-        padding: 0 40px 80px;
-        display: flex;
-        justify-content: center;
+    .lock-banner {
+        display: none;
+        max-width: 700px;
+        margin: 0 auto 24px;
+        padding: 14px 20px;
+        background: rgba(63,167,150,0.08);
+        border: 1px solid rgba(63,167,150,0.25);
+        border-radius: 14px;
+        align-items: center;
+        gap: 12px;
+        font-family: "Inter", sans-serif;
+        font-size: 13.5px;
+        color: #1f6e60;
+    }
+    .lock-banner.show { display: flex; }
+    .lock-banner svg { width: 18px; height: 18px; flex-shrink: 0; color: var(--green); }
+
+    /* ========================
+       NOMINEES SECTION
+    ======================== */
+    .nominees-section {
+        padding: 0 16px 140px;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    .nominees-cat-title {
+        font-family: "Cal Sans", sans-serif;
+        font-size: 22px;
+        font-weight: 600;
+        color: var(--ink);
+        text-align: center;
+        margin-bottom: 4px;
+        letter-spacing: -0.01em;
+    }
+    .nominees-cat-count {
+        font-family: "Inter", sans-serif;
+        font-size: 13px;
+        color: var(--ink-soft);
+        text-align: center;
+        margin-bottom: 24px;
     }
 
-    .btn-back-home {
+    .nominees-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .nominee-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        background: var(--card);
+        border: 2px solid var(--line);
+        border-radius: 18px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: border-color 0.2s, transform 0.15s;
+        -webkit-tap-highlight-color: transparent;
+    }
+    .nominee-card:active { transform: scale(0.97); }
+    .nominee-card.selected {
+        border-color: var(--navy);
+        box-shadow: 0 0 0 3px rgba(14,36,120,0.12);
+    }
+
+    .nominee-img {
+        width: 100%;
+        aspect-ratio: 0.95;
+        background: var(--navy);
+        overflow: hidden;
+        position: relative;
+    }
+    .nominee-img img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .nominee-check {
+        position: absolute;
+        top: 8px; right: 8px;
+        width: 26px; height: 26px;
+        border-radius: 50%;
+        background: var(--navy);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
+    .nominee-card.selected .nominee-check { display: flex; }
+    .nominee-check svg { width: 14px; height: 14px; color: #fff; }
+
+    .nominee-body { padding: 11px 12px 13px; }
+    .nominee-name {
+        font-family: "Cal Sans", sans-serif;
+        font-size: 14.5px;
+        font-weight: 600;
+        color: var(--ink);
+        letter-spacing: -0.01em;
+        line-height: 1.25em;
+    }
+    .nominee-handle {
+        font-family: "Inter", sans-serif;
+        font-size: 12px;
+        color: var(--ink-soft);
+        margin-top: 2px;
+    }
+
+    /* Voted state */
+    .nominees-grid.locked .nominee-card { cursor: default; opacity: 0.55; }
+    .nominees-grid.locked .nominee-card.winner {
+        opacity: 1;
+        border-color: var(--green);
+        box-shadow: 0 0 0 3px rgba(63,167,150,0.15);
+    }
+    .nominees-grid.locked .nominee-card.winner .nominee-check {
+        display: flex;
+        background: var(--green);
+    }
+
+    /* ========================
+       FLOATING VOTE BAR
+    ======================== */
+    .vote-bar {
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 90;
+        padding: 16px 20px;
+        padding-bottom: max(16px, env(safe-area-inset-bottom));
+        background: rgba(250,250,247,0.97);
+        backdrop-filter: blur(16px);
+        border-top: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+    }
+    .vote-bar.show { transform: translateY(0); }
+
+    .vote-bar-info {
+        font-family: "Inter", sans-serif;
+        font-size: 13.5px;
+        color: var(--ink-soft);
+        flex: 1;
+        max-width: 420px;
+    }
+    .vote-bar-info strong { color: var(--ink); }
+
+    .btn-vote {
         display: inline-flex;
         align-items: center;
-        gap: 10px;
-        padding: 14px 32px;
-        background: var(--teal);
-        border-radius: 48px;
-        text-decoration: none;
-        font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
-        font-size: 16px;
+        gap: 8px;
+        padding: 14px 28px;
+        background: var(--navy);
+        border: none;
+        border-radius: 100px;
+        font-family: "Cal Sans", sans-serif;
+        font-size: 15px;
         color: #fff;
-        font-weight: 400;
+        cursor: pointer;
+        white-space: nowrap;
         transition: opacity 0.2s;
     }
-    .btn-back-home:hover { opacity: 0.85; }
-    .btn-back-home svg { width: 16px; height: 16px; }
+    .btn-vote:hover { opacity: 0.9; }
+    .btn-vote svg { width: 16px; height: 16px; }
+
+    /* ========================
+       MODAL
+    ======================== */
+    .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(14,16,31,0.55);
+        backdrop-filter: blur(4px);
+        z-index: 200;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+    }
+    .modal-overlay.show { display: flex; }
+    .modal-box {
+        background: var(--card);
+        border-radius: 24px;
+        padding: 36px 28px;
+        max-width: 380px;
+        width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        animation: modalIn 0.3s ease;
+    }
+    @keyframes modalIn {
+        from { opacity: 0; transform: scale(0.92) translateY(10px); }
+        to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .modal-icon {
+        width: 56px; height: 56px;
+        border-radius: 50%;
+        background: rgba(63,167,150,0.12);
+        display: flex; align-items: center; justify-content: center;
+    }
+    .modal-icon svg { width: 26px; height: 26px; color: var(--green); }
+    .modal-title {
+        font-family: "Cal Sans", sans-serif;
+        font-size: 20px; font-weight: 600; color: var(--ink);
+        letter-spacing: -0.01em;
+    }
+    .modal-desc {
+        font-family: "Inter", sans-serif;
+        font-size: 14.5px; color: var(--ink-soft);
+        line-height: 1.55em;
+    }
+    .modal-close {
+        margin-top: 8px;
+        padding: 12px 32px;
+        background: var(--navy);
+        border: none;
+        border-radius: 100px;
+        font-family: "Cal Sans", sans-serif;
+        font-size: 14.5px;
+        color: #fff;
+        cursor: pointer;
+        transition: opacity 0.2s;
+    }
+    .modal-close:hover { opacity: 0.9; }
 
     /* ========================
        RESPONSIVE
     ======================== */
-    @media (max-width: 809px) {
-        .nav { padding: 16px 20px; }
-        .cat-hero { padding: 130px 24px 60px; min-height: 300px; }
-        .cat-hero-title { font-size: 42px; }
-        .cat-hero-subtitle { font-size: 15px; }
-        .cat-section { padding: 60px 20px 80px; }
-        .cat-grid {
-            grid-template-columns: 1fr 1fr;
-            gap: 24px 16px;
-        }
-        .cat-footer { padding: 0 20px 60px; }
+    @media (min-width: 560px) {
+        .nominees-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    }
+    @media (min-width: 860px) {
+        .nominees-grid { grid-template-columns: repeat(4, 1fr); }
+        .cat-hero-title { font-size: 46px; }
     }
 
     @media (max-width: 480px) {
-        .cat-grid {
-            grid-template-columns: 1fr;
-            gap: 32px;
-        }
+        .nav { padding: 16px 20px; }
+        .cat-hero { padding: 130px 20px 28px; }
+        .cat-hero-title { font-size: 30px; }
+        .vote-bar { flex-direction: column; gap: 10px; align-items: stretch; }
+        .vote-bar-info { text-align: center; max-width: none; }
+        .btn-vote { width: 100%; justify-content: center; }
     }
 
-    @media (min-width: 810px) and (max-width: 1199px) {
-        .cat-hero-title { font-size: 56px; }
-        .cat-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-
-    /* Fade-in animation */
-    .cat-card {
-        opacity: 0;
-        transform: translateY(24px);
-        animation: fadeUp 0.5s ease forwards;
-    }
-    .cat-card:nth-child(1)  { animation-delay: 0.05s; }
-    .cat-card:nth-child(2)  { animation-delay: 0.10s; }
-    .cat-card:nth-child(3)  { animation-delay: 0.15s; }
-    .cat-card:nth-child(4)  { animation-delay: 0.20s; }
-    .cat-card:nth-child(5)  { animation-delay: 0.25s; }
-    .cat-card:nth-child(6)  { animation-delay: 0.30s; }
-    .cat-card:nth-child(7)  { animation-delay: 0.35s; }
-    .cat-card:nth-child(8)  { animation-delay: 0.40s; }
-    .cat-card:nth-child(9)  { animation-delay: 0.45s; }
-    .cat-card:nth-child(10) { animation-delay: 0.50s; }
-
-    @keyframes fadeUp {
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    .cat-hero-content {
-        opacity: 0;
-        animation: fadeUp 0.7s ease 0.1s forwards;
-    }
+    .fade-in { opacity: 0; animation: fadeIn 0.4s ease forwards; }
+    @keyframes fadeIn { to { opacity: 1; } }
     </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav class="nav">
-    <a href="/" class="nav-logo">Cuba Content Awards</a>
+    <a href="/" class="nav-logo"><span class="nav-dot"></span>Cuba Content Awards</a>
     <a href="/" class="nav-back">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M19 12H5M12 5l-7 7 7 7"/>
@@ -394,114 +458,207 @@
     </a>
 </nav>
 
-<!-- HERO -->
+<!-- HERO PROMPT -->
 <section class="cat-hero">
-    <div class="cat-hero-bg">
-        <img src="/assets/images/hero-bg.png" alt="Cuba" loading="eager">
-    </div>
-    <div class="cat-hero-content">
-        <span class="cat-hero-label">Cuba Content Awards</span>
-        <h1 class="cat-hero-title">Categorías</h1>
-        <p class="cat-hero-subtitle">Son un total de 10 categorías para ser nominado. ¿Cuál es la tuya?</p>
-    </div>
+    <span class="cat-hero-eyebrow"><span class="dot"></span>9 categorías · 53 nominados</span>
+    <h1 class="cat-hero-title" id="promptTitle">¿En qué categoría está tu nominado favorito?</h1>
+    <p class="cat-hero-subtitle">Elige una categoría, busca a tu favorito y vota. Solo puedes votar una vez por categoría.</p>
 </section>
 
-<!-- GRID -->
-<section class="cat-section">
-    <div class="cat-grid">
-
-        <!-- Categoría 1 -->
-        <div class="cat-card unlocked">
-            <div class="cat-card-img">
-                <img src="/assets/images/humor.png" alt="Categoría 1" loading="lazy">
-            </div>
-            <p class="cat-card-title">Humor</p>
-        </div>
-
-        <!-- Categoría 2 -->
-        <div class="cat-card unlocked">
-            <div class="cat-card-img">
-                <img src="/assets/images/moda.png" alt="Categoría 2" loading="lazy">
-            </div>
-            <p class="cat-card-title">Moda y Belleza</p>
-        </div>
-
-        <!-- Categoría 3 -->
-        <div class="cat-card unlocked">
-            <div class="cat-card-img">
-                <img src="/assets/images/lifestyle.png" alt="Categoría 3" loading="lazy">
-            </div>
-            <p class="cat-card-title">Lifestyle</p>
-        </div>
-
-        <!-- Categoría 4 -->
-        <div class="cat-card">
-            <div class="cat-card-img">
-                <img src="/assets/images/blogs.png" alt="Categoría 4" loading="lazy">
-            </div>
-            <p class="cat-card-title">Vlogs</p>
-        </div>
-
-        <!-- Categoría 5 -->
-        <div class="cat-card">
-            <div class="cat-card-img">
-                <img src="/assets/images/fitness.png" alt="Categoría 5" loading="lazy">
-            </div>
-            <p class="cat-card-title">Fitness</p>
-        </div>
-
-        <!-- Categoría 6 -->
-        <div class="cat-card">
-            <div class="cat-card-img">
-                <img src="/assets/images/cocina.png" alt="Categoría 6" loading="lazy">
-            </div>
-            <p class="cat-card-title">Cocina</p>
-        </div>
-
-        <!-- Categoría 7 -->
-        <div class="cat-card">
-            <div class="cat-card-img">
-                <img src="/assets/images/artistas.png" alt="Categoría 7" loading="lazy">
-            </div>
-            <p class="cat-card-title">Artistas</p>
-        </div>
-
-        <!-- Categoría 8 -->
-        <div class="cat-card">
-            <div class="cat-card-img">
-                <img src="/assets/images/impacto.png" alt="Categoría 8" loading="lazy">
-            </div>
-            <p class="cat-card-title">Impacto Social</p>
-        </div>
-
-        <!-- Categoría 9 -->
-        <div class="cat-card">
-            <div class="cat-card-img">
-                <img src="/assets/images/revelacion.png" alt="Categoría 9" loading="lazy">
-            </div>
-            <p class="cat-card-title">Revelación del año</p>
-        </div>
-
-        <!-- Categoría 10 -->
-        <div class="cat-card">
-            <div class="cat-card-img">
-                <img src="/assets/images/mejor.png" alt="Categoría 10" loading="lazy">
-            </div>
-            <p class="cat-card-title">Mejor Creador del Año</p>
-        </div>
-
-    </div>
-</section>
-
-<!-- VOLVER -->
-<div class="cat-footer">
-    <a href="/" class="btn-back-home">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M19 12H5M12 5l-7 7 7 7"/>
-        </svg>
-        Volver al inicio
-    </a>
+<!-- CATEGORY PILLS -->
+<div class="cat-pills-wrap">
+    <div class="cat-pills" id="catPills"></div>
 </div>
+
+<!-- LOCK BANNER -->
+<div class="lock-banner" id="lockBanner">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 12 15 16 10"/></svg>
+    <span>Ya votaste en esta categoría · Solo 1 voto por categoría</span>
+</div>
+
+<!-- NOMINEES -->
+<section class="nominees-section">
+    <h2 class="nominees-cat-title" id="catTitle">Humor</h2>
+    <p class="nominees-cat-count" id="catCount">6 nominados</p>
+    <div class="nominees-grid" id="nomineesGrid"></div>
+</section>
+
+<!-- FLOATING VOTE BAR -->
+<div class="vote-bar" id="voteBar">
+    <p class="vote-bar-info">Votando por <strong id="selectedName">—</strong> en <strong id="selectedCat">—</strong></p>
+    <button class="btn-vote" onclick="confirmVote()">
+        Votar
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+    </button>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box">
+        <div class="modal-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <p class="modal-title">¡Las votaciones aún no están abiertas!</p>
+        <p class="modal-desc">Estamos ultimando todo para que puedas votar por tu favorito muy pronto. Vuelve en los próximos días 🇨🇺</p>
+        <button class="modal-close" onclick="closeModal()">Entendido</button>
+    </div>
+</div>
+
+<script>
+// ====== DATA DE EJEMPLO — sustituir imágenes por las reales en /assets/images/ ======
+const categorias = [
+    { id: 'humor', nombre: 'Humor', count: 6, nominados: gen(6, 'humor') },
+    { id: 'moda', nombre: 'Moda y Belleza', count: 6, nominados: gen(6, 'moda') },
+    { id: 'lifestyle', nombre: 'Lifestyle', count: 7, nominados: gen(7, 'lifestyle') },
+    { id: 'vlogs', nombre: 'Vlogs', count: 8, nominados: gen(8, 'vlogs') },
+    { id: 'fitness', nombre: 'Fitness', count: 5, nominados: gen(5, 'fitness') },
+    { id: 'cocina', nombre: 'Cocina', count: 4, nominados: gen(4, 'cocina') },
+    { id: 'impacto', nombre: 'Impacto Social', count: 6, nominados: gen(6, 'impacto') },
+    { id: 'artistas', nombre: 'Artistas', count: 6, nominados: gen(6, 'artistas') },
+    { id: 'revelacion', nombre: 'Revelación del Año', count: 5, nominados: gen(5, 'revelacion') },
+];
+
+function gen(n, prefix) {
+    const arr = [];
+    for (let i = 1; i <= n; i++) {
+        arr.push({
+            id: prefix + '-' + i,
+            nombre: 'Nominado ' + i,
+            handle: '@usuario' + i,
+            // Sustituye esta línea por: /assets/images/NOMBRE-DE-TU-IMAGEN.png
+            img: '/assets/images/nominado-ejemplo.png'
+        });
+    }
+    return arr;
+}
+
+// ====== ESTADO ======
+let activeCategoria = categorias[0].id;
+let selectedNominee = null;
+
+// Votos ya emitidos (localStorage — placeholder temporal, se sustituirá por sistema seguro)
+function getVotedCategorias() {
+    try {
+        return JSON.parse(localStorage.getItem('cca_votos') || '{}');
+    } catch (e) { return {}; }
+}
+function setVoted(catId, nomineeId) {
+    const votos = getVotedCategorias();
+    votos[catId] = nomineeId;
+    localStorage.setItem('cca_votos', JSON.stringify(votos));
+}
+
+// ====== RENDER PILLS ======
+function renderPills() {
+    const wrap = document.getElementById('catPills');
+    const votos = getVotedCategorias();
+    wrap.innerHTML = '';
+    categorias.forEach(cat => {
+        const voted = !!votos[cat.id];
+        const isActive = cat.id === activeCategoria;
+        const pill = document.createElement('button');
+        pill.className = 'cat-pill' + (isActive ? ' active' : '') + (voted ? ' voted' : '');
+        pill.innerHTML = (voted ? `<svg class="cat-pill-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>` : '') + cat.nombre;
+        pill.onclick = () => selectCategoria(cat.id);
+        wrap.appendChild(pill);
+    });
+}
+
+// ====== RENDER NOMINEES ======
+function renderNominees() {
+    const cat = categorias.find(c => c.id === activeCategoria);
+    const votos = getVotedCategorias();
+    const votedNomineeId = votos[cat.id] || null;
+    const isLocked = !!votedNomineeId;
+
+    document.getElementById('catTitle').textContent = cat.nombre;
+    document.getElementById('catCount').textContent = cat.count + ' nominados';
+
+    document.getElementById('lockBanner').classList.toggle('show', isLocked);
+
+    const grid = document.getElementById('nomineesGrid');
+    grid.className = 'nominees-grid' + (isLocked ? ' locked' : '');
+    grid.innerHTML = '';
+
+    cat.nominados.forEach(nom => {
+        const isWinner = nom.id === votedNomineeId;
+        const card = document.createElement('div');
+        card.className = 'nominee-card' + (isWinner ? ' winner' : '');
+        card.innerHTML = `
+            <div class="nominee-img"><img src="${nom.img}" alt="${nom.nombre}" loading="lazy"></div>
+            <div class="nominee-check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="nominee-body">
+                <p class="nominee-name">${nom.nombre}</p>
+                <p class="nominee-handle">${nom.handle}</p>
+            </div>
+        `;
+        if (!isLocked) {
+            card.onclick = () => selectNominee(nom, card);
+        }
+        grid.appendChild(card);
+    });
+
+    // Reset selection bar if locked
+    if (isLocked) {
+        selectedNominee = null;
+        hideVoteBar();
+    }
+}
+
+// ====== SELECT CATEGORIA ======
+function selectCategoria(catId) {
+    activeCategoria = catId;
+    selectedNominee = null;
+    hideVoteBar();
+    renderPills();
+    renderNominees();
+    document.querySelector('.nominees-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ====== SELECT NOMINEE ======
+function selectNominee(nom, cardEl) {
+    document.querySelectorAll('.nominee-card').forEach(c => c.classList.remove('selected'));
+    cardEl.classList.add('selected');
+    selectedNominee = nom;
+    showVoteBar(nom);
+}
+
+function showVoteBar(nom) {
+    const cat = categorias.find(c => c.id === activeCategoria);
+    document.getElementById('selectedName').textContent = nom.nombre;
+    document.getElementById('selectedCat').textContent = cat.nombre;
+    document.getElementById('voteBar').classList.add('show');
+}
+function hideVoteBar() {
+    document.getElementById('voteBar').classList.remove('show');
+}
+
+// ====== CONFIRM VOTE ======
+function confirmVote() {
+    if (!selectedNominee) return;
+    // Por ahora las votaciones no están abiertas — mostramos el modal informativo.
+    // Cuando se abran oficialmente, aquí se llamará a Supabase para registrar el voto real
+    // y luego se ejecutaría: setVoted(activeCategoria, selectedNominee.id); renderPills(); renderNominees();
+    openModal();
+}
+
+// ====== MODAL ======
+function openModal() {
+    document.getElementById('modalOverlay').classList.add('show');
+}
+function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('show');
+}
+document.getElementById('modalOverlay').addEventListener('click', (e) => {
+    if (e.target.id === 'modalOverlay') closeModal();
+});
+
+// ====== INIT ======
+renderPills();
+renderNominees();
+</script>
 
 </body>
 </html>
