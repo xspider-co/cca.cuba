@@ -109,7 +109,7 @@
         letter-spacing: -0.01em;
         text-decoration: none;
     }
-    .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+    .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--navy); }
     .nav-links { display: flex; align-items: center; gap: 36px; }
     .nav-links a {
         font-family: "Inter", sans-serif;
@@ -170,7 +170,7 @@
         letter-spacing: 0.01em;
         margin-bottom: 28px;
     }
-    .hero-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+    .hero-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--navy); }
 
     .hero-title {
         font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
@@ -276,8 +276,8 @@
         color: var(--ink);
     }
     .hero-visual-badge-text span { display: block; font-family: "Inter", sans-serif; font-size: 11.5px; color: var(--ink-soft); font-weight: 500; margin-top: 2px; }
-    .hero-visual-dot { width: 36px; height: 36px; border-radius: 50%; background: var(--yellow); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .hero-visual-dot svg { width: 16px; height: 16px; color: var(--ink); }
+    .hero-visual-dot { width: 36px; height: 36px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .hero-visual-dot svg { width: 16px; height: 16px; color: #fff; }
 
     /* ========================
        SECTION CATEGORIAS
@@ -296,7 +296,7 @@
         font-family: "Inter", sans-serif;
         font-size: 12.5px;
         font-weight: 600;
-        color: var(--green);
+        color: var(--navy);
         letter-spacing: 0.1em;
         text-transform: uppercase;
         margin-bottom: 14px;
@@ -414,7 +414,7 @@
     .sponsor-eyebrow {
         font-family: "Inter", sans-serif;
         font-size: 12.5px; font-weight: 600;
-        color: var(--yellow);
+        color: rgba(255,255,255,0.55);
         letter-spacing: 0.1em; text-transform: uppercase;
         margin-bottom: 16px; display: block;
     }
@@ -475,7 +475,7 @@
         border: 1px solid var(--line);
     }
     .colabora-visual {
-        background: var(--yellow);
+        background: rgba(14,36,120,0.06);
         padding: 48px 40px;
         display: flex;
         flex-direction: column;
@@ -488,7 +488,7 @@
         border-radius: 14px;
         display: flex; align-items: center; justify-content: center;
     }
-    .colabora-visual-icon svg { width: 24px; height: 24px; color: var(--yellow); }
+    .colabora-visual-icon svg { width: 24px; height: 24px; color: #fff; }
     .colabora-visual-text {
         font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
         font-size: 22px; color: var(--ink); line-height: 1.3em;
@@ -547,7 +547,7 @@
     .faq-header { display: flex; flex-direction: column; gap: 14px; max-width: 540px; }
     .faq-tag {
         font-family: "Inter", sans-serif; font-size: 12.5px; font-weight: 600;
-        color: var(--green); letter-spacing: 0.1em; text-transform: uppercase;
+        color: var(--navy); letter-spacing: 0.1em; text-transform: uppercase;
     }
     .faq-title {
         font-family: "Cal Sans", "Cal Sans Placeholder", sans-serif;
@@ -621,9 +621,13 @@
         .hero-stats { gap: 20px; flex-wrap: wrap; }
         .hero-visual { aspect-ratio: 1.1/1; }
 
-        .section-categorias { padding: 70px 20px; }
-        .section-title { font-size: 28px; }
-        .cards-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+        .section-categorias { padding: 56px 20px; }
+        .section-title { font-size: 26px; }
+        .section-head { margin-bottom: 28px; }
+        .cards-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+        .card-img { aspect-ratio: 1.1; }
+        .card-body { padding: 12px 14px 14px; }
+        .card-title { font-size: 16px; }
 
         .section-sponsor { padding: 0 20px 70px; }
         .sponsor-box { grid-template-columns: 1fr; padding: 40px 28px; gap: 32px; border-radius: 22px; }
@@ -644,8 +648,11 @@
     }
 
     @media (max-width: 520px) {
-        .cards-grid { grid-template-columns: 1fr; }
-        .hero-title { font-size: 36px; }
+        .hero-title { font-size: 32px; }
+        .card-img { aspect-ratio: 1.05; }
+        .card-body { padding: 10px 12px 12px; }
+        .card-title { font-size: 15px; }
+        .card-num { font-size: 10px; }
     }
 
     @media (min-width: 901px) and (max-width: 1199px) {
