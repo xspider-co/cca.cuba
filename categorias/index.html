@@ -505,32 +505,108 @@
 </div>
 
 <script>
-// ====== DATA DE EJEMPLO — sustituir imágenes por las reales en /assets/images/ ======
+// ====== NOMINADOS — edita nombre, handle e img para cada uno ======
+// img: pon la ruta exacta de la foto que subiste a /assets/images/
 const categorias = [
-    { id: 'humor', nombre: 'Humor', count: 6, nominados: gen(6, 'humor') },
-    { id: 'moda', nombre: 'Moda y Belleza', count: 6, nominados: gen(6, 'moda') },
-    { id: 'lifestyle', nombre: 'Lifestyle', count: 7, nominados: gen(7, 'lifestyle') },
-    { id: 'vlogs', nombre: 'Vlogs', count: 8, nominados: gen(8, 'vlogs') },
-    { id: 'fitness', nombre: 'Fitness', count: 5, nominados: gen(5, 'fitness') },
-    { id: 'cocina', nombre: 'Cocina', count: 4, nominados: gen(4, 'cocina') },
-    { id: 'impacto', nombre: 'Impacto Social', count: 6, nominados: gen(6, 'impacto') },
-    { id: 'artistas', nombre: 'Artistas', count: 6, nominados: gen(6, 'artistas') },
-    { id: 'revelacion', nombre: 'Revelación del Año', count: 5, nominados: gen(5, 'revelacion') },
+    {
+        id: 'humor', nombre: 'Humor', count: 6,
+        nominados: [
+            { id: 'humor-1', nombre: 'Nominado 1', handle: '@usuario1', img: '/assets/images/humor-1.png' },
+            { id: 'humor-2', nombre: 'Nominado 2', handle: '@usuario2', img: '/assets/images/humor-2.png' },
+            { id: 'humor-3', nombre: 'Nominado 3', handle: '@usuario3', img: '/assets/images/humor-3.png' },
+            { id: 'humor-4', nombre: 'Nominado 4', handle: '@usuario4', img: '/assets/images/humor-4.png' },
+            { id: 'humor-5', nombre: 'Nominado 5', handle: '@usuario5', img: '/assets/images/humor-5.png' },
+            { id: 'humor-6', nombre: 'Nominado 6', handle: '@usuario6', img: '/assets/images/humor-6.png' },
+        ]
+    },
+    {
+        id: 'moda', nombre: 'Moda y Belleza', count: 6,
+        nominados: [
+            { id: 'moda-1', nombre: 'Nominado 1', handle: '@usuario1', img: '/assets/images/moda-1.png' },
+            { id: 'moda-2', nombre: 'Nominado 2', handle: '@usuario2', img: '/assets/images/moda-2.png' },
+            { id: 'moda-3', nombre: 'Nominado 3', handle: '@usuario3', img: '/assets/images/moda-3.png' },
+            { id: 'moda-4', nombre: 'Nominado 4', handle: '@usuario4', img: '/assets/images/moda-4.png' },
+            { id: 'moda-5', nombre: 'Nominado 5', handle: '@usuario5', img: '/assets/images/moda-5.png' },
+            { id: 'moda-6', nombre: 'Nominado 6', handle: '@usuario6', img: '/assets/images/moda-6.png' },
+        ]
+    },
+    {
+        id: 'lifestyle', nombre: 'Lifestyle', count: 7,
+        nominados: [
+            { id: 'lifestyle-1', nombre: 'Nominado 1', handle: '@usuario1', img: '/assets/images/lifestyle-1.jpeg' },
+            { id: 'lifestyle-2', nombre: 'Nominado 2', handle: '@usuario2', img: '/assets/images/lifestyle-2.jpeg' },
+            { id: 'lifestyle-3', nombre: 'Nominado 3', handle: '@usuario3', img: '/assets/images/lifestyle-3.jpeg' },
+            { id: 'lifestyle-4', nombre: 'Nominado 4', handle: '@usuario4', img: '/assets/images/lifestyle-4.jpeg' },
+            { id: 'lifestyle-5', nombre: 'Nominado 5', handle: '@usuario5', img: '/assets/images/lifestyle-5.jpeg' },
+            { id: 'lifestyle-6', nombre: 'Nominado 6', handle: '@usuario6', img: '/assets/images/lifestyle-6.jpeg' },
+            { id: 'lifestyle-7', nombre: 'Nominado 7', handle: '@usuario7', img: '/assets/images/lifestyle-7.jpeg' },
+        ]
+    },
+    {
+        id: 'vlogs', nombre: 'Vlogs', count: 8,
+        nominados: [
+            { id: 'vlogs-1', nombre: 'Nominado 1', handle: '@usuario1', img: '/assets/images/vlogs-1.jpeg' },
+            { id: 'vlogs-2', nombre: 'Nominado 2', handle: '@usuario2', img: '/assets/images/vlogs-2.jpeg' },
+            { id: 'vlogs-3', nombre: 'Nominado 3', handle: '@usuario3', img: '/assets/images/vlogs-3.jpeg' },
+            { id: 'vlogs-4', nombre: 'Nominado 4', handle: '@usuario4', img: '/assets/images/vlogs-4.jpeg' },
+            { id: 'vlogs-5', nombre: 'Nominado 5', handle: '@usuario5', img: '/assets/images/vlogs-5.jpeg' },
+            { id: 'vlogs-6', nombre: 'Nominado 6', handle: '@usuario6', img: '/assets/images/vlogs-6.jpeg' },
+            { id: 'vlogs-7', nombre: 'Nominado 7', handle: '@usuario7', img: '/assets/images/vlogs-7.jpeg' },
+            { id: 'vlogs-8', nombre: 'Nominado 8', handle: '@usuario8', img: '/assets/images/vlogs-8.jpeg' },
+        ]
+    },
+    {
+        id: 'fitness', nombre: 'Fitness', count: 5,
+        nominados: [
+                { id: 'fitness-1', nombre: 'Nominado 1', handle: '@usuario1', img: '/assets/images/fitness-1.jpeg' },
+            { id: 'fitness-2', nombre: 'Nominado 2', handle: '@usuario2', img: '/assets/images/fitness-2.jpeg' },
+            { id: 'fitness-3', nombre: 'Nominado 3', handle: '@usuario3', img: '/assets/images/fitness-3.jpeg' },
+            { id: 'fitness-4', nombre: 'Nominado 4', handle: '@usuario4', img: '/assets/images/fitness-4.jpeg' },
+            { id: 'fitness-5', nombre: 'Nominado 5', handle: '@usuario5', img: '/assets/images/fitness-5.jpeg' },
+        ]
+    },
+    {
+        id: 'cocina', nombre: 'Cocina', count: 4,
+        nominados: [
+            { id: 'cocina-1', nombre: 'Nominado 1', handle: '@usuario1', img: '/assets/images/cocina-1.jpeg' },
+            { id: 'cocina-2', nombre: 'Nominado 2', handle: '@usuario2', img: '/assets/images/cocina-2.jpeg' },
+            { id: 'cocina-3', nombre: 'Nominado 3', handle: '@usuario3', img: '/assets/images/cocina-3.jpeg' },
+            { id: 'cocina-4', nombre: 'Nominado 4', handle: '@usuario4', img: '/assets/images/cocina-4.jpeg' },
+        ]
+    },
+    {
+        id: 'impacto', nombre: 'Impacto Social', count: 6,
+        nominados: [
+            { id: 'impacto-1', nombre: 'Nominado 1', handle: '@usuario1', img: '/assets/images/impacto-1.jpeg' },
+            { id: 'impacto-2', nombre: 'Nominado 2', handle: '@usuario2', img: '/assets/images/impacto-2.jpeg' },
+            { id: 'impacto-3', nombre: 'Nominado 3', handle: '@usuario3', img: '/assets/images/impacto-3.jpeg' },
+            { id: 'impacto-4', nombre: 'Nominado 4', handle: '@usuario4', img: '/assets/images/impacto-4.png' },
+            { id: 'impacto-5', nombre: 'Nominado 5', handle: '@usuario5', img: '/assets/images/impacto-5.png' },
+            { id: 'impacto-6', nombre: 'Nominado 6', handle: '@usuario6', img: '/assets/images/impacto-6.png' },
+        ]
+    },
+    {
+        id: 'artistas', nombre: 'Artistas', count: 6,
+        nominados: [
+            { id: 'artistas-1', nombre: 'Nominado 1', handle: '@usuario1', img: '/assets/images/artistas-1.png' },
+            { id: 'artistas-2', nombre: 'Nominado 2', handle: '@usuario2', img: '/assets/images/artistas-2.png' },
+            { id: 'artistas-3', nombre: 'Nominado 3', handle: '@usuario3', img: '/assets/images/artistas-3.png' },
+            { id: 'artistas-4', nombre: 'Nominado 4', handle: '@usuario4', img: '/assets/images/artistas-4.png' },
+            { id: 'artistas-5', nombre: 'Nominado 5', handle: '@usuario5', img: '/assets/images/artistas-5.png' },
+            { id: 'artistas-6', nombre: 'Nominado 6', handle: '@usuario6', img: '/assets/images/artistas-6.png' },
+        ]
+    },
+    {
+        id: 'revelacion', nombre: 'Revelación del Año', count: 5,
+        nominados: [
+            { id: 'revelacion-1', nombre: 'Nominado 1', handle: '@usuario1', img: '/assets/images/revelacion-1.png' },
+            { id: 'revelacion-2', nombre: 'Nominado 2', handle: '@usuario2', img: '/assets/images/revelacion-2.png' },
+            { id: 'revelacion-3', nombre: 'Nominado 3', handle: '@usuario3', img: '/assets/images/revelacion-3.png' },
+            { id: 'revelacion-4', nombre: 'Nominado 4', handle: '@usuario4', img: '/assets/images/revelacion-4.png' },
+            { id: 'revelacion-5', nombre: 'Nominado 5', handle: '@usuario5', img: '/assets/images/revelacion-5.png' },
+        ]
+    },
 ];
-
-function gen(n, prefix) {
-    const arr = [];
-    for (let i = 1; i <= n; i++) {
-        arr.push({
-            id: prefix + '-' + i,
-            nombre: 'Nominado ' + i,
-            handle: '@usuario' + i,
-            // Sustituye esta línea por: /assets/images/NOMBRE-DE-TU-IMAGEN.png
-            img: '/assets/images/nominado-ejemplo.png'
-        });
-    }
-    return arr;
-}
 
 // ====== ESTADO ======
 let activeCategoria = categorias[0].id;
