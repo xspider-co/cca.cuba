@@ -612,7 +612,7 @@ const categorias = [
 ];
 
 // ====== CONFIGURACIÓN ======
-// Cuando llegue el momento de abrir las votaciones oficialmente, cambia esto a true.
+// ⚠️ TEMPORAL PARA PRUEBAS — recuerda volver a 'false' antes de publicar oficialmente
 const VOTACIONES_ABIERTAS = true;
 
 const SUPABASE_URL = 'https://ravkrqelszcjbrckgqum.supabase.co';
@@ -625,17 +625,32 @@ let selectedNominee = null;
 let fingerprint = null;
 let votosLocales = {}; // cache en memoria: { categoriaId: nominadoId }
 
-// ====== FINGERPRINT ======
+// ====== ID PERSISTENTE DEL DISPOSITIVO ======
+// Generamos un ID propio guardado en localStorage. Esto es más estable que el
+// fingerprint puro en navegadores como Safari/iOS, que randomiza señales por privacidad.
+function getOrCreateDeviceId() {
+    let deviceId = localStorage.getItem('cca_device_id');
+    if (!deviceId) {
+        deviceId = 'dev-' + Date.now().toString(36) + '-' + Math.random().toString(36).substring(2, 12);
+        localStorage.setItem('cca_device_id', deviceId);
+    }
+    return deviceId;
+}
+
+// ====== FINGERPRINT (combinado con el device ID) ======
 async function initFingerprint() {
+    const deviceId = getOrCreateDeviceId();
+    let fpVisitorId = 'no-fp';
     try {
         const fp = await FingerprintJS.load();
         const result = await fp.get();
-        fingerprint = result.visitorId;
+        fpVisitorId = result.visitorId;
     } catch (e) {
         console.error('Error generando fingerprint:', e);
-        // Fallback simple si la librería falla por algún motivo
-        fingerprint = 'fallback-' + Math.random().toString(36).substring(2);
     }
+    // El identificador final combina ambos: el ID persistente es la base estable,
+    // el fingerprint se añade como capa extra de verificación.
+    fingerprint = deviceId + '__' + fpVisitorId;
 }
 
 // ====== CARGAR VOTOS YA EMITIDOS POR ESTE FINGERPRINT ======
