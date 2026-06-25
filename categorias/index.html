@@ -19,6 +19,9 @@
     <meta name="twitter:title" content="Categorías — Cuba Content Awards">
     <meta name="twitter:image" content="/assets/images/og.png">
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://openfpcdn.io/fingerprintjs/v4"></script>
+
     <style>
     @font-face {
         font-family: "Cal Sans";
@@ -608,29 +611,59 @@ const categorias = [
     },
 ];
 
+// ====== CONFIGURACIÓN ======
+// Cuando llegue el momento de abrir las votaciones oficialmente, cambia esto a true.
+const VOTACIONES_ABIERTAS = false;
+
+const SUPABASE_URL = 'https://ravkrqelszcjbrckgqum.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_vgJitsj5SlLr91hrfdT7-w_JUb4g5R1';
+const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
 // ====== ESTADO ======
 let activeCategoria = categorias[0].id;
 let selectedNominee = null;
+let fingerprint = null;
+let votosLocales = {}; // cache en memoria: { categoriaId: nominadoId }
 
-// Votos ya emitidos (localStorage — placeholder temporal, se sustituirá por sistema seguro)
-function getVotedCategorias() {
+// ====== FINGERPRINT ======
+async function initFingerprint() {
     try {
-        return JSON.parse(localStorage.getItem('cca_votos') || '{}');
-    } catch (e) { return {}; }
+        const fp = await FingerprintJS.load();
+        const result = await fp.get();
+        fingerprint = result.visitorId;
+    } catch (e) {
+        console.error('Error generando fingerprint:', e);
+        // Fallback simple si la librería falla por algún motivo
+        fingerprint = 'fallback-' + Math.random().toString(36).substring(2);
+    }
 }
-function setVoted(catId, nomineeId) {
-    const votos = getVotedCategorias();
-    votos[catId] = nomineeId;
-    localStorage.setItem('cca_votos', JSON.stringify(votos));
+
+// ====== CARGAR VOTOS YA EMITIDOS POR ESTE FINGERPRINT ======
+async function cargarVotosPropios() {
+    if (!fingerprint) return;
+    try {
+        const { data, error } = await _supabase
+            .from('votos')
+            .select('categoria, nominado_id')
+            .eq('fingerprint', fingerprint);
+
+        if (error) throw error;
+
+        votosLocales = {};
+        (data || []).forEach(v => {
+            votosLocales[v.categoria] = v.nominado_id;
+        });
+    } catch (e) {
+        console.error('Error cargando votos:', e);
+    }
 }
 
 // ====== RENDER PILLS ======
 function renderPills() {
     const wrap = document.getElementById('catPills');
-    const votos = getVotedCategorias();
     wrap.innerHTML = '';
     categorias.forEach(cat => {
-        const voted = !!votos[cat.id];
+        const voted = !!votosLocales[cat.id];
         const isActive = cat.id === activeCategoria;
         const pill = document.createElement('button');
         pill.className = 'cat-pill' + (isActive ? ' active' : '') + (voted ? ' voted' : '');
@@ -643,8 +676,7 @@ function renderPills() {
 // ====== RENDER NOMINEES ======
 function renderNominees() {
     const cat = categorias.find(c => c.id === activeCategoria);
-    const votos = getVotedCategorias();
-    const votedNomineeId = votos[cat.id] || null;
+    const votedNomineeId = votosLocales[cat.id] || null;
     const isLocked = !!votedNomineeId;
 
     document.getElementById('catTitle').textContent = cat.nombre;
@@ -676,7 +708,6 @@ function renderNominees() {
         grid.appendChild(card);
     });
 
-    // Reset selection bar if locked
     if (isLocked) {
         selectedNominee = null;
         hideVoteBar();
@@ -712,17 +743,91 @@ function hideVoteBar() {
 }
 
 // ====== CONFIRM VOTE ======
-function confirmVote() {
+async function confirmVote() {
     if (!selectedNominee) return;
-    // Por ahora las votaciones no están abiertas — mostramos el modal informativo.
-    // Cuando se abran oficialmente, aquí se llamará a Supabase para registrar el voto real
-    // y luego se ejecutaría: setVoted(activeCategoria, selectedNominee.id); renderPills(); renderNominees();
-    openModal();
+
+    if (!VOTACIONES_ABIERTAS) {
+        openModal('proximamente');
+        return;
+    }
+
+    const btn = document.querySelector('.btn-vote');
+    const originalText = btn.innerHTML;
+    btn.disabled = true;
+    btn.style.opacity = '0.6';
+    btn.textContent = 'Enviando...';
+
+    try {
+        const { error } = await _supabase.from('votos').insert([{
+            categoria: activeCategoria,
+            nominado_id: selectedNominee.id,
+            nominado_nombre: selectedNominee.nombre,
+            fingerprint: fingerprint,
+            user_agent: navigator.userAgent
+        }]);
+
+        if (error) {
+            // Código 23505 = violación de índice único -> ya había votado en esa categoría
+            if (error.code === '23505') {
+                openModal('yavoto');
+            } else {
+                throw error;
+            }
+        } else {
+            votosLocales[activeCategoria] = selectedNominee.id;
+            renderPills();
+            renderNominees();
+            hideVoteBar();
+            openModal('exito');
+        }
+    } catch (e) {
+        console.error('Error al votar:', e);
+        openModal('error');
+    } finally {
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        btn.innerHTML = originalText;
+    }
 }
 
 // ====== MODAL ======
-function openModal() {
+const modalContent = {
+    proximamente: {
+        icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+        title: '¡Las votaciones aún no están abiertas!',
+        desc: 'Estamos ultimando todo para que puedas votar por tu favorito muy pronto. Vuelve en los próximos días 🇨🇺'
+    },
+    exito: {
+        icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>`,
+        title: '¡Voto registrado!',
+        desc: 'Gracias por apoyar a tu favorito. Ya puedes votar en las demás categorías.'
+    },
+    yavoto: {
+        icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`,
+        title: 'Ya votaste en esta categoría',
+        desc: 'Solo se permite un voto por categoría. ¡Puedes seguir votando en las demás!'
+    },
+    error: {
+        icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`,
+        title: 'Algo salió mal',
+        desc: 'No pudimos registrar tu voto. Revisa tu conexión e intenta de nuevo.'
+    }
+};
+
+function openModal(type = 'proximamente') {
+    const content = modalContent[type];
+    document.querySelector('.modal-icon').innerHTML = content.icon;
+    document.querySelector('.modal-title').textContent = content.title;
+    document.querySelector('.modal-desc').textContent = content.desc;
     document.getElementById('modalOverlay').classList.add('show');
+
+    if (type === 'yavoto' || type === 'error') {
+        document.querySelector('.modal-icon').style.background = 'rgba(14,36,120,0.1)';
+        document.querySelector('.modal-icon svg').style.color = 'var(--navy)';
+    } else {
+        document.querySelector('.modal-icon').style.background = 'rgba(14,36,120,0.1)';
+        document.querySelector('.modal-icon svg').style.color = 'var(--navy)';
+    }
 }
 function closeModal() {
     document.getElementById('modalOverlay').classList.remove('show');
@@ -732,8 +837,15 @@ document.getElementById('modalOverlay').addEventListener('click', (e) => {
 });
 
 // ====== INIT ======
-renderPills();
-renderNominees();
+async function init() {
+    renderPills();
+    renderNominees();
+    await initFingerprint();
+    await cargarVotosPropios();
+    renderPills();
+    renderNominees();
+}
+init();
 </script>
 
 </body>
