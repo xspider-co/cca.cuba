@@ -514,7 +514,7 @@ const categorias = [
     {
         id: 'humor', nombre: 'Humor', count: 6,
         nominados: [
-            { id: 'humor-1', nombre: 'Nominado 1', handle: '@usuario1', img: '/assets/images/humor-1.jpeg' },
+            { id: 'humor-1', nombre: 'Nominado 1', handle: '@usuario1', img: '/assets/images/humor-1.jepg' },
             { id: 'humor-2', nombre: 'Nominado 2', handle: '@usuario2', img: '/assets/images/humor-2.jpeg' },
             { id: 'humor-3', nombre: 'Nominado 3', handle: '@usuario3', img: '/assets/images/humor-3.jpeg' },
             { id: 'humor-4', nombre: 'Nominado 4', handle: '@usuario4', img: '/assets/images/humor-4.jpeg' },
@@ -537,7 +537,7 @@ const categorias = [
         id: 'lifestyle', nombre: 'Lifestyle', count: 7,
         nominados: [
             { id: 'lifestyle-1', nombre: 'Nominado 1', handle: '@usuario1', img: '/assets/images/lifestyle-1.jpeg' },
-            { id: 'lifestyle-2', nombre: 'Nominado 2', handle: '@usuario2', img: '/assets/images/lifestyle-2.jpeg' },
+            { id: 'lifestyle-2', nombre: 'Nominado 2', handle: '@usuario2', img: '/assets/images/lifestyle-2.jepg' },
             { id: 'lifestyle-3', nombre: 'Nominado 3', handle: '@usuario3', img: '/assets/images/lifestyle-3.jpeg' },
             { id: 'lifestyle-4', nombre: 'Nominado 4', handle: '@usuario4', img: '/assets/images/lifestyle-4.jpeg' },
             { id: 'lifestyle-5', nombre: 'Nominado 5', handle: '@usuario5', img: '/assets/images/lifestyle-5.jpeg' },
@@ -562,7 +562,7 @@ const categorias = [
         id: 'fitness', nombre: 'Fitness', count: 5,
         nominados: [
             { id: 'fitness-1', nombre: 'Nominado 1', handle: '@usuario1', img: '/assets/images/fitness-1.jpeg' },
-            { id: 'fitness-2', nombre: 'Nominado 2', handle: '@usuario2', img: '/assets/images/fitness-2.jpeg' },
+            { id: 'fitness-2', nombre: 'Nominado 2', handle: '@usuario2', img: '/assets/images/fitness-2.jepg' },
             { id: 'fitness-3', nombre: 'Nominado 3', handle: '@usuario3', img: '/assets/images/fitness-3.jpeg' },
             { id: 'fitness-4', nombre: 'Nominado 4', handle: '@usuario4', img: '/assets/images/fitness-4.jpeg' },
             { id: 'fitness-5', nombre: 'Nominado 5', handle: '@usuario5', img: '/assets/images/fitness-5.jpeg' },
@@ -592,7 +592,7 @@ const categorias = [
         id: 'artistas', nombre: 'Artistas', count: 6,
         nominados: [
             { id: 'artistas-1', nombre: 'Nominado 1', handle: '@usuario1', img: '/assets/images/artistas-1.jpeg' },
-            { id: 'artistas-2', nombre: 'Nominado 2', handle: '@usuario2', img: '/assets/images/artistas-2.jpeg' },
+            { id: 'artistas-2', nombre: 'Nominado 2', handle: '@usuario2', img: '/assets/images/artistas-2.jepg' },
             { id: 'artistas-3', nombre: 'Nominado 3', handle: '@usuario3', img: '/assets/images/artistas-3.jpeg' },
             { id: 'artistas-4', nombre: 'Nominado 4', handle: '@usuario4', img: '/assets/images/artistas-4.jpeg' },
             { id: 'artistas-5', nombre: 'Nominado 5', handle: '@usuario5', img: '/assets/images/artistas-5.jpeg' },
@@ -612,7 +612,7 @@ const categorias = [
 ];
 
 // ====== CONFIGURACIÓN ======
-// ⚠️ TEMPORAL PARA PRUEBAS — recuerda volver a 'false' antes de publicar oficialmente
+// Cuando llegue el momento de abrir las votaciones oficialmente, cambia esto a true.
 const VOTACIONES_ABIERTAS = false;
 
 const SUPABASE_URL = 'https://ravkrqelszcjbrckgqum.supabase.co';
@@ -623,6 +623,7 @@ const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 let activeCategoria = categorias[0].id;
 let selectedNominee = null;
 let fingerprint = null;
+let userIP = null;
 let votosLocales = {}; // cache en memoria: { categoriaId: nominadoId }
 
 // ====== ID PERSISTENTE DEL DISPOSITIVO ======
@@ -651,6 +652,20 @@ async function initFingerprint() {
     // El identificador final combina ambos: el ID persistente es la base estable,
     // el fingerprint se añade como capa extra de verificación.
     fingerprint = deviceId + '__' + fpVisitorId;
+}
+
+// ====== IP PÚBLICA ======
+// Se usa solo para que puedas revisar manualmente patrones sospechosos en Supabase
+// (ej. muchos votos desde la misma IP en poco tiempo). No bloquea nada automáticamente.
+async function initIP() {
+    try {
+        const res = await fetch('https://api.ipify.org?format=json');
+        const data = await res.json();
+        userIP = data.ip;
+    } catch (e) {
+        console.error('Error obteniendo IP:', e);
+        userIP = null;
+    }
 }
 
 // ====== CARGAR VOTOS YA EMITIDOS POR ESTE FINGERPRINT ======
@@ -778,6 +793,7 @@ async function confirmVote() {
             nominado_id: selectedNominee.id,
             nominado_nombre: selectedNominee.nombre,
             fingerprint: fingerprint,
+            ip: userIP,
             user_agent: navigator.userAgent
         }]);
 
@@ -856,6 +872,7 @@ async function init() {
     renderPills();
     renderNominees();
     await initFingerprint();
+    initIP(); // no necesita bloquear el render, corre en paralelo
     await cargarVotosPropios();
     renderPills();
     renderNominees();
