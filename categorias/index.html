@@ -612,8 +612,8 @@ const categorias = [
 ];
 
 // ====== CONFIGURACIÓN ======
-// Cuando llegue el momento de abrir las votaciones oficialmente, cambia esto a true.
-const VOTACIONES_ABIERTAS = false;
+// 'abiertas' | 'proximamente' | 'cerradas'
+const VOTACIONES_ESTADO = 'cerradas';
 
 const SUPABASE_URL = 'https://ravkrqelszcjbrckgqum.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_vgJitsj5SlLr91hrfdT7-w_JUb4g5R1';
@@ -776,8 +776,8 @@ function hideVoteBar() {
 async function confirmVote() {
     if (!selectedNominee) return;
 
-    if (!VOTACIONES_ABIERTAS) {
-        openModal('proximamente');
+    if (VOTACIONES_ESTADO !== 'abiertas') {
+        openModal(VOTACIONES_ESTADO === 'cerradas' ? 'cerradas' : 'proximamente');
         return;
     }
 
@@ -827,6 +827,11 @@ const modalContent = {
         icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
         title: '¡Las votaciones aún no están abiertas!',
         desc: 'Estamos ultimando todo para que puedas votar por tu favorito muy pronto. Vuelve en los próximos días 🇨🇺'
+    },
+    cerradas: {
+        icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+        title: '¡Las votaciones ya han finalizado!',
+        desc: 'Pronto anunciaremos la segunda fase. Síguenos en instagram para que no te pierdas nada 🇨🇺'
     },
     exito: {
         icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>`,
