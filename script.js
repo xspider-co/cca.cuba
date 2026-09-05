@@ -7,7 +7,7 @@
 // Formato ISO con offset de La Habana (-05:00, hora estándar de Cuba).
 // Si Cuba entra en horario de verano, ajustar el offset a -04:00.
 // ============================================================
-const TARGET_DATE = new Date('2026-12-05T20:00:00-05:00');
+const TARGET_DATE = new Date('2026-12-05T19:00:00-05:00');
 
 const elDays = document.getElementById('cd-days');
 const elHours = document.getElementById('cd-hours');
