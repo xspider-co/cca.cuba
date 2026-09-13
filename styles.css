@@ -6,11 +6,13 @@
    ========================================================= */
 
 :root {
-  --bg: #091A51;
-  --fg: #F4F5F8;
-  --fg-dim: rgba(244, 245, 248, 0.62);
-  --fg-faint: rgba(244, 245, 248, 0.38);
-  --line: rgba(244, 245, 248, 0.14);
+  --bg: #06244A;
+  --fg: #F6F0E6;
+  --fg-dim: rgba(246, 240, 230, 0.62);
+  --fg-faint: rgba(246, 240, 230, 0.38);
+  --line: rgba(246, 240, 230, 0.14);
+  --gold: #C29B58;
+  --gold-dim: rgba(194, 155, 88, 0.72);
 
   /* Pila "Inter-like": usa Inter si está instalada localmente,
      si no, cae en las fuentes de sistema modernas (San Francisco,
@@ -49,6 +51,33 @@ body {
   flex-direction: column;
 }
 
+/* Marco tropical a los lados; el centro queda libre para el texto. */
+.flora {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url('brand/flora-navy.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0;
+  animation: fade-in 1.4s ease-out 0.05s forwards;
+}
+
+/* Velo suave en el centro para que la frase no compita con las hojas. */
+.flora::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 52% 62% at 50% 48%,
+    rgba(6, 36, 74, 0.72) 0%,
+    rgba(6, 36, 74, 0.38) 48%,
+    rgba(6, 36, 74, 0) 74%
+  );
+}
+
 /* ---------- Marca y meta superiores ---------- */
 
 .brand-mark,
@@ -68,6 +97,7 @@ body {
 
 .brand-mark {
   left: max(24px, 4vw);
+  color: var(--gold-dim);
 }
 
 .event-meta--top {
@@ -78,13 +108,15 @@ body {
 /* ---------- Escenario central ---------- */
 
 .stage {
+  position: relative;
+  z-index: 1;
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: clamp(48px, 9vh, 96px);
-  padding: 10vh 6vw max(88px, 12vh);
+  padding: 10vh clamp(28px, 16vw, 220px) max(88px, 12vh);
   text-align: center;
 }
 
@@ -146,7 +178,7 @@ body {
   font-family: var(--font-ui);
   font-weight: 300;
   font-size: clamp(1.2rem, 3vw, 1.8rem);
-  color: var(--fg-faint);
+  color: var(--gold-dim);
 }
 
 /* ---------- Patrocinadores ---------- */
@@ -223,7 +255,7 @@ a.sponsors__link:focus-visible .sponsors__logo {
 
 a.footer__tag:hover,
 a.footer__tag:focus-visible {
-  color: var(--fg);
+  color: var(--gold);
 }
 
 /* ---------- Animaciones de entrada ---------- */
@@ -245,7 +277,8 @@ a.footer__tag:focus-visible {
   .phrase,
   .countdown,
   .sponsors,
-  .footer {
+  .footer,
+  .flora {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
@@ -263,7 +296,7 @@ a.footer__tag:focus-visible {
 
   .stage {
     gap: 40px;
-    padding: 8vh 7vw;
+    padding: 8vh 14vw max(80px, 10vh);
   }
 
   .phrase {
@@ -287,7 +320,12 @@ a.footer__tag:focus-visible {
 @media (max-height: 420px) {
   .stage {
     gap: 24px;
-    padding: 6vh 6vw;
+    padding: 6vh 18vw;
+  }
+
+  .flora {
+    animation: none;
+    opacity: 0.45;
   }
 
   .brand-mark, .event-meta, .footer {
