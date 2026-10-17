@@ -6,7 +6,7 @@
    ========================================================= */
 
 :root {
-  --bg: #06244A;
+  --bg: #000000;
   --fg: #F6F0E6;
   --fg-dim: rgba(246, 240, 230, 0.62);
   --fg-faint: rgba(246, 240, 230, 0.38);
@@ -14,18 +14,11 @@
   --gold: #C29B58;
   --gold-dim: rgba(194, 155, 88, 0.72);
 
-  /* Pila "Inter-like": usa Inter si está instalada localmente,
-     si no, cae en las fuentes de sistema modernas (San Francisco,
-     Segoe UI, Roboto...) sin descargar nada. */
   --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
              Roboto, 'Helvetica Neue', Arial, sans-serif;
 
-  /* Pila serif itálica elegante, disponible en prácticamente
-     cualquier sistema (macOS, Windows, Linux, iOS, Android). */
   --font-serif: 'Cal Sans', 'Iowan Old Style', 'Palatino Linotype',
                 'Book Antiqua', Georgia, 'Times New Roman', serif;
-
-  --space-unit: 1vmin;
 }
 
 * {
@@ -51,58 +44,21 @@ body {
   flex-direction: column;
 }
 
-/* Marco tropical a los lados; el centro queda libre para el texto. */
-.flora {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image: url('brand/flora-navy.jpg');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  opacity: 0;
-  animation: fade-in 1.4s ease-out 0.05s forwards;
-}
+/* ---------- Marca superior ---------- */
 
-/* Velo suave en el centro para que la frase no compita con las hojas. */
-.flora::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse 52% 62% at 50% 48%,
-    rgba(6, 36, 74, 0.72) 0%,
-    rgba(6, 36, 74, 0.38) 48%,
-    rgba(6, 36, 74, 0) 74%
-  );
-}
-
-/* ---------- Marca y meta superiores ---------- */
-
-.brand-mark,
-.event-meta {
+.brand-mark {
   position: fixed;
   top: max(24px, 3vh);
+  left: max(24px, 4vw);
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--fg-faint);
+  color: var(--gold-dim);
   font-weight: 500;
   white-space: nowrap;
   z-index: 2;
   opacity: 0;
   animation: fade-in 1.1s ease-out 0.3s forwards;
-}
-
-.brand-mark {
-  left: max(24px, 4vw);
-  color: var(--gold-dim);
-}
-
-.event-meta--top {
-  right: max(24px, 4vw);
-  text-align: right;
 }
 
 /* ---------- Escenario central ---------- */
@@ -115,70 +71,37 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: clamp(48px, 9vh, 96px);
-  padding: 10vh clamp(28px, 16vw, 220px) max(88px, 12vh);
+  gap: clamp(36px, 7vh, 72px);
+  padding: 10vh 6vw max(88px, 12vh);
   text-align: center;
 }
 
-/* Frase principal: serif itálica, mucho aire, tamaño fluido */
-.phrase {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(1.5rem, 4.4vw, 2.9rem);
-  line-height: 1.5;
-  letter-spacing: 0.01em;
-  color: var(--fg);
-  max-width: 18ch;
-  opacity: 0;
-  transform: translateY(8px);
-  animation: rise-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
-}
-
-/* ---------- Contador ---------- */
-
-.countdown {
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-  gap: clamp(20px, 4vw, 48px);
-  opacity: 0;
-  animation: fade-in 1.2s ease-out 0.6s forwards;
-}
-
-.countdown__unit {
+.hero {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  min-width: 2.6ch;
+  gap: 28px;
 }
 
-.countdown__value {
-  font-family: var(--font-ui);
-  font-weight: 300;
-  font-size: clamp(1.6rem, 5vw, 2.6rem);
-  line-height: 1;
-  color: var(--fg);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.02em;
+.trophy {
+  display: block;
+  height: clamp(260px, 46vh, 500px);
+  width: auto;
+  max-width: min(72vw, 420px);
+  object-fit: contain;
+  opacity: 0;
+  animation: fade-in 1.3s ease-out 0.12s forwards;
 }
 
-.countdown__label {
-  font-size: 10px;
-  letter-spacing: 0.18em;
+.event-meta {
+  font-size: 11px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--fg-dim);
+  color: var(--fg-faint);
   font-weight: 500;
-}
-
-.countdown__sep {
-  align-self: flex-start;
-  margin-top: 2px;
-  font-family: var(--font-ui);
-  font-weight: 300;
-  font-size: clamp(1.2rem, 3vw, 1.8rem);
-  color: var(--gold-dim);
+  white-space: nowrap;
+  opacity: 0;
+  animation: fade-in 1.1s ease-out 0.45s forwards;
 }
 
 /* ---------- Patrocinadores ---------- */
@@ -205,19 +128,24 @@ body {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: clamp(28px, 5vw, 48px);
+  gap: clamp(18px, 3.5vw, 36px) clamp(22px, 4.5vw, 44px);
   list-style: none;
+  max-width: min(880px, 92vw);
 }
 
 .sponsors__logo {
   display: block;
-  height: 52px;
+  height: auto;
   width: auto;
-  max-width: 180px;
+  max-height: 42px;
+  max-width: 140px;
   object-fit: contain;
-  /* Convierte el logo a blanco fantasma para no romper el navy. */
-  filter: brightness(0) invert(1);
-  opacity: 0.38;
+  opacity: 0.42;
+}
+
+.sponsors__logo--mark {
+  max-height: 52px;
+  max-width: 168px;
 }
 
 a.sponsors__link {
@@ -265,23 +193,14 @@ a.footer__tag:focus-visible {
   to   { opacity: 1; }
 }
 
-@keyframes rise-in {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* Respeta preferencia de movimiento reducido */
 @media (prefers-reduced-motion: reduce) {
   .brand-mark,
   .event-meta,
-  .phrase,
-  .countdown,
+  .trophy,
   .sponsors,
-  .footer,
-  .flora {
+  .footer {
     animation: none !important;
     opacity: 1 !important;
-    transform: none !important;
   }
 }
 
@@ -295,16 +214,17 @@ a.footer__tag:focus-visible {
   }
 
   .stage {
-    gap: 40px;
-    padding: 8vh 14vw max(80px, 10vh);
+    gap: 32px;
+    padding: 8vh 7vw max(80px, 10vh);
   }
 
-  .phrase {
-    max-width: 20ch;
-  }
-
-  .countdown {
+  .hero {
     gap: 22px;
+  }
+
+  .trophy {
+    height: clamp(220px, 42vh, 360px);
+    max-width: 78vw;
   }
 
   .sponsors {
@@ -312,23 +232,27 @@ a.footer__tag:focus-visible {
   }
 
   .sponsors__logo {
-    height: 42px;
+    max-height: 34px;
+    max-width: 118px;
+  }
+
+  .sponsors__logo--mark {
+    max-height: 42px;
+    max-width: 140px;
   }
 }
 
-/* Pantallas muy bajas (móvil horizontal) */
 @media (max-height: 420px) {
   .stage {
-    gap: 24px;
-    padding: 6vh 18vw;
+    gap: 16px;
+    padding: 6vh 6vw;
   }
 
-  .flora {
-    animation: none;
-    opacity: 0.45;
+  .trophy {
+    height: 42vh;
   }
 
-  .brand-mark, .event-meta, .footer {
+  .brand-mark, .footer {
     display: none;
   }
 }

@@ -2,48 +2,27 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <!-- Viewport obligatorio para móvil -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>CCA — Cuba Content Awards</title>
-  <meta name="theme-color" content="#06244A" />
+  <meta name="theme-color" content="#000000" />
   <meta name="description" content="Cuba Content Awards" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <!-- Marco botánico de la identidad (navy / oro / marfil). -->
-  <div class="flora" aria-hidden="true"></div>
-
-  <!-- Marca discreta, arriba a la izquierda -->
-  <header class="brand-mark" aria-hidden="false">CUBA CONTENT AWARDS</header>
-
-  <!-- Fecha/lugar discretos, arriba a la derecha -->
-  <div class="event-meta event-meta--top">05 · 12 · 2026 — LA HABANA</div>
+  <header class="brand-mark">CUBA CONTENT AWARDS</header>
 
   <main class="stage">
 
-    <!-- ============================================= -->
-    <!-- 👉 CAMBIAR AQUÍ LA FRASE PRINCIPAL             -->
-    <!-- Mantenerla breve; el tamaño se ajusta solo.    -->
-    <!-- ============================================= -->
-    <p class="phrase">“Estés donde estés, esta historia también es tuya.”</p>
-
-    <!-- Contador en tiempo real. La fecha se define en script.js -->
-    <div class="countdown" id="countdown" aria-live="polite">
-      <div class="countdown__unit">
-        <span class="countdown__value" id="cd-days">00</span>
-        <span class="countdown__label">Días</span>
-      </div>
-      <div class="countdown__sep" aria-hidden="true">·</div>
-      <div class="countdown__unit">
-        <span class="countdown__value" id="cd-hours">00</span>
-        <span class="countdown__label">Horas</span>
-      </div>
-      <div class="countdown__sep" aria-hidden="true">·</div>
-      <div class="countdown__unit">
-        <span class="countdown__value" id="cd-minutes">00</span>
-        <span class="countdown__label">Minutos</span>
-      </div>
+    <div class="hero">
+      <img
+        class="trophy"
+        src="brand/trophy.jpg"
+        alt="Trofeo Cuba Content Awards"
+        width="721"
+        height="801"
+      />
+      <p class="event-meta">05 · 12 · 2026 — LA HABANA</p>
     </div>
 
     <!-- Añadir un <li> por patrocinador cuando entre. -->
@@ -51,13 +30,25 @@
       <p class="sponsors__label">Patrocinado por</p>
       <ul class="sponsors__list">
         <li>
-          <img
-            class="sponsors__logo"
-            src="sponsors/aserecar-web.png"
-            alt="Aserecar"
-            width="318"
-            height="320"
-          />
+          <img class="sponsors__logo sponsors__logo--mark" src="sponsors/aserecar-web.png" alt="Aserecar" width="403" height="404" />
+        </li>
+        <li>
+          <img class="sponsors__logo" src="sponsors/qvapay.png" alt="QvaPay" width="599" height="325" />
+        </li>
+        <li>
+          <img class="sponsors__logo sponsors__logo--mark" src="sponsors/aloha.png" alt="Aloha Varadero Cozy Stays" width="489" height="320" />
+        </li>
+        <li>
+          <img class="sponsors__logo sponsors__logo--mark" src="sponsors/kg.png" alt="KG" width="542" height="640" />
+        </li>
+        <li>
+          <img class="sponsors__logo" src="sponsors/juliana.png" alt="La Juliana" width="565" height="190" />
+        </li>
+        <li>
+          <img class="sponsors__logo" src="sponsors/wapa.png" alt="Wapa" width="608" height="193" />
+        </li>
+        <li>
+          <img class="sponsors__logo" src="sponsors/trama.png" alt="Trama Rooftop" width="620" height="601" />
         </li>
       </ul>
     </section>
@@ -74,6 +65,5 @@
     >@cca.cuba</a>
   </footer>
 
-  <script src="script.js"></script>
 </body>
 </html>
