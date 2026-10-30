@@ -6,7 +6,7 @@
 const CATEGORIAS=[
   {n:'Humor',              u:'AQUÍ VA EL ENLACE'},
   {n:'Lifestyle',          u:'https://www.instagram.com/p/DfA2fbJiA0i/?vrfl=MWN6djF5cWhjbjhjMQ=='},
-  {n:'Moda y Belleza',     u:'https://www.instagram.com/p/DfIim3vCJan/?cplk=OGxkejJqeXFwaWdz'},
+  {n:'Moda y Belleza',     u:'https://www.instagram.com/p/DfIjjUEiNUd/?rpxt=bXNvczA0cmM1eXow'},
   {n:'Vlogs',              u:'AQUÍ VA EL ENLACE'},
   {n:'Fitness',            u:'https://www.instagram.com/p/DfGDxybCPRL/?xtok=MXIyNjRnc2xsbnQ1eA=='},
   {n:'Cocina',             u:'AQUÍ VA EL ENLACE'},
