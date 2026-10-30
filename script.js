@@ -5,14 +5,14 @@
 // Mientras el texto no empiece por https://, el círculo queda apagado con "Próximamente".
 const CATEGORIAS=[
   {n:'Humor',              u:'AQUÍ VA EL ENLACE'},
-  {n:'Lifestyle',          u:'AQUÍ VA EL ENLACE'},
+  {n:'Lifestyle',          u:'https://www.instagram.com/p/DfA2fbJiA0i/?vrfl=MWN6djF5cWhjbjhjMQ=='},
   {n:'Moda y Belleza',     u:'AQUÍ VA EL ENLACE'},
   {n:'Vlogs',              u:'AQUÍ VA EL ENLACE'},
-  {n:'Fitness',            u:'AQUÍ VA EL ENLACE'},
+  {n:'Fitness',            u:'https://www.instagram.com/p/DfGDxybCPRL/?xtok=MXIyNjRnc2xsbnQ1eA=='},
   {n:'Cocina',             u:'AQUÍ VA EL ENLACE'},
   {n:'Impacto Social',     u:'AQUÍ VA EL ENLACE'},
   {n:'Artistas',           u:'AQUÍ VA EL ENLACE'},
-  {n:'Revelación del Año', u:'AQUÍ VA EL ENLACE'},
+  {n:'Revelación del Año', u:'https://www.instagram.com/p/DfC7U9ICDDd/?srtk=ODQ5dDZhaDBjMGY1'},
   {n:'Creador del Año',    u:'AQUÍ VA EL ENLACE', gran:true}
 ];
 const cats=document.getElementById('cats');
