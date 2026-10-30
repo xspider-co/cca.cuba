@@ -7,6 +7,7 @@
   <meta name="theme-color" content="#000000" />
   <meta name="description" content="Cuba Content Awards" />
   <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
 </head>
 <body>
 
@@ -23,6 +24,21 @@
         height="773"
       />
       <p class="event-meta">05 · 12 · 2026 — LA HABANA</p>
+
+      <div class="countdown" role="timer" aria-label="Cuenta regresiva para la gala">
+        <div class="countdown__unit">
+          <span class="countdown__num" id="cd-days">--</span>
+          <span class="countdown__label">Días</span>
+        </div>
+        <div class="countdown__unit">
+          <span class="countdown__num" id="cd-hours">--</span>
+          <span class="countdown__label">Horas</span>
+        </div>
+        <div class="countdown__unit">
+          <span class="countdown__num" id="cd-minutes">--</span>
+          <span class="countdown__label">Minutos</span>
+        </div>
+      </div>
     </div>
 
     <!-- Añadir un <li> por patrocinador cuando entre. -->
@@ -49,6 +65,9 @@
         </li>
         <li>
           <img class="sponsors__logo" src="sponsors/trama.png" alt="Trama Rooftop" width="620" height="601" />
+        </li>
+        <li>
+          <img class="sponsors__logo sponsors__logo--mark" src="sponsors/autopartes.png" alt="Autopartes" width="600" height="593" />
         </li>
       </ul>
     </section>
