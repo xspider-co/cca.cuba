@@ -1,88 +1,73 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>CCA — Cuba Content Awards</title>
-  <meta name="theme-color" content="#000000" />
-  <meta name="description" content="Cuba Content Awards" />
-  <link rel="stylesheet" href="styles.css" />
-  <script src="script.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1a0306">
+<title>CCA — Cuba Content Awards</title>
+<meta name="description" content="La primera gala presencial dedicada a reconocer a creadores de contenido cubanos. 5 de diciembre de 2026, La Habana.">
+<link rel="stylesheet" href="styles.css">
+<script src="script.js" defer></script>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<g id="b"><path d="M10 100C10 82 26 74 42 72h16c16 2 32 10 32 28z"/><rect x="45" y="62" width="10" height="13"/><ellipse cx="50" cy="52" rx="10.5" ry="12.5"/></g>
+<symbol id="s1" viewBox="0 0 100 100"><use href="#b"/><path d="M72 86L86 56" fill="none" stroke-width="7"/><rect x="82" y="36" width="12" height="19" rx="2.5"/></symbol>
+<symbol id="s2" viewBox="0 0 100 100"><use href="#b"/><path d="M28 88L33 66L45 60" fill="none" stroke-width="7"/><rect x="43" y="52" width="6" height="11" rx="3" transform="rotate(-22 46 58)"/></symbol>
+<symbol id="s3" viewBox="0 0 100 100"><use href="#b"/><rect x="40" y="30" width="20" height="14" rx="3"/><ellipse cx="50" cy="29" rx="13" ry="8"/><path d="M72 86L81 64" fill="none" stroke-width="7"/><path d="M81 62L84 44" fill="none" stroke-width="2.5"/><ellipse cx="84.5" cy="50" rx="3.5" ry="7" fill="none" stroke-width="1.8"/></symbol>
+<symbol id="s4" viewBox="0 0 100 100"><use href="#b"/><rect x="34" y="48" width="32" height="16" rx="3"/><rect x="43" y="43" width="12" height="6" rx="1"/><path d="M24 88L34 66M76 88L66 66" fill="none" stroke-width="7"/></symbol>
+<symbol id="s5" viewBox="0 0 100 100"><use href="#b"/><ellipse cx="36" cy="88" rx="17" ry="12" transform="rotate(-28 36 88)"/><path d="M44 82L84 46" fill="none" stroke-width="4"/><rect x="82" y="38" width="6" height="12" rx="1.5" transform="rotate(42 85 44)"/></symbol>
+<symbol id="s6" viewBox="0 0 100 100"><use href="#b"/><path d="M28 84L20 38M72 84L80 38" fill="none" stroke-width="7"/><path d="M12 34H88" fill="none" stroke-width="3"/><rect x="7" y="23" width="7" height="22" rx="2"/><rect x="86" y="23" width="7" height="22" rx="2"/></symbol>
+</defs></svg>
 
-  <header class="brand-mark">CUBA CONTENT AWARDS</header>
-
-  <main class="stage">
-
-    <div class="hero">
-      <img
-        class="trophy"
-        src="brand/trophy-2.jpg"
-        alt="Trofeo Cuba Content Awards"
-        width="773"
-        height="773"
-      />
-      <p class="event-meta">05 · 12 · 2026 — LA HABANA</p>
-
-      <div class="countdown" role="timer" aria-label="Cuenta regresiva para la gala">
-        <div class="countdown__unit">
-          <span class="countdown__num" id="cd-days">--</span>
-          <span class="countdown__label">Días</span>
-        </div>
-        <div class="countdown__unit">
-          <span class="countdown__num" id="cd-hours">--</span>
-          <span class="countdown__label">Horas</span>
-        </div>
-        <div class="countdown__unit">
-          <span class="countdown__num" id="cd-minutes">--</span>
-          <span class="countdown__label">Minutos</span>
-        </div>
-      </div>
+<section class="hero">
+  <div class="moons" aria-hidden="true">
+    <div class="moon" style="--i:0"><svg viewBox="0 0 100 100"><use href="#s1" width="100" height="100"/></svg></div>
+    <div class="moon" style="--i:1"><svg viewBox="0 0 100 100"><use href="#s2" width="100" height="100"/></svg></div>
+    <div class="moon" style="--i:2"><svg viewBox="0 0 100 100"><use href="#s3" width="100" height="100"/></svg></div>
+    <div class="moon" style="--i:3"><svg viewBox="0 0 100 100"><use href="#s4" width="100" height="100"/></svg></div>
+    <div class="moon" style="--i:4"><svg viewBox="0 0 100 100"><use href="#s5" width="100" height="100"/></svg></div>
+    <div class="moon" style="--i:5"><svg viewBox="0 0 100 100"><use href="#s6" width="100" height="100"/></svg></div>
+  </div>
+  <div>
+    <h1>Cuba Content Awards</h1>
+    <p class="frase">Se está preparando algo a la altura del talento que crea, inspira y mueve a Cuba.</p>
+  </div>
+  <div class="arco" role="timer" aria-label="Cuenta regresiva para la gala">
+    <p class="fecha">5 de diciembre de 2026, La Habana</p>
+    <div class="cuenta">
+      <div><b id="cd-d">--</b><i>días</i></div>
+      <div><b id="cd-h">--</b><i>horas</i></div>
+      <div><b id="cd-m">--</b><i>minutos</i></div>
     </div>
+  </div>
+</section>
 
-    <!-- Añadir un <li> por patrocinador cuando entre. -->
-    <section class="sponsors" aria-label="Patrocinadores">
-      <p class="sponsors__label">Patrocinado por</p>
-      <ul class="sponsors__list">
-        <li>
-          <img class="sponsors__logo sponsors__logo--mark" src="sponsors/aserecar-web.png" alt="Aserecar" width="403" height="404" />
-        </li>
-        <li>
-          <img class="sponsors__logo" src="sponsors/qvapay.png" alt="QvaPay" width="599" height="325" />
-        </li>
-        <li>
-          <img class="sponsors__logo sponsors__logo--mark" src="sponsors/aloha.png" alt="Aloha Varadero Cozy Stays" width="489" height="320" />
-        </li>
-        <li>
-          <img class="sponsors__logo sponsors__logo--mark" src="sponsors/kg.png" alt="KG" width="542" height="640" />
-        </li>
-        <li>
-          <img class="sponsors__logo" src="sponsors/juliana.png" alt="La Juliana" width="565" height="190" />
-        </li>
-        <li>
-          <img class="sponsors__logo" src="sponsors/wapa.png" alt="Wapa" width="608" height="193" />
-        </li>
-        <li>
-          <img class="sponsors__logo" src="sponsors/trama.png" alt="Trama Rooftop" width="620" height="601" />
-        </li>
-        <li>
-          <img class="sponsors__logo sponsors__logo--mark" src="sponsors/autopartes.png" alt="Autopartes" width="600" height="593" />
-        </li>
-      </ul>
-    </section>
+<section class="seccion" id="categorias">
+  <h2>Las categorías</h2>
+  <p class="intro">Cada círculo se enciende cuando publicamos a sus nominados.</p>
+  <div class="cats" id="cats"></div>
+</section>
 
-  </main>
+<section class="seccion aliados" id="aliados">
+  <h3>Con el apoyo de</h3>
+  <ul class="logos">
+    <!-- Para añadir un aliado: copia una línea <li>, cambia el nombre de la imagen y el alt. -->
+    <li><img class="mk" src="sponsors/aserecar.png" alt="Aserecar"></li>
+    <li><img src="sponsors/qvapay.png" alt="QvaPay"></li>
+    <li><img class="mk" src="sponsors/aloha.png" alt="Aloha Varadero Cozy Stays"></li>
+    <li><img class="mk" src="sponsors/kg.png" alt="KG"></li>
+    <li><img src="sponsors/juliana.png" alt="La Juliana"></li>
+    <li><img src="sponsors/wapa.png" alt="Wapa"></li>
+    <li><img class="mk" src="sponsors/trama.png" alt="Trama Rooftop"></li>
+    <li><img class="mk" src="sponsors/autopartes.png" alt="Autopartes"></li>
+  </ul>
+</section>
 
-  <footer class="footer">
-    <a
-      class="footer__tag"
-      href="https://www.instagram.com/cca.cuba/"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Instagram de CCA Cuba"
-    >@cca.cuba</a>
-  </footer>
+<footer>
+  <a href="https://www.instagram.com/cca.cuba/" target="_blank" rel="noopener noreferrer">@cca.cuba</a>
+  <a href="https://www.instagram.com/explore/tags/ccawards/" target="_blank" rel="noopener noreferrer">#ccawards</a>
+</footer>
 
 </body>
 </html>
