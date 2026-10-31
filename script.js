@@ -11,7 +11,7 @@ const CATEGORIAS=[
   {n:'Fitness',            u:'https://www.instagram.com/p/DfGDxybCPRL/?xtok=MXIyNjRnc2xsbnQ1eA=='},
   {n:'Cocina',             u:'AQUÍ VA EL ENLACE'},
   {n:'Impacto Social',     u:'AQUÍ VA EL ENLACE'},
-  {n:'Artistas',           u:'AQUÍ VA EL ENLACE'},
+  {n:'Artistas',           u:'https://www.instagram.com/p/DfLOHDZCFN7/?cplk=YzF2MDFlc3NyeDQ='},
   {n:'Revelación del Año', u:'https://www.instagram.com/p/DfC7U9ICDDd/?srtk=ODQ5dDZhaDBjMGY1'},
   {n:'Creador del Año',    u:'AQUÍ VA EL ENLACE', gran:true}
 ];
