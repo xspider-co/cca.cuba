@@ -9,7 +9,7 @@ const CATEGORIAS=[
   {n:'Moda y Belleza',     u:'https://www.instagram.com/p/DfIjjUEiNUd/?rpxt=bXNvczA0cmM1eXow'},
   {n:'Vlogs',              u:'AQUÍ VA EL ENLACE'},
   {n:'Fitness',            u:'https://www.instagram.com/p/DfGDxybCPRL/?xtok=MXIyNjRnc2xsbnQ1eA=='},
-  {n:'Cocina',             u:'AQUÍ VA EL ENLACE'},
+  {n:'Cocina',             u:'https://www.instagram.com/p/DfQSMeACNV5/?srtk=MXVlYTlrZHJwMWhpdA=='},
   {n:'Impacto Social',     u:'https://www.instagram.com/p/DfN-qofCA8S/?rpxt=MTI1cDIyZXE0Nzg0Yg=='},
   {n:'Artistas',           u:'https://www.instagram.com/p/DfLOHDZCFN7/?cplk=YzF2MDFlc3NyeDQ='},
   {n:'Revelación del Año', u:'https://www.instagram.com/p/DfC7U9ICDDd/?srtk=ODQ5dDZhaDBjMGY1'},
