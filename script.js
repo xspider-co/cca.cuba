@@ -4,7 +4,7 @@
 // 3) Guarda el archivo y vuelve a subirlo a Vercel. El círculo se enciende solo.
 // Mientras el texto no empiece por https://, el círculo queda apagado con "Próximamente".
 const CATEGORIAS=[
-  {n:'Humor',              u:'AQUÍ VA EL ENLACE'},
+  {n:'Humor',              u:'https://www.instagram.com/p/DfVnLPQCHle/?obrf=bzlpbG81cnN4amVy'},
   {n:'Lifestyle',          u:'https://www.instagram.com/p/DfA2fbJiA0i/?vrfl=MWN6djF5cWhjbjhjMQ=='},
   {n:'Moda y Belleza',     u:'https://www.instagram.com/p/DfIjjUEiNUd/?rpxt=bXNvczA0cmM1eXow'},
   {n:'Vlogs',              u:'https://www.instagram.com/p/DfTKFu_iAbH/?xtok=NHNjb3JrYnRpc29q'},
@@ -13,7 +13,7 @@ const CATEGORIAS=[
   {n:'Impacto Social',     u:'https://www.instagram.com/p/DfN-qofCA8S/?rpxt=MTI1cDIyZXE0Nzg0Yg=='},
   {n:'Artistas',           u:'https://www.instagram.com/p/DfLOHDZCFN7/?cplk=YzF2MDFlc3NyeDQ='},
   {n:'Revelación del Año', u:'https://www.instagram.com/p/DfC7U9ICDDd/?srtk=ODQ5dDZhaDBjMGY1'},
-  {n:'Creador del Año',    u:'AQUÍ VA EL ENLACE', gran:true}
+  {n:'Creador del Año',    u:'https://www.instagram.com/p/DfYMDXiiGg9/?img_index=6&rpxt=MXd0ZDB2dTlqaXNoag==', gran:true}
 ];
 const cats=document.getElementById('cats');
 CATEGORIAS.forEach(c=>{
