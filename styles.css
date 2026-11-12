@@ -58,6 +58,7 @@ h2{font-family:var(--script);font-weight:400;font-size:clamp(40px,8vw,64px);line
 .logos{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:32px clamp(30px,6vw,56px);margin-top:28px}
 .logos img{display:block;width:auto;height:auto;max-height:40px;max-width:130px;opacity:.6}
 .logos img.mk{max-height:54px;max-width:100px}
+.logos img.hb{max-height:34px;max-width:72px}
 footer{padding:0 6vw 56px;text-align:center;font-size:17px;color:var(--apagado)}
 footer a{color:var(--tenue);text-decoration:none;margin:0 12px}
 footer a:hover,footer a:focus-visible{color:var(--ambar)}
